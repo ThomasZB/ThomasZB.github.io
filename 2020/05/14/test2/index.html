@@ -4,10 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Thomas&#39;s Blog</title>
+    <title>test2 | Thomas&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Thomas">
+    
+    <meta name="description" content="">
     
     
     
@@ -62,41 +64,69 @@
 
     </header>
     <div id="container">
-      <div id="main">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/05/14/test2/" title="test2" itemprop="url">
-  
-    <h1 itemprop="name">test2</h1>
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" ></p>
-        
+      <a href="/2020/05/14/test2/" title="test2" itemprop="url">test2</a>
+  </h1>
+  <p class="article-author">By
     
+      <a href="https://github.com/ThomasZB" title="Thomas">Thomas</a>
+    </p>
+  <p class="article-time">
     <time datetime="2020-05-14T04:39:15.000Z" itemprop="datePublished">2020-05-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/05/14/如何使用vscode写markdown/" title="如何使用vscode写markdown" itemprop="url">
-  
-    <h1 itemprop="name">如何使用vscode写markdown</h1>
+    更新日期:<time datetime="2020-05-14T04:50:18.173Z" itemprop="dateModified">2020-05-14</time>
     
-     
-           <p itemprop="description" >使用vscode打开markdownvscode默认集成了markdown文档编辑插件使用vscode打开.md文件后使用ctrl+shift+p调出主命令框，输入markdown，选择打开侧边预览这样就可以愉快的一遍编辑文档一边看效果啦！！！
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+		<p><img src="/ThomasZB/2020/05/14/test2/01.png" alt="01"></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
 
-附一些不常用的操作1. 特殊符号</p>
-        
-    
-    <time datetime="2020-05-14T02:55:53.000Z" itemprop="datePublished">2020-05-14</time>
-  </a>
-</section>
 
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/ThomasZB/2020/05/14/test2/" data-title="test2 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
+  </div>
 
 </div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2020/05/14/如何使用vscode写markdown/"  title="如何使用vscode写markdown">
+ <strong>NEXT:</strong><br/> 
+ <span>如何使用vscode写markdown
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -164,6 +194,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -183,6 +215,66 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -190,4 +282,4 @@ $(document).ready(function(){
 
 
   </body>
- </html>
+</html>
