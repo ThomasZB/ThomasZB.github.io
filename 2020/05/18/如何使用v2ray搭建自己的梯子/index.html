@@ -78,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2020-05-18T01:47:28.000Z" itemprop="datePublished">2020-05-18</time>
-    更新日期:<time datetime="2020-05-18T02:39:45.113Z" itemprop="dateModified">2020-05-18</time>
+    更新日期:<time datetime="2020-05-19T08:52:44.289Z" itemprop="dateModified">2020-05-19</time>
     
   </p>
 </header>
@@ -99,9 +99,9 @@
 </ol>
 <p>第一个命令为启动一个服务，第二个命令为开机自动启动一个服务，这一步结束了就相当于已经启动v2ray服务器端进程了（<a href="https://blog.csdn.net/moonsheep_liu/article/details/50184255" target="_blank" rel="noopener">systemctl</a>命令介绍）。</p>
 <h3 id="启动v2ray"><a href="#启动v2ray" class="headerlink" title="启动v2ray"></a>启动v2ray</h3><p>除了上一步介绍的启动方法之外，还可以使用<code>service v2ray start/stop/status</code>来启动、关闭或者查看状态。一般启动后都要用<code>service v2ray status</code>查看是否启动成功。</p>
-<h3 id="查看v2ray信息"><a href="#查看v2ray信息" class="headerlink" title="查看v2ray信息"></a>查看v2ray信息</h3><p>通过<code>cat /etc/v2ray/config.json</code>查看配置信息，配置信息里面信息也可以自己更改。这里的配置信息需要记住<code>&quot;inbounds&quot;</code>里面的信息，包括<code>port</code>，<code>id</code>，<code>alterID</code>三个信息，待会儿客户端连接时需要用到。  </p>
+<h3 id="查看v2ray信息"><a href="#查看v2ray信息" class="headerlink" title="查看v2ray信息"></a>查看v2ray信息</h3><p>通过<code>cat /etc/v2ray/config.json</code>查看配置信息，配置信息里面信息也可以自己更改，默认的模式是vmess模式，可以根据需求自己再更改（vmess模式目前不是最安全的，会被识别，可以用websocket+tls伪装更安全）。这里的配置信息需要记住<code>&quot;inbounds&quot;</code>里面的信息，包括<code>port</code>，<code>id</code>，<code>alterID</code>三个信息，待会儿客户端连接时需要用到。  </p>
 <img src="/2020/05/18/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A2%AF%E5%AD%90/01.png" class title="查看v2ray信息">
-<h2 id="客户端操作-主要时windows"><a href="#客户端操作-主要时windows" class="headerlink" title="客户端操作(主要时windows)"></a>客户端操作(主要时windows)</h2><h3 id="安装v2ray-1"><a href="#安装v2ray-1" class="headerlink" title="安装v2ray"></a>安装v2ray</h3><p>安装v2ray有很多种方法，我只介绍一种，<a href="https://github.com/2dust/v2rayN/releases">点击这里下载</a>客户端进程。选择<code>v2rayN-Core.zip</code>，这个安装包包含了v2rayN和v2ray-core，下载后可以直接使用。  </p>
+<h2 id="客户端操作-主要时windows"><a href="#客户端操作-主要时windows" class="headerlink" title="客户端操作(主要时windows)"></a>客户端操作(主要时windows)</h2><h3 id="安装v2ray-1"><a href="#安装v2ray-1" class="headerlink" title="安装v2ray"></a>安装v2ray</h3><p>安装v2ray有很多种方法，我只介绍一种，<a href="https://github.com/2dust/v2rayN/releases">点击这里下载</a>客户端。选择<code>v2rayN-Core.zip</code>，这个安装包包含了v2rayN和v2ray-core，下载后可以直接使用。  </p>
 <img src="/2020/05/18/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A2%AF%E5%AD%90/02.png" class title="选择v2ray">
 <p>下载后选择一个目录解压，解压后得到一堆文件，运行以下文件  </p>
 <img src="/2020/05/18/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A2%AF%E5%AD%90/03.png" class title="打开v2ray">
