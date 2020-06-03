@@ -81,7 +81,7 @@ conda update conda
     </p>
   <p class="article-time">
     <time datetime="2020-06-03T01:52:27.000Z" itemprop="datePublished">2020-06-03</time>
-    更新日期:<time datetime="2020-06-03T02:03:24.452Z" itemprop="dateModified">2020-06-03</time>
+    更新日期:<time datetime="2020-06-03T02:35:26.429Z" itemprop="dateModified">2020-06-03</time>
     
   </p>
 </header>
@@ -90,7 +90,7 @@ conda update conda
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除虚拟环境"><span class="toc-number">3.4.</span> <span class="toc-text">删除虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除虚拟环境某个包"><span class="toc-number">3.5.</span> <span class="toc-text">删除虚拟环境某个包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用虚拟环境的jupyter"><span class="toc-number">4.</span> <span class="toc-text">启用虚拟环境的jupyter</span></a></li></ol>
 		</div>
 		
 		<h2 id="虚拟环境的作用"><a href="#虚拟环境的作用" class="headerlink" title="虚拟环境的作用"></a>虚拟环境的作用</h2><p>有时候要使用一个python库的不同版本，如tensorflow1和tensorflow2，这时候就需要创建两个虚拟环境，将不同的版本安装到不同的虚拟环境，然后根据需要，在不同的环境下进行工作。</p>
@@ -108,6 +108,42 @@ conda update conda
 <h3 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h3><blockquote>
 <p>conda activate xxx</p>
 </blockquote>
+<h3 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h3><blockquote>
+<p>conda remove -n xxx –all</p>
+</blockquote>
+<h3 id="删除虚拟环境某个包"><a href="#删除虚拟环境某个包" class="headerlink" title="删除虚拟环境某个包"></a>删除虚拟环境某个包</h3><blockquote>
+<p>conda remove –name env_name package_name</p>
+</blockquote>
+<h2 id="启用虚拟环境的jupyter"><a href="#启用虚拟环境的jupyter" class="headerlink" title="启用虚拟环境的jupyter"></a>启用虚拟环境的jupyter</h2><ul>
+<li>查看jupyter notebook kernel<blockquote>
+<p>jupyter kernelspec list</p>
+</blockquote>
+</li>
+<li>删除jupyter notebook kernel<blockquote>
+<p>jupyter kernelspec remove kernelname</p>
+</blockquote>
+</li>
+<li>在该环境下安装ipykernel<blockquote>
+<p>conda install ipykernel</p>
+</blockquote>
+</li>
+<li>创建jupyter notebook kernel文件<blockquote>
+<p>conda install -n env_name ipykernel</p>
+</blockquote>
+</li>
+<li>激活conda环境<blockquote>
+<p>conda activate env_name</p>
+</blockquote>
+</li>
+<li>将环境写入notebook的kernel中<blockquote>
+<p>python -m ipykernel install –user –name env_name –display-name “在jupyter中显示的环境名称”</p>
+</blockquote>
+</li>
+<li>在改环境下启动jupyter notebook<blockquote>
+<p>jupyter notebook</p>
+</blockquote>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -143,7 +179,7 @@ conda update conda
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除虚拟环境"><span class="toc-number">3.4.</span> <span class="toc-text">删除虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除虚拟环境某个包"><span class="toc-number">3.5.</span> <span class="toc-text">删除虚拟环境某个包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启用虚拟环境的jupyter"><span class="toc-number">4.</span> <span class="toc-text">启用虚拟环境的jupyter</span></a></li></ol>
   </div>
 
 <div id="asidepart">
