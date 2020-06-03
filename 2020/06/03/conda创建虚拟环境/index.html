@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>如何使用GIT | Thomas&#39;s Blog</title>
+    <title>conda创建虚拟环境 | Thomas&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Thomas">
     
-    <meta name="description" content="Github的介绍github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载。对于工科来讲特别重要。
-Git和Github的关系github是一个代码的托管平台，我们可以直接使用github网页端上">
+    <meta name="description" content="虚拟环境的作用有时候要使用一个python库的不同版本，如tensorflow1和tensorflow2，这时候就需要创建两个虚拟环境，将不同的版本安装到不同的虚拟环境，然后根据需要，在不同的环境下进行工作。
+更新conda
+conda update conda
+
+创建一个虚拟环境创建使用该命令创建">
     
     
     
@@ -70,15 +73,15 @@ Git和Github的关系github是一个代码的托管平台，我们可以直接�
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/05/19/如何使用GIT/" title="如何使用GIT" itemprop="url">如何使用GIT</a>
+      <a href="/2020/06/03/conda创建虚拟环境/" title="conda创建虚拟环境" itemprop="url">conda创建虚拟环境</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/ThomasZB" title="Thomas">Thomas</a>
     </p>
   <p class="article-time">
-    <time datetime="2020-05-18T16:17:36.000Z" itemprop="datePublished">2020-05-19</time>
-    更新日期:<time datetime="2020-05-19T04:19:28.727Z" itemprop="dateModified">2020-05-19</time>
+    <time datetime="2020-06-03T01:52:27.000Z" itemprop="datePublished">2020-06-03</time>
+    更新日期:<time datetime="2020-06-03T02:03:24.452Z" itemprop="dateModified">2020-06-03</time>
     
   </p>
 </header>
@@ -87,21 +90,24 @@ Git和Github的关系github是一个代码的托管平台，我们可以直接�
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Github的介绍"><span class="toc-number">1.</span> <span class="toc-text">Github的介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git和Github的关系"><span class="toc-number">2.</span> <span class="toc-text">Git和Github的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git基本使用"><span class="toc-number">3.</span> <span class="toc-text">Git基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本配置命令"><span class="toc-number">3.1.</span> <span class="toc-text">Git基本配置命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本配置"><span class="toc-number">3.2.</span> <span class="toc-text">Git基本配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本原理"><span class="toc-number">3.3.</span> <span class="toc-text">Git基本原理</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="Github的介绍"><a href="#Github的介绍" class="headerlink" title="Github的介绍"></a>Github的介绍</h2><p>github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载。对于工科来讲特别重要。</p>
-<h2 id="Git和Github的关系"><a href="#Git和Github的关系" class="headerlink" title="Git和Github的关系"></a>Git和Github的关系</h2><p>github是一个代码的托管平台，我们可以直接使用github网页端上传和备份自己的工程。但是对于程序员来说，如果更新一次版本都需要跑到网页端，然后自己根据修改了哪些文件选择文件上传，这是非常麻烦的。所以就可以使用Git这个管理工具，通过几行命令，就可对比该仓库目前哪些变化了，然后添加到仓库，再选择一个远程仓库提交，方便了工程的管理。</p>
-<h2 id="Git基本使用"><a href="#Git基本使用" class="headerlink" title="Git基本使用"></a>Git基本使用</h2><h3 id="Git基本配置命令"><a href="#Git基本配置命令" class="headerlink" title="Git基本配置命令"></a>Git基本配置命令</h3><p>git的系统配置保存在 <code>Git/etc/gitconfig</code><br>git的全局配置保存在 <code>C:用户/xxx(用户名)/.gitconfig</code><br><code>git config -l</code> 参看所有配置（l表示list）<br><code>git config --system --list</code> 查看系统配置<br><code>git config --global --list</code> 产看全局配置（一般是账户名和邮箱）<br><code>git config --global user.name &quot;xxxx&quot;</code> 编辑全局用户名<br><code>git config --global user.email &quot;xxx&quot;</code> 编辑全局邮箱  </p>
-<h3 id="Git基本配置"><a href="#Git基本配置" class="headerlink" title="Git基本配置"></a>Git基本配置</h3><p>git的基本配置很简单，只需配置好全局邮箱和全局用户名就行，具体命令如上所述。</p>
-<h3 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h3><p>Git?????????????????????????git???????4?????<br>????</p>
-<ul>
-<li>Workspace???????????????</li>
-<li>index/Stage??????????????????</li>
-<li>Repository??????????????????????????</li>
-<li>Remote??????????????????github??????????Gitee?</li>
-</ul>
-<p>??git操作一般流程<br><code>git add xxx</code>??????????xxx????<br><code>git reset xxx</code>?????????<br><code>git commit -m &quot;xxx&quot;</code>??????????xxx??????????<br><code>git push</code>?????????</p>
+		<h2 id="虚拟环境的作用"><a href="#虚拟环境的作用" class="headerlink" title="虚拟环境的作用"></a>虚拟环境的作用</h2><p>有时候要使用一个python库的不同版本，如tensorflow1和tensorflow2，这时候就需要创建两个虚拟环境，将不同的版本安装到不同的虚拟环境，然后根据需要，在不同的环境下进行工作。</p>
+<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><blockquote>
+<p>conda update conda</p>
+</blockquote>
+<h2 id="创建一个虚拟环境"><a href="#创建一个虚拟环境" class="headerlink" title="创建一个虚拟环境"></a>创建一个虚拟环境</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>使用该命令创建一个虚拟环境</p>
+<blockquote>
+<p>conda create -n xxx python=3.x</p>
+</blockquote>
+<h3 id="查看虚拟环境"><a href="#查看虚拟环境" class="headerlink" title="查看虚拟环境"></a>查看虚拟环境</h3><p>查看的时候使用前面带*号的为当前激活的环境</p>
+<blockquote>
+<p>conda env list</p>
+</blockquote>
+<h3 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h3><blockquote>
+<p>conda activate xxx</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -111,7 +117,7 @@ Git和Github的关系github是一个代码的托管平台，我们可以直接�
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/ThomasZB/2020/05/19/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GIT/" data-title="如何使用GIT | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/ThomasZB/2020/06/03/conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" data-title="conda创建虚拟环境 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -120,19 +126,11 @@ Git和Github的关系github是一个代码的托管平台，我们可以直接�
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/06/03/conda创建虚拟环境/" title="conda创建虚拟环境">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  conda创建虚拟环境</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/05/18/如何使用v2ray搭建自己的梯子/"  title="如何使用v2ray搭建自己的梯子">
+<a href="/2020/05/19/如何使用GIT/"  title="如何使用GIT">
  <strong>NEXT:</strong><br/> 
- <span>如何使用v2ray搭建自己的梯子
+ <span>如何使用GIT
 </span>
 </a>
 </div>
@@ -145,7 +143,7 @@ Git和Github的关系github是一个代码的托管平台，我们可以直接�
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Github的介绍"><span class="toc-number">1.</span> <span class="toc-text">Github的介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git和Github的关系"><span class="toc-number">2.</span> <span class="toc-text">Git和Github的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git基本使用"><span class="toc-number">3.</span> <span class="toc-text">Git基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本配置命令"><span class="toc-number">3.1.</span> <span class="toc-text">Git基本配置命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本配置"><span class="toc-number">3.2.</span> <span class="toc-text">Git基本配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git基本原理"><span class="toc-number">3.3.</span> <span class="toc-text">Git基本原理</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟环境的作用"><span class="toc-number">1.</span> <span class="toc-text">虚拟环境的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新conda"><span class="toc-number">2.</span> <span class="toc-text">更新conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个虚拟环境"><span class="toc-number">3.</span> <span class="toc-text">创建一个虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">3.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看虚拟环境"><span class="toc-number">3.2.</span> <span class="toc-text">查看虚拟环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#激活虚拟环境"><span class="toc-number">3.3.</span> <span class="toc-text">激活虚拟环境</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
