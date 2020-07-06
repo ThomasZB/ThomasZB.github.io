@@ -6,7 +6,7 @@ tags:
 ## 使用vscode打开markdown
 vscode默认集成了markdown文档编辑插件  
 使用vscode打开.md文件后使用ctrl+shift+p调出主命令框，输入markdown，选择打开侧边预览  
-{% asset_img 01.png 使用vscode编写markdown %}
+![](https://raw.githubusercontent.com/ThomasZB/picture/master/01.png)
 这样就可以愉快的一遍编辑文档一边看效果啦！！！
 ___
 ## 附一些不常用的操作
