@@ -1,0 +1,367 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>各种通信协议笔记 | Thomas&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Thomas">
+    
+    <meta name="description" content="单片机学习过程中协议是非常重要的，这里先记录几个协议，后面可能会继续添加
+
+IIC协议简介一种半双工的通信方式，由数据线SDA和时钟线SCL构成。发送时高位在前低位在后，要确定IIC工作要确定下述条件（也就是通信过程中的步骤）：
+
+空闲状态
+开始状态
+停止信号
+应答信号
+数据的有效性
+数据的传送
+
+">
+    
+    
+    
+    
+    <link rel="alternate" href="https://github.com/ThomasZB" title="Thomas&#39;s Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Thomas&#39;s Blog" title="Thomas&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Thomas&#39;s Blog">Thomas&#39;s Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:github.com/ThomasZB">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/07/06/各种通信协议笔记/" title="各种通信协议笔记" itemprop="url">各种通信协议笔记</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://github.com/ThomasZB" title="Thomas">Thomas</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2020-07-06T05:49:39.000Z" itemprop="datePublished">2020-07-06</time>
+    更新日期:<time datetime="2020-07-21T07:57:28.483Z" itemprop="dateModified">2020-07-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IIC协议"><span class="toc-number">1.</span> <span class="toc-text">IIC协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空闲状态"><span class="toc-number">1.2.</span> <span class="toc-text">空闲状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#起始信号与停止信号"><span class="toc-number">1.3.</span> <span class="toc-text">起始信号与停止信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应答信号"><span class="toc-number">1.4.</span> <span class="toc-text">应答信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的有效性"><span class="toc-number">1.5.</span> <span class="toc-text">数据的有效性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的传送"><span class="toc-number">1.6.</span> <span class="toc-text">数据的传送</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPI协议"><span class="toc-number">2.</span> <span class="toc-text">SPI协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介-1"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时钟空闲状态"><span class="toc-number">2.2.</span> <span class="toc-text">时钟空闲状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据采集"><span class="toc-number">2.3.</span> <span class="toc-text">数据采集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据格式"><span class="toc-number">2.4.</span> <span class="toc-text">数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态标志"><span class="toc-number">2.5.</span> <span class="toc-text">状态标志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#串行UART通信"><span class="toc-number">3.</span> <span class="toc-text">串行UART通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行通信简介"><span class="toc-number">3.1.</span> <span class="toc-text">串行通信简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FSMC"><span class="toc-number">4.</span> <span class="toc-text">FSMC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FSMC简介"><span class="toc-number">4.1.</span> <span class="toc-text">FSMC简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FSMC控制线"><span class="toc-number">4.2.</span> <span class="toc-text">FSMC控制线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">4.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>单片机学习过程中协议是非常重要的，这里先记录几个协议，后面可能会继续添加</p>
+<hr>
+<h2 id="IIC协议"><a href="#IIC协议" class="headerlink" title="IIC协议"></a>IIC协议</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一种半双工的通信方式，由数据线SDA和时钟线SCL构成。发送时高位在前低位在后，要确定IIC工作要确定下述条件（也就是通信过程中的步骤）：</p>
+<ul>
+<li>空闲状态</li>
+<li>开始状态</li>
+<li>停止信号</li>
+<li>应答信号</li>
+<li>数据的有效性</li>
+<li>数据的传送</li>
+</ul>
+<h3 id="空闲状态"><a href="#空闲状态" class="headerlink" title="空闲状态"></a>空闲状态</h3><p>一般SDA和SCL都为高电平时为空闲状态，由上拉电阻拉高。</p>
+<h3 id="起始信号与停止信号"><a href="#起始信号与停止信号" class="headerlink" title="起始信号与停止信号"></a>起始信号与停止信号</h3><ul>
+<li>起始信号：SCL为高，SDA由高变低。</li>
+<li>终止信号：SCL为高，SDA由低变高。</li>
+<li>注：由上述可以看出，传输数据过程中，SCL为高电平时不要改变SDA状态。</li>
+</ul>
+<h3 id="应答信号"><a href="#应答信号" class="headerlink" title="应答信号"></a>应答信号</h3><p>在传输完一个字节后，发送器释放数据总线（改变为上拉的接收模式）。判断接收器是否在下一个时钟发送一个低电平。<br>ACK：下一个时钟时为低电平<br>NACK：下一个时钟时为高电平（一般用Ā表示)</p>
+<h3 id="数据的有效性"><a href="#数据的有效性" class="headerlink" title="数据的有效性"></a>数据的有效性</h3><p>有效的数据在高电平期间数据不会改变，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/i2c_efficent.png" alt></p>
+<h3 id="数据的传送"><a href="#数据的传送" class="headerlink" title="数据的传送"></a>数据的传送</h3><p>一个时钟周期传送1bit的数据</p>
+<hr>
+<h2 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>SPI是一种全双工通信方式，由两根数据线MISO、MOSI，一根时钟线SCLK，一根片选线CS总共4跟线构成。相当于两个移位寄存器构成的循环移位寄存器，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/SPI_Bref.png" alt><br>一般使用SPI都为硬件实现，在SPI开始工作前我们要确定如下配置：</p>
+<ul>
+<li>空闲状态</li>
+<li>数据采集</li>
+<li>数据格式</li>
+<li>状态标志</li>
+<li>主机或从机</li>
+<li>速度</li>
+</ul>
+<h3 id="时钟空闲状态"><a href="#时钟空闲状态" class="headerlink" title="时钟空闲状态"></a>时钟空闲状态</h3><p>确定时钟空闲时的状态，根据要驱动的外设确定。</p>
+<h3 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h3><p>确定数据采集的时刻，为哪一个边沿时采集数据。根据哪个边沿和时钟空闲时状态就可以确定在哪一个时刻采集数据。</p>
+<h3 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h3><p>确定数据帧的格式，确定MSB在前还是LSB在前，8位还是16位。</p>
+<h3 id="状态标志"><a href="#状态标志" class="headerlink" title="状态标志"></a>状态标志</h3><p>在使用SPI时可能会出现的状态，一般有下面几种状态：  </p>
+<ol>
+<li>发送缓冲器空闲</li>
+<li>接收缓冲器非空</li>
+<li>忙  </li>
+</ol>
+<p>状态和中断配合使用，可以确定什么时候进入中断执行相应的操作</p>
+<hr>
+<h2 id="串行UART通信"><a href="#串行UART通信" class="headerlink" title="串行UART通信"></a>串行UART通信</h2><h3 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h3><p>UART 为串行异步全双工通信，串行通信由于时钟不同步，起始信号和终止信号之间传输的数据量一般不大（仅为1个字节左右）。它由两根线（一根TX，一根RX构成）下图为连接方式：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/UART.png" alt><br>一般串行通信过程为：起始、数据、校验（可选）、结束（1-2位）如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_data.png" alt><br>所以串行通信要配置的信号如下所示：</p>
+<ul>
+<li>数据位数（九位模式下最后一位可以表示发送的信号为地址或数据）</li>
+<li>是否启用奇偶校验（默认不启用）</li>
+<li>停止位的个数（默认1位）</li>
+<li>波特率（重要的选项，前面可以少配置）</li>
+</ul>
+<hr>
+<h2 id="FSMC"><a href="#FSMC" class="headerlink" title="FSMC"></a>FSMC</h2><h3 id="FSMC简介"><a href="#FSMC简介" class="headerlink" title="FSMC简介"></a>FSMC简介</h3><p>FSMC也不算协议，是灵活的静态存储控制器，能够与<strong>同步</strong>或<strong>异步</strong>存储器和16位PC存储器卡连接。FSMC分为多个存储块，STM32F4的FSMC把1G的空间平均分为4块，每块有256M，然后每个块分为4个区，每个区大小64M，不同区之间的寻址通过区控制寄存器选择，其他则通过26位地址宽度寻址，实际上反应到外面的地址并不是28位的地址宽度，而是1个片选线加上25位的宽度（片选线有4根，相当于2位地址）。<br>stm32中使用fsmc后的sram等设备可以很方便的寻址，写入和擦除等，跟内部sram差别不大。</p>
+<h3 id="FSMC控制线"><a href="#FSMC控制线" class="headerlink" title="FSMC控制线"></a>FSMC控制线</h3><ul>
+<li>地址线（如A0-A25）</li>
+<li>数据线（如D0-D15）</li>
+<li>写信号（WE，即WR）</li>
+<li>读信号（OE，即RD）</li>
+<li>片选信号（CS）</li>
+<li>字节控制（某些SRAM支持，即UB/LB）</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>16位模式和8位模式对应的内部总线的最低为不同，16位时要左移1位，因为地址增加时2个字节的增加的。</li>
+<li>FSMC有不同模式，不同模式对应不同的存储芯片，可以用芯片手册和FSMC对应（比如模式A可以独立设置读取和写入）。</li>
+<li>突发（burst），与其说是突发，倒不如说时连续。突发访问感觉像是翻译上的失误，突发访问其实就是连续访问，写一个地址后连续读出接下来的一些数据（而不是一个地址一个数据）。</li>
+<li>stm32中fsmc用 <code>u32 test[100] __attribute__((at(0x680000)));</code> 的方式进行地址的定义。</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="https://github.com/ThomasZB/2020/07/06/%E5%90%84%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/" data-title="各种通信协议笔记 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2020/07/11/MSP430学习笔记/" title="MSP430学习笔记">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  MSP430学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/07/05/如何开始TI单片机的开发/"  title="如何开始TI单片机的开发">
+ <strong>NEXT:</strong><br/> 
+ <span>如何开始TI单片机的开发
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IIC协议"><span class="toc-number">1.</span> <span class="toc-text">IIC协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空闲状态"><span class="toc-number">1.2.</span> <span class="toc-text">空闲状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#起始信号与停止信号"><span class="toc-number">1.3.</span> <span class="toc-text">起始信号与停止信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应答信号"><span class="toc-number">1.4.</span> <span class="toc-text">应答信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的有效性"><span class="toc-number">1.5.</span> <span class="toc-text">数据的有效性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的传送"><span class="toc-number">1.6.</span> <span class="toc-text">数据的传送</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPI协议"><span class="toc-number">2.</span> <span class="toc-text">SPI协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介-1"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时钟空闲状态"><span class="toc-number">2.2.</span> <span class="toc-text">时钟空闲状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据采集"><span class="toc-number">2.3.</span> <span class="toc-text">数据采集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据格式"><span class="toc-number">2.4.</span> <span class="toc-text">数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态标志"><span class="toc-number">2.5.</span> <span class="toc-text">状态标志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#串行UART通信"><span class="toc-number">3.</span> <span class="toc-text">串行UART通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行通信简介"><span class="toc-number">3.1.</span> <span class="toc-text">串行通信简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FSMC"><span class="toc-number">4.</span> <span class="toc-text">FSMC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FSMC简介"><span class="toc-number">4.1.</span> <span class="toc-text">FSMC简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FSMC控制线"><span class="toc-number">4.2.</span> <span class="toc-text">FSMC控制线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">4.3.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="https://github.com/ThomasZB" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/ThomasZB" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2020 
+		
+		<a href="https://github.com/ThomasZB" target="_blank" title="Thomas">Thomas</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
