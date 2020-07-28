@@ -4,22 +4,19 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>msp432学习笔记 | Thomas&#39;s Blog</title>
+    <title>STM32 HAL学习记录 | Thomas&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Thomas">
     
-    <meta name="description" content="各种小知识代码烧录过程
-串口下载串口下载实际上是通过bootloader加载串口穿过来的数据
-ide的直接下载将烧录代码写到ram里面，通过调用ram里面的代码和ide通信进行烧录代码
+    <meta name="description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题
+SD卡使用简介SD卡的使用分为3个步骤
 
-启动文件简介启动文件里面定义了以下内容
+初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）
+写
+读
 
-栈大小
-堆大小
-中断向量
-Reset函数、错误函数的定义
-Reset_">
+所有步骤都是通过指令实现，SD卡的四线模式">
     
     
     
@@ -79,15 +76,15 @@ Reset_">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2020/07/20/msp432学习笔记/" title="msp432学习笔记" itemprop="url">msp432学习笔记</a>
+      <a href="/2020/07/22/STM32-HAL学习记录/" title="STM32 HAL学习记录" itemprop="url">STM32 HAL学习记录</a>
   </h1>
   <p class="article-author">By
     
       <a href="https://github.com/ThomasZB" title="Thomas">Thomas</a>
     </p>
   <p class="article-time">
-    <time datetime="2020-07-19T16:13:43.000Z" itemprop="datePublished">2020-07-20</time>
-    更新日期:<time datetime="2020-07-21T07:53:42.131Z" itemprop="dateModified">2020-07-21</time>
+    <time datetime="2020-07-22T04:08:55.000Z" itemprop="datePublished">2020-07-22</time>
+    更新日期:<time datetime="2020-07-22T05:53:34.333Z" itemprop="dateModified">2020-07-22</time>
     
   </p>
 </header>
@@ -96,22 +93,34 @@ Reset_">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#各种小知识"><span class="toc-number">1.</span> <span class="toc-text">各种小知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码烧录过程"><span class="toc-number">1.1.</span> <span class="toc-text">代码烧录过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动文件简介"><span class="toc-number">1.2.</span> <span class="toc-text">启动文件简介</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SD卡使用过程"><span class="toc-number">1.</span> <span class="toc-text">SD卡使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡使用简介"><span class="toc-number">1.1.</span> <span class="toc-text">SD卡使用简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡配置过程"><span class="toc-number">1.2.</span> <span class="toc-text">SD卡配置过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FATFS的移植"><span class="toc-number">2.</span> <span class="toc-text">FATFS的移植</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FATFS简介"><span class="toc-number">2.1.</span> <span class="toc-text">FATFS简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置过程"><span class="toc-number">2.2.</span> <span class="toc-text">配置过程</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="各种小知识"><a href="#各种小知识" class="headerlink" title="各种小知识"></a>各种小知识</h2><h3 id="代码烧录过程"><a href="#代码烧录过程" class="headerlink" title="代码烧录过程"></a>代码烧录过程</h3><ol>
-<li>串口下载<br>串口下载实际上是通过bootloader加载串口穿过来的数据</li>
-<li>ide的直接下载<br>将烧录代码写到ram里面，通过调用ram里面的代码和ide通信进行烧录代码</li>
-</ol>
-<h3 id="启动文件简介"><a href="#启动文件简介" class="headerlink" title="启动文件简介"></a>启动文件简介</h3><p>启动文件里面定义了以下内容</p>
+		<hr>
+<h2 id="SD卡使用过程"><a href="#SD卡使用过程" class="headerlink" title="SD卡使用过程"></a>SD卡使用过程</h2><p>在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题</p>
+<h3 id="SD卡使用简介"><a href="#SD卡使用简介" class="headerlink" title="SD卡使用简介"></a>SD卡使用简介</h3><p>SD卡的使用分为3个步骤</p>
 <ol>
-<li>栈大小</li>
-<li>堆大小</li>
-<li>中断向量</li>
-<li>Reset函数、错误函数的定义</li>
-<li>Reset_Handler 里面有systeminit和main函数的执行</li>
+<li>初始化<br>初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）</li>
+<li>写</li>
+<li>读</li>
 </ol>
-<p>小知识：cpu内部的中断称为异常，外部中断称为中断。</p>
+<p>所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找<br><img src="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png" alt></p>
+<h3 id="SD卡配置过程"><a href="#SD卡配置过程" class="headerlink" title="SD卡配置过程"></a>SD卡配置过程</h3><ol>
+<li><p>使能SD卡传输<br>sd卡的使能很简单，如下配置就行<br><img src="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png" alt></p>
+</li>
+<li><p>配置SD卡时钟<br>使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示<br><img src="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png" alt><br><img src="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png" alt></p>
+</li>
+<li><p>使用sd卡<br>sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示<br><img src="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png" alt></p>
+</li>
+</ol>
+<p>这里要注意擦除后最好延时一段时间再读，测试时直接读有出错。</p>
+<hr>
+<h2 id="FATFS的移植"><a href="#FATFS的移植" class="headerlink" title="FATFS的移植"></a>FATFS的移植</h2><h3 id="FATFS简介"><a href="#FATFS简介" class="headerlink" title="FATFS简介"></a>FATFS简介</h3><p>FATFS可以根据需求添加文件系统的构成，可以移植到ROM很小的单片机上（功能可能很少）。<br>FATFS文件系统就是提供了一套操作SD卡文件的API，可以直接调用提供的API对SD卡中的文件进行读写操作（而不是原始的对块进行操作）。将FATFS移植到单片机，所有文件操作的逻辑等都可以通过函数实现。</p>
+<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图<br><img src="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png" alt><br>操作时遵循一下过程  </p>
+<ol>
+<li>挂载SD卡</li>
+<li>判断挂载是否成功（不成功可能是没有格式化成FAT32格式）</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,7 +130,7 @@ Reset_">
 
 <div class="article-share" id="share">
 
-  <div data-url="https://github.com/ThomasZB/2020/07/20/msp432%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="msp432学习笔记 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
+  <div data-url="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-title="STM32 HAL学习记录 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -130,19 +139,11 @@ Reset_">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2020/07/22/STM32-HAL学习记录/" title="STM32 HAL学习记录">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  STM32 HAL学习记录</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2020/07/11/MSP430学习笔记/"  title="MSP430学习笔记">
+<a href="/2020/07/20/msp432学习笔记/"  title="msp432学习笔记">
  <strong>NEXT:</strong><br/> 
- <span>MSP430学习笔记
+ <span>msp432学习笔记
 </span>
 </a>
 </div>
@@ -155,7 +156,7 @@ Reset_">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#各种小知识"><span class="toc-number">1.</span> <span class="toc-text">各种小知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码烧录过程"><span class="toc-number">1.1.</span> <span class="toc-text">代码烧录过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动文件简介"><span class="toc-number">1.2.</span> <span class="toc-text">启动文件简介</span></a></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SD卡使用过程"><span class="toc-number">1.</span> <span class="toc-text">SD卡使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡使用简介"><span class="toc-number">1.1.</span> <span class="toc-text">SD卡使用简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡配置过程"><span class="toc-number">1.2.</span> <span class="toc-text">SD卡配置过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FATFS的移植"><span class="toc-number">2.</span> <span class="toc-text">FATFS的移植</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FATFS简介"><span class="toc-number">2.1.</span> <span class="toc-text">FATFS简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置过程"><span class="toc-number">2.2.</span> <span class="toc-text">配置过程</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
