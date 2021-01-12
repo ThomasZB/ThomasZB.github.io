@@ -18,7 +18,8 @@ tags:
 
 > conda env list
 ### 激活虚拟环境
-> conda activate xxx
+> conda activate xxx  
+（如果使用spyder使用 conda install spyder)
 ### 删除虚拟环境
 > conda remove -n xxx --all
 ### 删除虚拟环境某个包
