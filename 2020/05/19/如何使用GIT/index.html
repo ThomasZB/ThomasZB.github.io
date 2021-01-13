@@ -78,7 +78,7 @@ Git和Github的关系github是一个代码的托管平台，我们可以直">
     </p>
   <p class="article-time">
     <time datetime="2020-05-18T16:17:36.000Z" itemprop="datePublished">2020-05-19</time>
-    更新日期:<time datetime="2021-01-12T13:42:09.056Z" itemprop="dateModified">2021-01-12</time>
+    更新日期:<time datetime="2021-01-13T13:44:02.032Z" itemprop="dateModified">2021-01-13</time>
     
   </p>
 </header>
@@ -131,8 +131,10 @@ Git和Github的关系github是一个代码的托管平台，我们可以直">
 </ol>
 </li>
 </ol>
-<h2 id="GIT分支（合作时常用）"><a href="#GIT分支（合作时常用）" class="headerlink" title="GIT分支（合作时常用）"></a>GIT分支（合作时常用）</h2><h3 id="分支的作用"><a href="#分支的作用" class="headerlink" title="分支的作用"></a>分支的作用</h3><p>分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本</p>
-<h3 id="使用分支的常用命令"><a href="#使用分支的常用命令" class="headerlink" title="使用分支的常用命令"></a>使用分支的常用命令</h3><p><code>git branch</code>查看当前的分支<br><code>git branch -r</code>查看远程仓库上的分支<br><code>git branch xxx</code>新建一个名为xxx的分支<br><code>git checkout -b xxx</code>新建一个xxx分支，并切换到该分支<br><code>git branch -d xxx</code>删除xxx分支<br><code>git push origin --delet xxx</code>删除远程仓库中的xxx分支<br><code>git branch -dr xxx</code>和上一个命令一样</p>
+<h2 id="GIT分支（合作时常用）"><a href="#GIT分支（合作时常用）" class="headerlink" title="GIT分支（合作时常用）"></a>GIT分支（合作时常用）</h2><h3 id="分支的作用"><a href="#分支的作用" class="headerlink" title="分支的作用"></a>分支的作用</h3><p>分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本。</p>
+<h3 id="使用分支的常用命令"><a href="#使用分支的常用命令" class="headerlink" title="使用分支的常用命令"></a>使用分支的常用命令</h3><p><code>git branch</code>查看当前的分支<br><code>git branch -r</code>查看远程仓库上的分支<br><code>git branch xxx</code>新建一个名为xxx的分支<br><code>git checkout xxx</code>切换到xxx分支<br><code>git checkout -b xxx</code>新建一个xxx分支，并切换到该分支<br><code>git branch -d xxx</code>删除xxx分支<br><code>git push origin --delet xxx</code>删除远程仓库中的xxx分支<br><code>git branch -dr xxx</code>和上一个命令一样</p>
+<p>通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下</p>
+<p><code>git checkout -b xxx origin</code>创建远程的xxx分支到本地的xxx分支</p>
 <h3 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h3><p>通常不同项目组开发一个项目时，有些项目组要调用另一个项目组的代码，所以就需要合并，合并后修改代码后提交可能会冲突，选择保留哪一个即可。</p>
 <p><code>git merge xxx</code>合并指定分支到当前分支（合并时有可能会遇到冲突，选择要保留的既可）</p>
   
