@@ -91,6 +91,7 @@ git操作一般流程
 通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下
 
 `git checkout -b xxx origin`创建远程的xxx分支到本地的xxx分支
+`git push origin xxx`提交当前代码到xxx分支（默认是主分支）
 
 ### 分支的合并
 
