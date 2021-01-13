@@ -75,17 +75,22 @@ git操作一般流程
 
 ### 分支的作用
 
-分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本
+分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本。
 
 ### 使用分支的常用命令
 
 `git branch`查看当前的分支
 `git branch -r`查看远程仓库上的分支
 `git branch xxx`新建一个名为xxx的分支
+`git checkout xxx`切换到xxx分支
 `git checkout -b xxx`新建一个xxx分支，并切换到该分支
 `git branch -d xxx`删除xxx分支
 `git push origin --delet xxx`删除远程仓库中的xxx分支
 `git branch -dr xxx`和上一个命令一样
+
+通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下
+
+`git checkout -b xxx origin`创建远程的xxx分支到本地的xxx分支
 
 ### 分支的合并
 
