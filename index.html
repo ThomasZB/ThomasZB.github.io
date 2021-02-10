@@ -1,355 +1,1394 @@
-
- <!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  
-    <title>Thomas&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Thomas">
-    
-    
-    
-    
-    <link rel="alternate" href="https://github.com/ThomasZB" title="Thomas&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
-
-  <body>
-    <header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Thomas&#39;s Blog" title="Thomas&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Thomas&#39;s Blog">Thomas&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/ThomasZB">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-
-    </header>
-    <div id="container">
-      <div id="main">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2021/02/10/GDB的使用/" title="GDB的使用" itemprop="url">
-  
-    <h1 itemprop="name">GDB的使用</h1>
-    
-     
-           <p itemprop="description" >GDB的简介GDB用途GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(GDB官网)。
-GDB可以完成以下事情
-
-启动程序，传入参数
-打断点
-分析程序停下来时发生了什么
-在运行过程中改变事务
-
-GDB适用语言GDB支持哪些语言：
-
-Ada</p>
-        
-    
-    <time datetime="2021-02-10T06:19:54.000Z" itemprop="datePublished">2021-02-10</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/07/22/STM32-HAL学习记录/" title="STM32 HAL学习记录" itemprop="url">
-  
-    <h1 itemprop="name">STM32 HAL学习记录</h1>
-    
-     
-           <p itemprop="description" >SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题
-SD卡使用简介SD卡的使用分为3个步骤
-
-初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）
-写
-读
-
-所有步骤都是通过指令实</p>
-        
-    
-    <time datetime="2020-07-22T04:08:55.000Z" itemprop="datePublished">2020-07-22</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/07/20/msp432学习笔记/" title="msp432学习笔记" itemprop="url">
-  
-    <h1 itemprop="name">msp432学习笔记</h1>
-    
-     
-           <p itemprop="description" >各种小知识代码烧录过程
-串口下载串口下载实际上是通过bootloader加载串口穿过来的数据
-ide的直接下载将烧录代码写到ram里面，通过调用ram里面的代码和ide通信进行烧录代码
-
-启动文件简介启动文件里面定义了以下内容
-
-栈大小
-堆大小
-中断向量
-Reset函数、错误函数</p>
-        
-    
-    <time datetime="2020-07-19T16:13:43.000Z" itemprop="datePublished">2020-07-20</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/07/11/MSP430学习笔记/" title="MSP430学习笔记" itemprop="url">
-  
-    <h1 itemprop="name">MSP430学习笔记</h1>
-    
-     
-           <p itemprop="description" >1. MSP430简介简介MSP430是TI的超低功耗单片机，开发过程和51单片机差不多，但有比51单片机更多的资源以及更高的频率。
-开发环境MSP430使用TI的CCS作为开发环境，由于单片机的结构特殊，不能使用keil开发。ccs的开发环境比较好搭建，只需要注意全程英文环境就</p>
-        
-    
-    <time datetime="2020-07-11T03:00:10.000Z" itemprop="datePublished">2020-07-11</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/07/06/各种通信协议笔记/" title="各种通信协议笔记" itemprop="url">
-  
-    <h1 itemprop="name">各种通信协议笔记</h1>
-    
-     
-           <p itemprop="description" >单片机学习过程中协议是非常重要的，这里先记录几个协议，后面可能会继续添加
-
-IIC协议简介一种半双工的通信方式，由数据线SDA和时钟线SCL构成。发送时高位在前低位在后，要确定IIC工作要确定下述条件（也就是通信过程中的步骤）：
-
-空闲状态
-开始状态
-停止信号
-应答信号
-数据的有</p>
-        
-    
-    <time datetime="2020-07-06T05:49:39.000Z" itemprop="datePublished">2020-07-06</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/07/05/如何开始TI单片机的开发/" title="如何开始TI单片机的开发" itemprop="url">
-  
-    <h1 itemprop="name">如何开始TI单片机的开发</h1>
-    
-     
-           <p itemprop="description" >下载开发环境
-准备好gcc和java环境
-安装ccs(Code Composer Studio)  
-安装驱动
-安装对应单片机的SDK（软件开发包）ccs安装的时候选择offline版本的，安装时根据单片机型号选择要安装的开发环境。
-
-当然并不是所有ti的都用ccs，对于cort</p>
-        
-    
-    <time datetime="2020-07-05T12:31:45.000Z" itemprop="datePublished">2020-07-05</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/06/03/conda创建虚拟环境/" title="conda创建虚拟环境" itemprop="url">
-  
-    <h1 itemprop="name">conda创建虚拟环境</h1>
-    
-     
-           <p itemprop="description" >虚拟环境的作用有时候要使用一个python库的不同版本，如tensorflow1和tensorflow2，这时候就需要创建两个虚拟环境，将不同的版本安装到不同的虚拟环境，然后根据需要，在不同的环境下进行工作。
-更新conda
-conda update conda
-
-创建一个虚拟环</p>
-        
-    
-    <time datetime="2020-06-03T01:52:27.000Z" itemprop="datePublished">2020-06-03</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/05/19/如何使用GIT/" title="如何使用GIT" itemprop="url">
-  
-    <h1 itemprop="name">如何使用GIT</h1>
-    
-     
-           <p itemprop="description" >Github的介绍github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载，对于版本控制来说非常重要。对于工科来讲特别重要。
-Git和Github的关系github是一个代码的</p>
-        
-    
-    <time datetime="2020-05-18T16:17:36.000Z" itemprop="datePublished">2020-05-19</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/05/18/如何使用v2ray搭建自己的梯子/" title="如何使用v2ray搭建自己的梯子" itemprop="url">
-  
-    <h1 itemprop="name">如何使用v2ray搭建自己的梯子</h1>
-    
-     
-           <p itemprop="description" >购买一台外网服务器想要访问被墙掉的网页，就要有可以访问的外网服务器帮自己转发，所以需要买一台外网的服务器，外网的服务器有很多种选择，服务器选择点这里查看。
-服务器端操作安装v2ray使用bash &amp;lt;(curl -L -s https://install.direct/go.</p>
-        
-    
-    <time datetime="2020-05-18T01:47:28.000Z" itemprop="datePublished">2020-05-18</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2020/05/15/如何使用hexo搭建个人博客/" title="如何使用hexo搭建个人博客" itemprop="url">
-  
-    <h1 itemprop="name">如何使用hexo搭建个人博客</h1>
-    
-     
-           <p itemprop="description" >准备工作我这里使用github+hexo的组合搭建，所以要安装git和hexo，git安装我后面再建个博客写，这里我先介绍hexo的安装
-下载nodejs一般选择LTS（长期支持版）。安装完后有两个组件，一个是nodejs组件（hexo需要nodejs支持），一个是npm软件管理</p>
-        
-    
-    <time datetime="2020-05-15T12:06:42.000Z" itemprop="datePublished">2020-05-15</time>
-  </a>
-</section>
+<link rel="stylesheet" href="/css/main.css">
 
 
-  <nav id="page-nav" class="clearfix">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Thomas&#39;s Blog">
+<meta property="og:url" content="https://github.com/ThomasZB/index.html">
+<meta property="og:site_name" content="Thomas&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Thomas">
+<meta name="twitter:card" content="summary">
 
-  
+<link rel="canonical" href="https://github.com/ThomasZB/">
 
-  
 
-  <div class="rsspart">
-	<a href="https://github.com/ThomasZB" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font clearfix">
-		
-		
-		
-		<a href="https://github.com/ThomasZB" target="_blank" title="github"></a>
-		
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2021 
-		
-		<a href="https://github.com/ThomasZB" target="_blank" title="Thomas">Thomas</a>
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
   };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-        
-    }
-  });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
 </script>
 
+  <title>Thomas's Blog</title>
+  
 
 
 
 
 
 
-  </body>
- </html>
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thomas's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2021/02/10/GDB%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/10/GDB%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">GDB的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-10 14:19:54 / 修改时间：23:13:33" itemprop="dateCreated datePublished" datetime="2021-02-10T14:19:54+08:00">2021-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="GDB的简介"><a href="#GDB的简介" class="headerlink" title="GDB的简介"></a>GDB的简介</h1><h2 id="GDB用途"><a href="#GDB用途" class="headerlink" title="GDB用途"></a>GDB用途</h2><p>GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(<a href="https://www.gnu.org/software/gdb/" target="_blank" rel="noopener">GDB官网</a>)。</p>
+<p>GDB可以完成以下事情</p>
+<ol>
+<li>启动程序，传入参数</li>
+<li>打断点</li>
+<li>分析程序停下来时发生了什么</li>
+<li>在运行过程中改变事务</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/10/GDB%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">STM32 HAL学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-22 12:08:55 / 修改时间：13:53:34" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h2 id="SD卡使用过程"><a href="#SD卡使用过程" class="headerlink" title="SD卡使用过程"></a>SD卡使用过程</h2><p>在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题</p>
+<h3 id="SD卡使用简介"><a href="#SD卡使用简介" class="headerlink" title="SD卡使用简介"></a>SD卡使用简介</h3><p>SD卡的使用分为3个步骤</p>
+<ol>
+<li>初始化<br>初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）</li>
+<li>写</li>
+<li>读</li>
+</ol>
+<p>所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找<br><img src="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png" alt></p>
+<h3 id="SD卡配置过程"><a href="#SD卡配置过程" class="headerlink" title="SD卡配置过程"></a>SD卡配置过程</h3><ol>
+<li><p>使能SD卡传输<br>sd卡的使能很简单，如下配置就行<br><img src="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png" alt></p>
+</li>
+<li><p>配置SD卡时钟<br>使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示<br><img src="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png" alt><br><img src="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png" alt></p>
+</li>
+<li><p>使用sd卡<br>sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示<br><img src="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png" alt></p>
+</li>
+</ol>
+<p>这里要注意擦除后最好延时一段时间再读，测试时直接读有出错。</p>
+<hr>
+<h2 id="FATFS的移植"><a href="#FATFS的移植" class="headerlink" title="FATFS的移植"></a>FATFS的移植</h2><h3 id="FATFS简介"><a href="#FATFS简介" class="headerlink" title="FATFS简介"></a>FATFS简介</h3><p>FATFS可以根据需求添加文件系统的构成，可以移植到ROM很小的单片机上（功能可能很少）。<br>FATFS文件系统就是提供了一套操作SD卡文件的API，可以直接调用提供的API对SD卡中的文件进行读写操作（而不是原始的对块进行操作）。将FATFS移植到单片机，所有文件操作的逻辑等都可以通过函数实现。</p>
+<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图<br><img src="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png" alt><br>操作时遵循一下过程  </p>
+<ol>
+<li>挂载SD卡</li>
+<li>判断挂载是否成功（不成功可能是没有格式化成FAT32格式）</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/20/msp432%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/20/msp432%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">msp432学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 00:13:43" itemprop="dateCreated datePublished" datetime="2020-07-20T00:13:43+08:00">2020-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-21 15:53:42" itemprop="dateModified" datetime="2020-07-21T15:53:42+08:00">2020-07-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="各种小知识"><a href="#各种小知识" class="headerlink" title="各种小知识"></a>各种小知识</h2><h3 id="代码烧录过程"><a href="#代码烧录过程" class="headerlink" title="代码烧录过程"></a>代码烧录过程</h3><ol>
+<li>串口下载<br>串口下载实际上是通过bootloader加载串口穿过来的数据</li>
+<li>ide的直接下载<br>将烧录代码写到ram里面，通过调用ram里面的代码和ide通信进行烧录代码</li>
+</ol>
+<h3 id="启动文件简介"><a href="#启动文件简介" class="headerlink" title="启动文件简介"></a>启动文件简介</h3><p>启动文件里面定义了以下内容</p>
+<ol>
+<li>栈大小</li>
+<li>堆大小</li>
+<li>中断向量</li>
+<li>Reset函数、错误函数的定义</li>
+<li>Reset_Handler 里面有systeminit和main函数的执行</li>
+</ol>
+<p>小知识：cpu内部的中断称为异常，外部中断称为中断。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/11/MSP430%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/11/MSP430%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">MSP430学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-11 11:00:10" itemprop="dateCreated datePublished" datetime="2020-07-11T11:00:10+08:00">2020-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-16 11:30:16" itemprop="dateModified" datetime="2020-07-16T11:30:16+08:00">2020-07-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-MSP430简介"><a href="#1-MSP430简介" class="headerlink" title="1. MSP430简介"></a>1. MSP430简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MSP430是TI的超低功耗单片机，开发过程和51单片机差不多，但有比51单片机更多的资源以及更高的频率。</p>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>MSP430使用TI的CCS作为开发环境，由于单片机的结构特殊，不能使用keil开发。ccs的开发环境比较好搭建，只需要注意全程英文环境就行。这里简单介绍一下获取例程的代码：</p>
+<ol>
+<li>进入<a href="http://dev.ti.com/tirex/#/" target="_blank" rel="noopener">例程的网站</a></li>
+<li>找到对应的例程下载</li>
+<li>导入工程<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_example.png" alt></li>
+</ol>
+<hr>
+<h1 id="2-io口控制"><a href="#2-io口控制" class="headerlink" title="2. io口控制"></a>2. io口控制</h1><h2 id="io控制寄存器"><a href="#io控制寄存器" class="headerlink" title="io控制寄存器"></a>io控制寄存器</h2><p>msp430的io控制寄存器特别多，不像51那样少，430的io控制寄存器在手册上有详细的说明，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_io_regegister.png" alt><br>有了详细的说明就可以对相应的寄存器进行控制了。</p>
+<h3 id="主要寄存器"><a href="#主要寄存器" class="headerlink" title="主要寄存器"></a>主要寄存器</h3><ol>
+<li>PxIN为只读寄存器，在输入模式下可以读取按键上的电平。</li>
+<li>PxOUT为输出控制寄存器，在输出模式下可以输出高电平或低电平。</li>
+<li>PxDIR为输入输出选择寄存器，可以选择io口为输入或者输出（Bit=0为输入）。</li>
+<li>PxREN上拉下拉是能寄存器，选择是否是能上下拉，是能条件下，PxOUT控制上下拉。</li>
+<li>中断相关寄存器<ol>
+<li>PxIFG中断标志位，当某些事件发生时置1，开启中断的情况下进入中断，必须由软件清0。注意：当写入PxOUT和PxDIR时会对将相应的寄存器置0或1</li>
+<li>PxIES确定什么边沿触发中断。0为上升沿，1为下降沿。</li>
+<li>PxIE选择是否使能中断</li>
+</ol>
+</li>
+<li>PxSELx为功能选择寄存器，相当于复用。复用功能的选择在数据表（datasheet）中的Port Schematics中查看。</li>
+</ol>
+<h3 id="msp430作为输出配置步骤"><a href="#msp430作为输出配置步骤" class="headerlink" title="msp430作为输出配置步骤"></a>msp430作为输出配置步骤</h3><ol>
+<li>配置PxDIR作为出</li>
+<li>PxOUT为输出多少</li>
+</ol>
+<h3 id="msp430作为输入配置步骤"><a href="#msp430作为输入配置步骤" class="headerlink" title="msp430作为输入配置步骤"></a>msp430作为输入配置步骤</h3><ol>
+<li>配置PxDIR为输入模式</li>
+<li>配置PxREN使能上下拉（可以不使能这个，实际情况决定）</li>
+<li>配置PxOUT确定是上拉还是下拉</li>
+<li>读取PxIN获得输入的电平</li>
+</ol>
+<hr>
+<h1 id="3-时钟控制"><a href="#3-时钟控制" class="headerlink" title="3. 时钟控制"></a>3. 时钟控制</h1><h2 id="时钟系统简介"><a href="#时钟系统简介" class="headerlink" title="时钟系统简介"></a>时钟系统简介</h2><p>MSP430有很多系列，不同的款式有不同的时钟系统，这里从msp430g2553为例，对时钟配置过程做大概的记录。<br>MSP430g2553的时钟树如下图所示<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_clocksystem.png" alt><br>一般时钟树的看法就是从左到由，左边是输入，右边是输出。可以大概看出来左边有3个部分，右边有3个输出。上面的黑色小方框是相应的控制寄存器。就可以大概得出MSP430g2553的时钟构成和相应的配置过程。</p>
+<h2 id="时钟树的详细配置"><a href="#时钟树的详细配置" class="headerlink" title="时钟树的详细配置"></a>时钟树的详细配置</h2><h3 id="时钟配置的寄存器"><a href="#时钟配置的寄存器" class="headerlink" title="时钟配置的寄存器"></a>时钟配置的寄存器</h3><ol>
+<li>DCOCTL 这是DCO时钟的控制寄存器，具体配置手册上有，用于确定DCO的频率和模式</li>
+<li>BCSCTL1 </li>
+<li>BCSCTL2</li>
+<li>BCSCTL3</li>
+<li>IE1</li>
+<li>IFG1</li>
+</ol>
+<p>具体配置查看手册</p>
+<h3 id="时钟配置过程"><a href="#时钟配置过程" class="headerlink" title="时钟配置过程"></a>时钟配置过程</h3><p>MSP430的高速时钟只能从内部获取，但是内部的时钟并不是很精确，所以有很多校准值可以直接使用。所以实际配置过程中使用系统给的宏定义就行。 </p>
+<h3 id="配置举例"><a href="#配置举例" class="headerlink" title="配置举例"></a>配置举例</h3><ol>
+<li>MCLK 和 SMCLK 均为 1MHz， ACLK 设为 32.768kHz<blockquote>
+<p>BCSCTL1 = CALBC1_1MHZ; // 要取得精确的1MHz，一定要调取校正参数<br>DCOCTL = CALDCO_1MHZ; // ACLK保持默认即可</p>
+</blockquote>
+</li>
+<li>MCLK 和 SMCLK 均为 16MHz， ACLK 设为 VLO<blockquote>
+<p>BCSCTL1 = CALBC1_16MHZ; // 调取16MHz校正参数<br>DCOCTL = CALDCO_16MHZ;<br>BCSCTL3 |= LFXT1S_2; // 设为VLO  </p>
+</blockquote>
+</li>
+<li>MCLK 为 4MHz， SMCLK 为 2MHz<blockquote>
+<p>BCSCTL1 = CALBC1_8MHZ; // 先将DCO设为8MHz<br>DCOCTL = CALDCO_8MHZ;<br>BCSCTL2 |= DIVM_1 + DIVS_2; // 再对MCLK 2分频， SMCLK 4分频  </p>
+</blockquote>
+</li>
+<li>MCLK 设为 32.768kHz 外部晶振<blockquote>
+<p>BCSCTL3 |= LFXT1S_0 + XCAP_3; // clock system setup<br>while(IFG1 &amp; OFIFG) // wait for OSCFault to clear<br>{<br>IFG1 &amp;= ~OFIFG;<br>_delay_cycles(100000);<br>}<br>_bis_SR_register(SCG1 + SCG0); // clock system setup<br>BCSCTL2 |= SELM_3;  </p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h1 id="4-中断控制"><a href="#4-中断控制" class="headerlink" title="4. 中断控制"></a>4. 中断控制</h1><h2 id="中断简介"><a href="#中断简介" class="headerlink" title="中断简介"></a>中断简介</h2><p>中断就是系统的某个事件发生，若为该事件配置有中断，则系统会进入中断函数。所以要搞懂一块单片机的中断至少要懂得他的中断向量表，如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_int.png" alt><br>有了这个表就知道有哪些中断，哪些中断时公用一个中断向量。</p>
+<h2 id="中断的使用"><a href="#中断的使用" class="headerlink" title="中断的使用"></a>中断的使用</h2><h3 id="中断系统配置"><a href="#中断系统配置" class="headerlink" title="中断系统配置"></a>中断系统配置</h3><p>msp430的中断系统比较简单，配置的话只需要对应好中断向量，以及打开某个标志位的中断，并在中断服务函数里面写上中断函数即可。</p>
+<h3 id="中断配置步骤"><a href="#中断配置步骤" class="headerlink" title="中断配置步骤"></a>中断配置步骤</h3><ol>
+<li>配置中断事件并打开中断（即配置中断向量）</li>
+<li>是能中断</li>
+<li>创建中断服务函数</li>
+</ol>
+<h3 id="按键举例"><a href="#按键举例" class="headerlink" title="按键举例"></a>按键举例</h3><ol>
+<li>初始化按键、使能中断、清空中断标志位。</li>
+<li>使用<code>_BIS_SR(GIE)</code>指令使能全局中断。</li>
+<li>编写中断服务函数</li>
+</ol>
+<ul>
+<li>中断服务函数写法：<blockquote>
+<p>#pragma vector=PORT1_VECTOR // 编译指令，告诉编译器将函数与中断向量链接起来，vector后面是中断向量地址的宏定义。<br><strong>interrupt void Port_1(void)//</strong>interrupt表示这是一个中断服务函数，后面的Port_1可以自己命名<br>{<br>   ……<br>}</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="5-定时器"><a href="#5-定时器" class="headerlink" title="5. 定时器"></a>5. 定时器</h1><h2 id="定时器简介"><a href="#定时器简介" class="headerlink" title="定时器简介"></a>定时器简介</h2><p>所有单片机中定时器都是非常重要的，定时器可以实现精准计时等操作。MSP430的定时器可以在手册上看到，由标题就可以轻易的知道，MSP430g2553的定时器分为TIM_A和TIM_B两个。定时器可以实现捕获、比较输出（PWM）等功能。  </p>
+<h3 id="如何了解一个定时器"><a href="#如何了解一个定时器" class="headerlink" title="如何了解一个定时器"></a>如何了解一个定时器</h3><p>了解一个定时器，要从以下几个方面了解  </p>
+<ol>
+<li>计数器的位数（他的计数值保存在这里）</li>
+<li>时钟来源</li>
+<li>通道情况（可以作为比较、捕获等）</li>
+<li>中断配置情况（如哪些状态位可以激活中断）</li>
+<li>工作模式（连续、向上、向下等）</li>
+</ol>
+<h2 id="定时器的使用"><a href="#定时器的使用" class="headerlink" title="定时器的使用"></a>定时器的使用</h2><h3 id="定时器的不同工作模式"><a href="#定时器的不同工作模式" class="headerlink" title="定时器的不同工作模式"></a>定时器的不同工作模式</h3><ol>
+<li>连续模式<br>连续模式下，定时器计数到溢出自动返回到0重新开始计数（有的单片机有自动重装载值，可能不一定返回到0）。</li>
+<li>向上计数<br>向上跟连续模式不同的地方在于向上的溢出值可以自己设定，相当于可以自己设定多久过后溢出（这里其实是超过比较值、不应该叫做溢出。更方便）。</li>
+<li>向上/向下<br>定时器达到设定的值后向下到0，这样才算一个周期，相当于周期乘以了2。</li>
+</ol>
+<h3 id="定时器中断"><a href="#定时器中断" class="headerlink" title="定时器中断"></a>定时器中断</h3><p>定时器的中断来源不同定时器不一样，msp430g2553的中断来源有CCR（捕获/比较）中断和TA0IFG（溢出）中断</p>
+<ol>
+<li>CCR0中断<br>计数器的值达到CCR0时产生的中断</li>
+<li>溢出中断<br>溢出中断一般是指TAR（计数器）为0相应的标记为置位，产生溢出中断。</li>
+</ol>
+<h3 id="定时器寄存器"><a href="#定时器寄存器" class="headerlink" title="定时器寄存器"></a>定时器寄存器</h3><p>这里的寄存器是以MSP430g2553的为例  </p>
+<ol>
+<li>TACTL 主要的控制寄存器，控制TIM_A的时钟来源、输入分频、模式、中断控制等等</li>
+<li>TACCRX 比较值</li>
+<li>TACCTLx 比较捕获配置</li>
+<li>TAIV 存放了一些中断的标志位</li>
+</ol>
+<h2 id="配置举例-1"><a href="#配置举例-1" class="headerlink" title="配置举例"></a>配置举例</h2><h3 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h3><ol>
+<li>选择时钟来源和分频值</li>
+<li>确定定时器工作模式</li>
+<li>跟据模式选择哪个中断</li>
+<li>编写对应的中断服务函数</li>
+</ol>
+<h3 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h3><ol>
+<li>一般设置计数器为连续模式，定义全局变量count来确定是否捕获中途发生溢出（需开启中断）。</li>
+<li>配置捕获模式，设置TACCTLx寄存器的CAP为1。</li>
+<li>选择哪个引脚作为捕获输入口，配置CCRx模块的捕获源寄存器CCISx。</li>
+<li>选择什么边沿捕获，设定CMx寄存器。</li>
+<li>确定同步捕获还是异步捕获，SCS寄存器（一般为同步，更精准）。</li>
+<li>CCR检测到带捕获功能IO口的电平边沿，瞬间读取TAR寄存器的值并写入TACCRx寄存器中等待读取。</li>
+</ol>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>MSP430的PWM输出比较特殊。在该模式下，CCR0确定周期，CCRx确定占空比和输出引脚为TAx，步骤如下。</p>
+<ol>
+<li>设定PWM的输出端口，跟据MSP430g2553的定义，.0端口不能用于输出。并设置IO口的功能为 TIMx_Ax ，如图所示。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/20200711212837.png" alt></li>
+<li>设定 CCR0 和 CCRx 的值。</li>
+<li>选择比较/捕获模块的输出模式(一般选用输出模式7来生成PWM波)。</li>
+<li>选择定时器的时钟源和计数器源。</li>
+<li>MSP430自动生成PWM波，CPU可进入低功耗模式。<ul>
+<li>低功耗模式进入方法：<code>__BIS_SR(CPUOFF)</code>，__BIS_SR直接控制系统状态寄存器。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="串行通信"><a href="#串行通信" class="headerlink" title="串行通信"></a>串行通信</h1><h2 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h2><h3 id="常见的串行通信"><a href="#常见的串行通信" class="headerlink" title="常见的串行通信"></a>常见的串行通信</h3><p>串行通信常见的位IIC，SPI，UART等，MSP430在硬件上都支持，只需要配置寄存器就可以使用。</p>
+<h3 id="串行通信的介绍和相关信息"><a href="#串行通信的介绍和相关信息" class="headerlink" title="串行通信的介绍和相关信息"></a>串行通信的介绍和相关信息</h3><p>这个参考我的另一篇博客（各种通信协议笔记）</p>
+<h2 id="MSP430串行通信的使用"><a href="#MSP430串行通信的使用" class="headerlink" title="MSP430串行通信的使用"></a>MSP430串行通信的使用</h2><h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><ul>
+<li>UCAxCTLx 配置寄存器 （一般选择默认的即可，即不用配置）</li>
+<li>UCAxRXIE 接收中断配置寄存器</li>
+<li>UCAxTXIE 发送中断配置寄存器</li>
+<li>TXBUF发送缓冲器</li>
+<li>RXBUF接受缓冲器</li>
+<li>UCAxBRx、UCAxMCTL 控制波特率的寄存器</li>
+</ul>
+<h3 id="配置流程-1"><a href="#配置流程-1" class="headerlink" title="配置流程"></a>配置流程</h3><ol>
+<li>配置UCAxCTLx寄存器，一般不用配置，因为默认配置就是常用的8位，无奇偶校验等</li>
+<li>时钟选择，USCI的时钟为BRCLK，它可以选择3个时钟来源。</li>
+<li>波特率设置，通过配置配置UCAxBRx、UCAxMCTL寄存器达到配置的效果，得到固定波特率。下图附上16M主频下的常用波特率配置。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_bt.png" alt></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/06/%E5%90%84%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/06/%E5%90%84%E7%A7%8D%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">各种通信协议笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-06 13:49:39" itemprop="dateCreated datePublished" datetime="2020-07-06T13:49:39+08:00">2020-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-22 15:17:19" itemprop="dateModified" datetime="2020-07-22T15:17:19+08:00">2020-07-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>单片机学习过程中协议是非常重要的，这里先记录几个协议，后面可能会继续添加</p>
+<hr>
+<h2 id="IIC协议"><a href="#IIC协议" class="headerlink" title="IIC协议"></a>IIC协议</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一种半双工的通信方式，由数据线SDA和时钟线SCL构成。发送时高位在前低位在后，要确定IIC工作要确定下述条件（也就是通信过程中的步骤）：</p>
+<ul>
+<li>空闲状态</li>
+<li>开始状态</li>
+<li>停止信号</li>
+<li>应答信号</li>
+<li>数据的有效性</li>
+<li>数据的传送</li>
+</ul>
+<h3 id="空闲状态"><a href="#空闲状态" class="headerlink" title="空闲状态"></a>空闲状态</h3><p>一般SDA和SCL都为高电平时为空闲状态，由上拉电阻拉高。</p>
+<h3 id="起始信号与停止信号"><a href="#起始信号与停止信号" class="headerlink" title="起始信号与停止信号"></a>起始信号与停止信号</h3><ul>
+<li>起始信号：SCL为高，SDA由高变低。</li>
+<li>终止信号：SCL为高，SDA由低变高。</li>
+<li>注：由上述可以看出，传输数据过程中，SCL为高电平时不要改变SDA状态。</li>
+</ul>
+<h3 id="应答信号"><a href="#应答信号" class="headerlink" title="应答信号"></a>应答信号</h3><p>在传输完一个字节后，发送器释放数据总线（改变为上拉的接收模式）。判断接收器是否在下一个时钟发送一个低电平。<br>ACK：下一个时钟时为低电平<br>NACK：下一个时钟时为高电平（一般用Ā表示)</p>
+<h3 id="数据的有效性"><a href="#数据的有效性" class="headerlink" title="数据的有效性"></a>数据的有效性</h3><p>有效的数据在高电平期间数据不会改变，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/i2c_efficent.png" alt></p>
+<h3 id="数据的传送"><a href="#数据的传送" class="headerlink" title="数据的传送"></a>数据的传送</h3><p>一个时钟周期传送1bit的数据</p>
+<hr>
+<h2 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>SPI是一种全双工通信方式，由两根数据线MISO、MOSI，一根时钟线SCLK，一根片选线CS总共4跟线构成。相当于两个移位寄存器构成的循环移位寄存器，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/SPI_Bref.png" alt><br>一般使用SPI都为硬件实现，在SPI开始工作前我们要确定如下配置：</p>
+<ul>
+<li>空闲状态</li>
+<li>数据采集</li>
+<li>数据格式</li>
+<li>状态标志</li>
+<li>主机或从机</li>
+<li>速度</li>
+</ul>
+<h3 id="时钟空闲状态"><a href="#时钟空闲状态" class="headerlink" title="时钟空闲状态"></a>时钟空闲状态</h3><p>确定时钟空闲时的状态，根据要驱动的外设确定。</p>
+<h3 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h3><p>确定数据采集的时刻，为哪一个边沿时采集数据。根据哪个边沿和时钟空闲时状态就可以确定在哪一个时刻采集数据。</p>
+<h3 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h3><p>确定数据帧的格式，确定MSB在前还是LSB在前，8位还是16位。</p>
+<h3 id="状态标志"><a href="#状态标志" class="headerlink" title="状态标志"></a>状态标志</h3><p>在使用SPI时可能会出现的状态，一般有下面几种状态：  </p>
+<ol>
+<li>发送缓冲器空闲</li>
+<li>接收缓冲器非空</li>
+<li>忙  </li>
+</ol>
+<p>状态和中断配合使用，可以确定什么时候进入中断执行相应的操作</p>
+<h3 id="特殊说明"><a href="#特殊说明" class="headerlink" title="特殊说明"></a>特殊说明</h3><ol>
+<li>NSS 是指CS位，可以选择是否使用硬件NSS</li>
+<li>Frame Format 帧格式有摩托罗拉和TI（TI的其实叫SSP而不是SPI）</li>
+</ol>
+<hr>
+<h2 id="串行UART通信"><a href="#串行UART通信" class="headerlink" title="串行UART通信"></a>串行UART通信</h2><h3 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h3><p>UART 为串行异步全双工通信，串行通信由于时钟不同步，起始信号和终止信号之间传输的数据量一般不大（仅为1个字节左右）。它由两根线（一根TX，一根RX构成）下图为连接方式：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/UART.png" alt><br>一般串行通信过程为：起始、数据、校验（可选）、结束（1-2位）如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_data.png" alt><br>所以串行通信要配置的信号如下所示：</p>
+<ul>
+<li>数据位数（九位模式下最后一位可以表示发送的信号为地址或数据）</li>
+<li>是否启用奇偶校验（默认不启用）</li>
+<li>停止位的个数（默认1位）</li>
+<li>波特率（重要的选项，前面可以少配置）</li>
+</ul>
+<hr>
+<h2 id="FSMC"><a href="#FSMC" class="headerlink" title="FSMC"></a>FSMC</h2><h3 id="FSMC简介"><a href="#FSMC简介" class="headerlink" title="FSMC简介"></a>FSMC简介</h3><p>FSMC也不算协议，是灵活的静态存储控制器，能够与<strong>同步</strong>或<strong>异步</strong>存储器和16位PC存储器卡连接。FSMC分为多个存储块，STM32F4的FSMC把1G的空间平均分为4块，每块有256M，然后每个块分为4个区，每个区大小64M，不同区之间的寻址通过区控制寄存器选择，其他则通过26位地址宽度寻址，实际上反应到外面的地址并不是28位的地址宽度，而是1个片选线加上25位的宽度（片选线有4根，相当于2位地址）。<br>stm32中使用fsmc后的sram等设备可以很方便的寻址，写入和擦除等，跟内部sram差别不大。</p>
+<h3 id="FSMC控制线"><a href="#FSMC控制线" class="headerlink" title="FSMC控制线"></a>FSMC控制线</h3><ul>
+<li>地址线（如A0-A25）</li>
+<li>数据线（如D0-D15）</li>
+<li>写信号（WE，即WR）</li>
+<li>读信号（OE，即RD）</li>
+<li>片选信号（CS）</li>
+<li>字节控制（某些SRAM支持，即UB/LB）</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>16位模式和8位模式对应的内部总线的最低为不同，16位时要左移1位，因为地址增加时2个字节的增加的。</li>
+<li>FSMC有不同模式，不同模式对应不同的存储芯片，可以用芯片手册和FSMC对应（比如模式A可以独立设置读取和写入）。</li>
+<li>突发（burst），与其说是突发，倒不如说时连续。突发访问感觉像是翻译上的失误，突发访问其实就是连续访问，写一个地址后连续读出接下来的一些数据（而不是一个地址一个数据）。</li>
+<li>stm32中fsmc用 <code>u32 test[100] __attribute__((at(0x680000)));</code> 的方式进行地址的定义。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/05/%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8BTI%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/05/%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8BTI%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">如何开始TI单片机的开发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-05 20:31:45" itemprop="dateCreated datePublished" datetime="2020-07-05T20:31:45+08:00">2020-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-16 11:30:16" itemprop="dateModified" datetime="2020-07-16T11:30:16+08:00">2020-07-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="下载开发环境"><a href="#下载开发环境" class="headerlink" title="下载开发环境"></a>下载开发环境</h2><ol>
+<li>准备好<a href="https://osdn.net/projects/mingw/releases/" target="_blank" rel="noopener">gcc</a>和<a href="https://www.java.com/en/download/manual.jsp" target="_blank" rel="noopener">java</a>环境</li>
+<li>安装<a href="http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html" target="_blank" rel="noopener">ccs</a>(Code Composer Studio)  </li>
+<li>安装<a href="http://www.ti.com/tool/download/SMARTRFTM-STUDIO" target="_blank" rel="noopener">驱动</a></li>
+<li>安装<a href="https://www.ti.com.cn/zh-cn/design-resources/embedded-development/embedded-software.html" target="_blank" rel="noopener">对应单片机的SDK</a>（软件开发包）<br>ccs安装的时候选择offline版本的，安装时根据单片机型号选择要安装的开发环境。</li>
+</ol>
+<p>当然并不是所有ti的都用ccs，对于cortexm内核的单片机使用keil开发对我来说是个更好的选择，这里记录下cortexm内核的单片机怎么使用keil开发：</p>
+<ol>
+<li>安装好keil</li>
+<li>安装<a href="https://www.ti.com.cn/zh-cn/design-resources/embedded-development/embedded-software.html" target="_blank" rel="noopener">对应单片机的SDK</a>（软件开发包） </li>
+<li>再keil上下载对应单片机的支持包</li>
+<li>再sdk的目录下找到例程跑一跑(开发板/examples/nortos/开发板/driverlib/gpio_toggle_output)</li>
+</ol>
+<p>sdk目录结构如下<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_structer.png" alt></p>
+<h2 id="开始开发（keil）"><a href="#开始开发（keil）" class="headerlink" title="开始开发（keil）"></a>开始开发（keil）</h2><h3 id="点亮开发板上的灯"><a href="#点亮开发板上的灯" class="headerlink" title="点亮开发板上的灯"></a>点亮开发板上的灯</h3><p>点灯相当于是单片机开发上的Hello World，在开始设计前，写一个程序点灯看看吧！</p>
+<ol>
+<li>打开示例里面的io操作例程  </li>
+<li>编译可得到如下结果<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/mdk_program.png" alt><br> （1）. code 是编译后代码的大小，存储在flash里面<br> （2）. ro-data 为read only数据，存储在flash里面<br> （3）. rw-data 为已经初始化的全局变量,存储在ram里面<br> （4）. zi-data 未初始化的全局变量，存储在ram里面<br> （5）. 实际中单片机初始化时，代码从flash转移到ram里面，所以烧录时Total ROM size（Code + RO Data +RW Data）</li>
+<li>下载代码，使用arm提供的通用cmsis可以快速下载。<h3 id="了解开发板的结构"><a href="#了解开发板的结构" class="headerlink" title="了解开发板的结构"></a>了解开发板的结构</h3>大概了解一下开发板由哪些构成，这个可以参考电路图，或则TI开发板的小卡片，上面写各个接口的位置，以及可以复用的功能。如下图所示：  <img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp432launchpad.jpg" width="50%" height="50%">  
+### 开始了解时钟树
+时钟是单片机的心脏，开发前很有必要了解，在对应型号的手册上有对应的时钟树，以及对应的每一个寄存器。根据寄存器和时钟树的拓扑图，构建好整个树上的配置，根据配置总结好最后寄存器的配置，写在单片机开头。
+### 了解中断系统
+中断基本上是单片机开发上必不可少的东西，所以需要看一下</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/06/03/conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/03/conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">conda创建虚拟环境</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-03 09:52:27" itemprop="dateCreated datePublished" datetime="2020-06-03T09:52:27+08:00">2020-06-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-24 19:49:22" itemprop="dateModified" datetime="2020-07-24T19:49:22+08:00">2020-07-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="虚拟环境的作用"><a href="#虚拟环境的作用" class="headerlink" title="虚拟环境的作用"></a>虚拟环境的作用</h2><p>有时候要使用一个python库的不同版本，如tensorflow1和tensorflow2，这时候就需要创建两个虚拟环境，将不同的版本安装到不同的虚拟环境，然后根据需要，在不同的环境下进行工作。</p>
+<h2 id="更新conda"><a href="#更新conda" class="headerlink" title="更新conda"></a>更新conda</h2><blockquote>
+<p>conda update conda</p>
+</blockquote>
+<h2 id="创建一个虚拟环境"><a href="#创建一个虚拟环境" class="headerlink" title="创建一个虚拟环境"></a>创建一个虚拟环境</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>使用该命令创建一个虚拟环境</p>
+<blockquote>
+<p>conda create -n xxx python=3.x</p>
+</blockquote>
+<h3 id="查看虚拟环境"><a href="#查看虚拟环境" class="headerlink" title="查看虚拟环境"></a>查看虚拟环境</h3><p>查看的时候使用前面带*号的为当前激活的环境</p>
+<blockquote>
+<p>conda env list</p>
+</blockquote>
+<h3 id="激活虚拟环境"><a href="#激活虚拟环境" class="headerlink" title="激活虚拟环境"></a>激活虚拟环境</h3><blockquote>
+<p>conda activate xxx<br>（如果使用spyder使用 conda install spyder)</p>
+</blockquote>
+<h3 id="删除虚拟环境"><a href="#删除虚拟环境" class="headerlink" title="删除虚拟环境"></a>删除虚拟环境</h3><blockquote>
+<p>conda remove -n xxx –all</p>
+</blockquote>
+<h3 id="删除虚拟环境某个包"><a href="#删除虚拟环境某个包" class="headerlink" title="删除虚拟环境某个包"></a>删除虚拟环境某个包</h3><blockquote>
+<p>conda remove –name env_name package_name</p>
+</blockquote>
+<h2 id="启用虚拟环境的jupyter"><a href="#启用虚拟环境的jupyter" class="headerlink" title="启用虚拟环境的jupyter"></a>启用虚拟环境的jupyter</h2><ul>
+<li>查看jupyter notebook kernel<blockquote>
+<p>jupyter kernelspec list</p>
+</blockquote>
+</li>
+<li>删除jupyter notebook kernel<blockquote>
+<p>jupyter kernelspec remove kernelname</p>
+</blockquote>
+</li>
+<li>在该环境下安装ipykernel<blockquote>
+<p>conda install ipykernel</p>
+</blockquote>
+</li>
+<li>创建jupyter notebook kernel文件<blockquote>
+<p>conda install -n env_name ipykernel</p>
+</blockquote>
+</li>
+<li>激活conda环境<blockquote>
+<p>conda activate env_name</p>
+</blockquote>
+</li>
+<li>将环境写入notebook的kernel中<blockquote>
+<p>python -m ipykernel install –user –name env_name –display-name “在jupyter中显示的环境名称”</p>
+</blockquote>
+</li>
+<li>在改环境下启动jupyter notebook<blockquote>
+<p>jupyter notebook</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/05/19/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GIT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/19/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GIT/" class="post-title-link" itemprop="url">如何使用GIT</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-19 00:17:36" itemprop="dateCreated datePublished" datetime="2020-05-19T00:17:36+08:00">2020-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-13 21:51:53" itemprop="dateModified" datetime="2021-01-13T21:51:53+08:00">2021-01-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Github的介绍"><a href="#Github的介绍" class="headerlink" title="Github的介绍"></a>Github的介绍</h2><p>github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载，对于版本控制来说非常重要。对于工科来讲特别重要。</p>
+<h3 id="Git和Github的关系"><a href="#Git和Github的关系" class="headerlink" title="Git和Github的关系"></a>Git和Github的关系</h3><p>github是一个代码的托管平台，我们可以直接使用github网页端上传和备份自己的工程。但是对于程序员来说，如果更新一次版本都需要跑到网页端，然后自己根据修改了哪些文件选择文件上传，这是非常麻烦的。所以就可以使用Git这个管理工具，通过几行命令，就可对比该仓库目前哪些变化了，然后添加到仓库，再选择一个远程仓库提交，方便了工程的管理。</p>
+<h2 id="Git基本使用"><a href="#Git基本使用" class="headerlink" title="Git基本使用"></a>Git基本使用</h2><h3 id="Git配置命令"><a href="#Git配置命令" class="headerlink" title="Git配置命令"></a>Git配置命令</h3><p>git的系统配置保存在 <code>Git/etc/gitconfig</code><br>git的全局配置保存在 <code>C:用户/xxx(用户名)/.gitconfig</code><br><code>git config -l</code> 参看所有配置（l表示list）<br><code>git config --system --list</code> 查看系统配置<br><code>git config --global --list</code> 产看全局配置（一般是账户名和邮箱）<br><code>git config --global user.name &quot;xxxx&quot;</code> 编辑全局用户名<br><code>git config --global user.email &quot;xxx&quot;</code> 编辑全局邮箱  </p>
+<p>git的基本配置很简单，只需配置好全局邮箱和全局用户名就行，具体命令如上所述。</p>
+<h3 id="Git基本使用命令"><a href="#Git基本使用命令" class="headerlink" title="Git基本使用命令"></a>Git基本使用命令</h3><p>Git在平时的使用中，分为4个（层）目录，通过命令使自己的文件在不同地方保存。</p>
+<ul>
+<li>Workspace：工作目录，平时自己使用的文件夹</li>
+<li>index/Stage：暂存区，并不存在</li>
+<li>Repository：资源仓库，资源目录，分布式版本控制中本地的仓库，其中HEAD（.git隐藏文件夹里面）指向最新放入仓库的版本</li>
+<li>Remote：远程的Github服务器或Gitee的服务器（看自己爱好）</li>
+</ul>
+<p>git操作一般流程</p>
+<p>正向：</p>
+<p><code>git status</code>查看当前文件的状态<br><code>git add xxx</code>将xxx添加到暂存区（.代表所有文件）<br><code>git commit -m &quot;xxx&quot;</code>将暂存区文件提交到本地资源仓库，xxx代表当前版本的说明（提交的信息）<br><code>git push</code>将本地资源仓库的文件提交到远程服务器</p>
+<p>反向：</p>
+<p><code>git checkout</code>将暂存区里面的东西取消暂存<br><code>git reset xxx</code>将本地仓库里面某一个历史版本回滚<br><code>git pull</code>从远程仓库下载  </p>
+<h3 id="Git的忽略"><a href="#Git的忽略" class="headerlink" title="Git的忽略"></a>Git的忽略</h3><p>有时候我们在提交时，不想所有文件都提交到git仓库里面（比如训练集），就必须要忽略这些文件。忽略文件步骤如下</p>
+<ol>
+<li>在主目录下建立“.gitignore”文件</li>
+<li>添加忽略规则：<ol>
+<li>注释：”#“</li>
+<li>通配符：”*”</li>
+<li>例外规则，将不被忽略：”!”</li>
+<li>某个路径：”/“</li>
+</ol>
+</li>
+</ol>
+<h3 id="Git远程仓库"><a href="#Git远程仓库" class="headerlink" title="Git远程仓库"></a>Git远程仓库</h3><p>自己的项目除了在本地保存外，还可以提交到远程服务器。远程服务器可以根据自己需要选择，如：Github、Gitee、自己搭建Gitlab。这里我主要使用Github。</p>
+<ol>
+<li><p>免密码登录（使用ssh）</p>
+<p>使用ssh首先需要在本地的ssh存放公钥的目录下保存服务器端生成的公钥，这里刚好相反（其实本质一样）。现在本地生成公钥和私钥，再将公钥放到Github上</p>
+</li>
+<li><p>再Github上先建一个仓库</p>
+<p>直接在首页的左边有一个New，可以选择新建仓库</p>
+<p><img src="https://i.loli.net/2021/01/12/cvDu8Aosfh5ngB7.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/github%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt></p>
+<ol start="3">
+<li>将创建的仓库克隆到本地，然后开始自己的工程（不然的话容易出现版本冲突）。克隆下来后可以直接将自己的工程文件复制到该目录下继续工作。（或则将克隆下来的全部文件复制到工程目录下）</li>
+</ol>
+</li>
+</ol>
+<h2 id="GIT分支（合作时常用）"><a href="#GIT分支（合作时常用）" class="headerlink" title="GIT分支（合作时常用）"></a>GIT分支（合作时常用）</h2><h3 id="分支的作用"><a href="#分支的作用" class="headerlink" title="分支的作用"></a>分支的作用</h3><p>分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本。</p>
+<h3 id="使用分支的常用命令"><a href="#使用分支的常用命令" class="headerlink" title="使用分支的常用命令"></a>使用分支的常用命令</h3><p><code>git branch</code>查看当前的分支<br><code>git branch -r</code>查看远程仓库上的分支<br><code>git branch xxx</code>新建一个名为xxx的分支<br><code>git checkout xxx</code>切换到xxx分支<br><code>git checkout -b xxx</code>新建一个xxx分支，并切换到该分支<br><code>git branch -d xxx</code>删除xxx分支<br><code>git push origin --delet xxx</code>删除远程仓库中的xxx分支<br><code>git branch -dr xxx</code>和上一个命令一样</p>
+<p>通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下</p>
+<p><code>git checkout -b xxx origin</code>创建远程的xxx分支到本地的xxx分支<br><code>git push origin xxx</code>提交当前代码到xxx分支（默认是主分支）</p>
+<h3 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h3><p>通常不同项目组开发一个项目时，有些项目组要调用另一个项目组的代码，所以就需要合并，合并后修改代码后提交可能会冲突，选择保留哪一个即可。</p>
+<p><code>git merge xxx</code>合并指定分支到当前分支（合并时有可能会遇到冲突，选择要保留的既可）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/05/18/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A2%AF%E5%AD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/18/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A2%AF%E5%AD%90/" class="post-title-link" itemprop="url">如何使用v2ray搭建自己的梯子</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-18 09:47:28" itemprop="dateCreated datePublished" datetime="2020-05-18T09:47:28+08:00">2020-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-16 11:30:16" itemprop="dateModified" datetime="2020-07-16T11:30:16+08:00">2020-07-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="购买一台外网服务器"><a href="#购买一台外网服务器" class="headerlink" title="购买一台外网服务器"></a>购买一台外网服务器</h2><p>想要访问被墙掉的网页，就要有可以访问的外网服务器帮自己转发，所以需要买一台外网的服务器，外网的服务器有很多种选择，服务器选择<a href="https://zhuanlan.zhihu.com/p/111891823" target="_blank" rel="noopener">点这里</a>查看。</p>
+<h2 id="服务器端操作"><a href="#服务器端操作" class="headerlink" title="服务器端操作"></a>服务器端操作</h2><h3 id="安装v2ray"><a href="#安装v2ray" class="headerlink" title="安装v2ray"></a>安装v2ray</h3><p>使用<code>bash &lt;(curl -L -s https://install.direct/go.sh)</code>命令安装，<code>bash</code>命令会自动下载，安装。昨天试的时候安装不了甚至还自动给我下载了<code>unzip</code>，特别方便。当然也可以使用其他命令安装，这里不做介绍。</p>
+<h3 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h3><p>这一步其实不太需要，因为服务器一般一直都是开机状态不会关机。不过想要设置的话可以使用以下两个命令设置。</p>
+<ol>
+<li><code>systemctl start v2ray</code></li>
+<li><code>systemctl enable v2ray</code></li>
+</ol>
+<p>第一个命令为启动一个服务，第二个命令为开机自动启动一个服务，这一步结束了就相当于已经启动v2ray服务器端进程了（<a href="https://blog.csdn.net/moonsheep_liu/article/details/50184255" target="_blank" rel="noopener">systemctl</a>命令介绍）。</p>
+<h3 id="启动v2ray"><a href="#启动v2ray" class="headerlink" title="启动v2ray"></a>启动v2ray</h3><p>除了上一步介绍的启动方法之外，还可以使用<code>service v2ray start/stop/status</code>来启动、关闭或者查看状态。一般启动后都要用<code>service v2ray status</code>查看是否启动成功。</p>
+<h3 id="查看v2ray信息"><a href="#查看v2ray信息" class="headerlink" title="查看v2ray信息"></a>查看v2ray信息</h3><p>通过<code>cat /etc/v2ray/config.json</code>查看配置信息，配置信息里面信息也可以自己更改，默认的模式是vmess模式，可以根据需求自己再更改（vmess模式目前不是最安全的，会被识别，可以用websocket+tls伪装更安全）。这里的配置信息需要记住<code>&quot;inbounds&quot;</code>里面的信息，包括<code>port</code>，<code>id</code>，<code>alterID</code>三个信息，待会儿客户端连接时需要用到。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9001.png" alt></p>
+<h2 id="客户端操作-主要时windows"><a href="#客户端操作-主要时windows" class="headerlink" title="客户端操作(主要时windows)"></a>客户端操作(主要时windows)</h2><h3 id="安装v2ray-1"><a href="#安装v2ray-1" class="headerlink" title="安装v2ray"></a>安装v2ray</h3><p>安装v2ray有很多种方法，我只介绍一种，<a href="https://github.com/2dust/v2rayN/releases">点击这里下载</a>客户端。选择<code>v2rayN-Core.zip</code>，这个安装包包含了v2rayN和v2ray-core，下载后可以直接使用。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9002.png" alt><br>下载后选择一个目录解压，解压后得到一堆文件，运行以下文件<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9003.png" alt></p>
+<h3 id="配置客户端"><a href="#配置客户端" class="headerlink" title="配置客户端"></a>配置客户端</h3><p>打开客户端，选择下面配置，当然如果配置时不是用的vmess就选其它的<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9004.png" alt><br>然后把服务器看到的信息按下面顺序填入客户端<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9005.png" alt></p>
+<h3 id="启动客户端"><a href="#启动客户端" class="headerlink" title="启动客户端"></a>启动客户端</h3><p>配置完后启动开始上网吧<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9006.png" alt></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/05/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/15/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">如何使用hexo搭建个人博客</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-15 20:06:42" itemprop="dateCreated datePublished" datetime="2020-05-15T20:06:42+08:00">2020-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-10 21:03:03" itemprop="dateModified" datetime="2021-02-10T21:03:03+08:00">2021-02-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>我这里使用github+hexo的组合搭建，所以要安装git和hexo，git安装我后面再建个博客写，这里我先介绍hexo的安装</p>
+<h3 id="下载nodejs"><a href="#下载nodejs" class="headerlink" title="下载nodejs"></a>下载<a href="https://nodejs.org/en/" target="_blank" rel="noopener">nodejs</a></h3><p>一般选择LTS（长期支持版）。安装完后有两个组件，一个是nodejs组件（hexo需要nodejs支持），一个是npm软件管理包。下载下来安装一直点next差不多就可以了。<br>下载完后用<code>node -v</code>和<code>npm -v</code>查看是否安装成功。</p>
+<h3 id="安装cnpm（换成淘宝源）"><a href="#安装cnpm（换成淘宝源）" class="headerlink" title="安装cnpm（换成淘宝源）"></a>安装cnpm（换成淘宝源）</h3><p>由于npm服务器在国外，下载速度慢，所以换成cnpm。使用命令<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code>安装。</p>
+<h3 id="利用cnpm安装hexo博客"><a href="#利用cnpm安装hexo博客" class="headerlink" title="利用cnpm安装hexo博客"></a>利用cnpm安装hexo博客</h3><p>命令<code>cnpm install -g hexo-cli</code>，<code>-g</code>的意思是全局安装，就可以在命令行使用这个命令（相当于添加环境变量）。安装后使用<code>hexo -v</code>查看是否安装成功。</p>
+<hr>
+<h2 id="正式搭建hexo博客"><a href="#正式搭建hexo博客" class="headerlink" title="正式搭建hexo博客"></a>正式搭建hexo博客</h2><h3 id="创建博客的空间"><a href="#创建博客的空间" class="headerlink" title="创建博客的空间"></a>创建博客的空间</h3><p>创建一个存放博客文件的空间，以后博客的管理等等都在该空间</p>
+<h3 id="hexo博客常用命令"><a href="#hexo博客常用命令" class="headerlink" title="hexo博客常用命令"></a>hexo博客常用命令</h3><ul>
+<li>初始化一个博客：<code>hexo init</code></li>
+<li>创建一篇博客，创建的博客默认保存在<code>source/_posts/</code>，该命令在博客目录执行：<code>hexo n &quot;xxx&quot;</code></li>
+<li>清理：<code>hexo clean</code></li>
+<li>生成：<code>hexo g</code></li>
+<li>启动：<code>hexo s</code></li>
+</ul>
+<h3 id="将hexo博客同步到github云端"><a href="#将hexo博客同步到github云端" class="headerlink" title="将hexo博客同步到github云端"></a>将hexo博客同步到github云端</h3><ol>
+<li>在github上创建博客的仓库，名称为<code>username.github.io</code></li>
+<li>安装git部署插件：<code>cnpm install --save hexo-deployer-git</code></li>
+<li>配置<code>_config.yml</code>文件，在最后的Deployment配置如下  <div align="left"><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/deployment_set.png"></div></li>
+<li>部署到云端，现在默认下会使用https上传，输入github账户和密码就行了：<code>hexo d</code><h2 id="主题配置步骤"><a href="#主题配置步骤" class="headerlink" title="主题配置步骤"></a>主题配置步骤</h2></li>
+</ol>
+<p>hexo的主题配置分三步走</p>
+<ul>
+<li><p>选择主题并下载</p>
+</li>
+<li><p>在_config.yml文件中更换主题</p>
+</li>
+<li><p>在主题的config文件中修改个人信息</p>
+</li>
+</ul>
+<ol>
+<li><p>选择主题</p>
+<p>方法：在github上面搜索hexo-thmes</p>
+</li>
+<li><p>修改_config.yml文件</p>
+<p><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png" alt="image-20210210205648241"></p>
+</li>
+<li><p>配置该主题</p>
+<p>修改主题文件下的_config.yml文件</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Thomas"
+      src="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+  <p class="site-author-name" itemprop="name">Thomas</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thomaszb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thomaszb"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thomas</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+</body>
+</html>

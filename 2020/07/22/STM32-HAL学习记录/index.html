@@ -1,102 +1,211 @@
-
- <!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题 SD卡使用简介SD卡的使用分为3个步骤  初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低） 写 读  所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找 SD卡配置过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32 HAL学习记录">
+<meta property="og:url" content="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Thomas&#39;s Blog">
+<meta property="og:description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题 SD卡使用简介SD卡的使用分为3个步骤  初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低） 写 读  所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找 SD卡配置过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png">
+<meta property="og:image" content="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png">
+<meta property="article:published_time" content="2020-07-22T04:08:55.000Z">
+<meta property="article:modified_time" content="2020-07-22T05:53:34.333Z">
+<meta property="article:author" content="Thomas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png">
+
+<link rel="canonical" href="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>STM32 HAL学习记录 | Thomas's Blog</title>
   
-    <title>STM32 HAL学习记录 | Thomas&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
-    
-    <meta name="author" content="Thomas">
-    
-    <meta name="description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题
-SD卡使用简介SD卡的使用分为3个步骤
 
-初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）
-写
-读
 
-所有步骤都是通过指令实现，SD卡的四线模式">
-    
-    
-    
-    
-    <link rel="alternate" href="https://github.com/ThomasZB" title="Thomas&#39;s Blog" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/pacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
-    
-    
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
 
-  <body>
-    <header>
-      <div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Thomas&#39;s Blog" title="Thomas&#39;s Blog"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Thomas&#39;s Blog">Thomas&#39;s Blog</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					
-						<li><a href="/">Home</a></li>
-					
-						<li><a href="/archives">Archives</a></li>
-					
-					<li>
-					
-					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
-						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:github.com/ThomasZB">
-					</form>
-					
-					</li>
-				</ul>
-			</nav>			
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Thomas's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
     </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+
     
-      <a href="/2020/07/22/STM32-HAL学习记录/" title="STM32 HAL学习记录" itemprop="url">STM32 HAL学习记录</a>
-  </h1>
-  <p class="article-author">By
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
     
-      <a href="https://github.com/ThomasZB" title="Thomas">Thomas</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2020-07-22T04:08:55.000Z" itemprop="datePublished">2020-07-22</time>
-    更新日期:<time datetime="2020-07-22T05:53:34.333Z" itemprop="dateModified">2020-07-22</time>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+      <meta itemprop="name" content="Thomas">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Thomas's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STM32 HAL学习记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-22 12:08:55 / 修改时间：13:53:34" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SD卡使用过程"><span class="toc-number">1.</span> <span class="toc-text">SD卡使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡使用简介"><span class="toc-number">1.1.</span> <span class="toc-text">SD卡使用简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡配置过程"><span class="toc-number">1.2.</span> <span class="toc-text">SD卡配置过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FATFS的移植"><span class="toc-number">2.</span> <span class="toc-text">FATFS的移植</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FATFS简介"><span class="toc-number">2.1.</span> <span class="toc-text">FATFS简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置过程"><span class="toc-number">2.2.</span> <span class="toc-text">配置过程</span></a></li></ol></li></ol>
-		</div>
-		
-		<hr>
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
 <h2 id="SD卡使用过程"><a href="#SD卡使用过程" class="headerlink" title="SD卡使用过程"></a>SD卡使用过程</h2><p>在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题</p>
 <h3 id="SD卡使用简介"><a href="#SD卡使用简介" class="headerlink" title="SD卡使用简介"></a>SD卡使用简介</h3><p>SD卡的使用分为3个步骤</p>
 <ol>
@@ -121,204 +230,197 @@ SD卡使用简介SD卡的使用分为3个步骤
 <li>挂载SD卡</li>
 <li>判断挂载是否成功（不成功可能是没有格式化成FAT32格式）</li>
 </ol>
-  
-	</div>
-		<footer class="article-footer clearfix">
 
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-title="STM32 HAL学习记录 | Thomas&#39;s Blog" data-tsina="" class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2021/02/10/GDB的使用/" title="GDB的使用">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  GDB的使用</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2020/07/20/msp432学习笔记/"  title="msp432学习笔记">
- <strong>NEXT:</strong><br/> 
- <span>msp432学习笔记
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SD卡使用过程"><span class="toc-number">1.</span> <span class="toc-text">SD卡使用过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡使用简介"><span class="toc-number">1.1.</span> <span class="toc-text">SD卡使用简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SD卡配置过程"><span class="toc-number">1.2.</span> <span class="toc-text">SD卡配置过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FATFS的移植"><span class="toc-number">2.</span> <span class="toc-text">FATFS的移植</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FATFS简介"><span class="toc-number">2.1.</span> <span class="toc-text">FATFS简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置过程"><span class="toc-number">2.2.</span> <span class="toc-text">配置过程</span></a></li></ol></li></ol>
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-
-  
-
-  <div class="rsspart">
-	<a href="https://github.com/ThomasZB" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font clearfix">
-		
-		
-		
-		<a href="https://github.com/ThomasZB" target="_blank" title="github"></a>
-		
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2021 
-		
-		<a href="https://github.com/ThomasZB" target="_blank" title="Thomas">Thomas</a>
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else
-    {
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/20/msp432%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="msp432学习笔记">
+      <i class="fa fa-chevron-left"></i> msp432学习笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/10/GDB%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="GDB的使用">
+      GDB的使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
     }
   });
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-});
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SD卡使用过程"><span class="nav-number">1.</span> <span class="nav-text">SD卡使用过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SD卡使用简介"><span class="nav-number">1.1.</span> <span class="nav-text">SD卡使用简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SD卡配置过程"><span class="nav-number">1.2.</span> <span class="nav-text">SD卡配置过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATFS的移植"><span class="nav-number">2.</span> <span class="nav-text">FATFS的移植</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FATFS简介"><span class="nav-number">2.1.</span> <span class="nav-text">FATFS简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置过程"><span class="nav-number">2.2.</span> <span class="nav-text">配置过程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Thomas"
+      src="https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png">
+  <p class="site-author-name" itemprop="name">Thomas</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/thomaszb" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;thomaszb"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Thomas</span>
+</div>
+
+        
 
 
 
-  </body>
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+</body>
 </html>
