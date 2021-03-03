@@ -178,9 +178,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-02-10 14:19:54 / 修改时间：23:13:33" itemprop="dateCreated datePublished" datetime="2021-02-10T14:19:54+08:00">2021-02-10</time>
+              <time title="创建时间：2021-02-10 14:19:54" itemprop="dateCreated datePublished" datetime="2021-02-10T14:19:54+08:00">2021-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-03 22:47:38" itemprop="dateModified" datetime="2021-03-03T22:47:38+08:00">2021-03-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+                </span>
             </span>
 
           
@@ -1155,7 +1170,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 23:44:01" itemprop="dateModified" datetime="2021-02-10T23:44:01+08:00">2021-02-10</time>
+                <time title="修改时间：2021-03-03 22:53:42" itemprop="dateModified" datetime="2021-03-03T22:53:42+08:00">2021-03-03</time>
               </span>
 
           
@@ -1222,6 +1237,17 @@
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fireworks</span></span><br><span class="line"><span class="attr">fireworks:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+</li>
+<li><p>新建页面</p>
+<ul>
+<li><p>添加自己的分类页面<code>hexo new page categories</code></p>
+</li>
+<li><p>修改categories里面的index.md文档，改成如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 分类</span><br><span class="line">date: 2021-03-03 22:39:24</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给自己的文章添加categories属性，并且clean后重新生成</p>
+</li>
+</ul>
 </li>
 <li><p>动态背景</p>
 </li>
@@ -1317,6 +1343,12 @@
           <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
