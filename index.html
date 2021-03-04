@@ -426,7 +426,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:30:16" itemprop="dateModified" datetime="2020-07-16T11:30:16+08:00">2020-07-16</time>
+                <time title="修改时间：2021-03-04 14:50:10" itemprop="dateModified" datetime="2021-03-04T14:50:10+08:00">2021-03-04</time>
               </span>
 
           
@@ -441,155 +441,14 @@
 
       
           <h1 id="1-MSP430简介"><a href="#1-MSP430简介" class="headerlink" title="1. MSP430简介"></a>1. MSP430简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MSP430是TI的超低功耗单片机，开发过程和51单片机差不多，但有比51单片机更多的资源以及更高的频率。</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>MSP430使用TI的CCS作为开发环境，由于单片机的结构特殊，不能使用keil开发。ccs的开发环境比较好搭建，只需要注意全程英文环境就行。这里简单介绍一下获取例程的代码：</p>
-<ol>
-<li>进入<a href="http://dev.ti.com/tirex/#/" target="_blank" rel="noopener">例程的网站</a></li>
-<li>找到对应的例程下载</li>
-<li>导入工程<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_example.png" alt></li>
-</ol>
-<hr>
-<h1 id="2-io口控制"><a href="#2-io口控制" class="headerlink" title="2. io口控制"></a>2. io口控制</h1><h2 id="io控制寄存器"><a href="#io控制寄存器" class="headerlink" title="io控制寄存器"></a>io控制寄存器</h2><p>msp430的io控制寄存器特别多，不像51那样少，430的io控制寄存器在手册上有详细的说明，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_io_regegister.png" alt><br>有了详细的说明就可以对相应的寄存器进行控制了。</p>
-<h3 id="主要寄存器"><a href="#主要寄存器" class="headerlink" title="主要寄存器"></a>主要寄存器</h3><ol>
-<li>PxIN为只读寄存器，在输入模式下可以读取按键上的电平。</li>
-<li>PxOUT为输出控制寄存器，在输出模式下可以输出高电平或低电平。</li>
-<li>PxDIR为输入输出选择寄存器，可以选择io口为输入或者输出（Bit=0为输入）。</li>
-<li>PxREN上拉下拉是能寄存器，选择是否是能上下拉，是能条件下，PxOUT控制上下拉。</li>
-<li>中断相关寄存器<ol>
-<li>PxIFG中断标志位，当某些事件发生时置1，开启中断的情况下进入中断，必须由软件清0。注意：当写入PxOUT和PxDIR时会对将相应的寄存器置0或1</li>
-<li>PxIES确定什么边沿触发中断。0为上升沿，1为下降沿。</li>
-<li>PxIE选择是否使能中断</li>
-</ol>
-</li>
-<li>PxSELx为功能选择寄存器，相当于复用。复用功能的选择在数据表（datasheet）中的Port Schematics中查看。</li>
-</ol>
-<h3 id="msp430作为输出配置步骤"><a href="#msp430作为输出配置步骤" class="headerlink" title="msp430作为输出配置步骤"></a>msp430作为输出配置步骤</h3><ol>
-<li>配置PxDIR作为出</li>
-<li>PxOUT为输出多少</li>
-</ol>
-<h3 id="msp430作为输入配置步骤"><a href="#msp430作为输入配置步骤" class="headerlink" title="msp430作为输入配置步骤"></a>msp430作为输入配置步骤</h3><ol>
-<li>配置PxDIR为输入模式</li>
-<li>配置PxREN使能上下拉（可以不使能这个，实际情况决定）</li>
-<li>配置PxOUT确定是上拉还是下拉</li>
-<li>读取PxIN获得输入的电平</li>
-</ol>
-<hr>
-<h1 id="3-时钟控制"><a href="#3-时钟控制" class="headerlink" title="3. 时钟控制"></a>3. 时钟控制</h1><h2 id="时钟系统简介"><a href="#时钟系统简介" class="headerlink" title="时钟系统简介"></a>时钟系统简介</h2><p>MSP430有很多系列，不同的款式有不同的时钟系统，这里从msp430g2553为例，对时钟配置过程做大概的记录。<br>MSP430g2553的时钟树如下图所示<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_clocksystem.png" alt><br>一般时钟树的看法就是从左到由，左边是输入，右边是输出。可以大概看出来左边有3个部分，右边有3个输出。上面的黑色小方框是相应的控制寄存器。就可以大概得出MSP430g2553的时钟构成和相应的配置过程。</p>
-<h2 id="时钟树的详细配置"><a href="#时钟树的详细配置" class="headerlink" title="时钟树的详细配置"></a>时钟树的详细配置</h2><h3 id="时钟配置的寄存器"><a href="#时钟配置的寄存器" class="headerlink" title="时钟配置的寄存器"></a>时钟配置的寄存器</h3><ol>
-<li>DCOCTL 这是DCO时钟的控制寄存器，具体配置手册上有，用于确定DCO的频率和模式</li>
-<li>BCSCTL1 </li>
-<li>BCSCTL2</li>
-<li>BCSCTL3</li>
-<li>IE1</li>
-<li>IFG1</li>
-</ol>
-<p>具体配置查看手册</p>
-<h3 id="时钟配置过程"><a href="#时钟配置过程" class="headerlink" title="时钟配置过程"></a>时钟配置过程</h3><p>MSP430的高速时钟只能从内部获取，但是内部的时钟并不是很精确，所以有很多校准值可以直接使用。所以实际配置过程中使用系统给的宏定义就行。 </p>
-<h3 id="配置举例"><a href="#配置举例" class="headerlink" title="配置举例"></a>配置举例</h3><ol>
-<li>MCLK 和 SMCLK 均为 1MHz， ACLK 设为 32.768kHz<blockquote>
-<p>BCSCTL1 = CALBC1_1MHZ; // 要取得精确的1MHz，一定要调取校正参数<br>DCOCTL = CALDCO_1MHZ; // ACLK保持默认即可</p>
-</blockquote>
-</li>
-<li>MCLK 和 SMCLK 均为 16MHz， ACLK 设为 VLO<blockquote>
-<p>BCSCTL1 = CALBC1_16MHZ; // 调取16MHz校正参数<br>DCOCTL = CALDCO_16MHZ;<br>BCSCTL3 |= LFXT1S_2; // 设为VLO  </p>
-</blockquote>
-</li>
-<li>MCLK 为 4MHz， SMCLK 为 2MHz<blockquote>
-<p>BCSCTL1 = CALBC1_8MHZ; // 先将DCO设为8MHz<br>DCOCTL = CALDCO_8MHZ;<br>BCSCTL2 |= DIVM_1 + DIVS_2; // 再对MCLK 2分频， SMCLK 4分频  </p>
-</blockquote>
-</li>
-<li>MCLK 设为 32.768kHz 外部晶振<blockquote>
-<p>BCSCTL3 |= LFXT1S_0 + XCAP_3; // clock system setup<br>while(IFG1 &amp; OFIFG) // wait for OSCFault to clear<br>{<br>IFG1 &amp;= ~OFIFG;<br>_delay_cycles(100000);<br>}<br>_bis_SR_register(SCG1 + SCG0); // clock system setup<br>BCSCTL2 |= SELM_3;  </p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<h1 id="4-中断控制"><a href="#4-中断控制" class="headerlink" title="4. 中断控制"></a>4. 中断控制</h1><h2 id="中断简介"><a href="#中断简介" class="headerlink" title="中断简介"></a>中断简介</h2><p>中断就是系统的某个事件发生，若为该事件配置有中断，则系统会进入中断函数。所以要搞懂一块单片机的中断至少要懂得他的中断向量表，如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_int.png" alt><br>有了这个表就知道有哪些中断，哪些中断时公用一个中断向量。</p>
-<h2 id="中断的使用"><a href="#中断的使用" class="headerlink" title="中断的使用"></a>中断的使用</h2><h3 id="中断系统配置"><a href="#中断系统配置" class="headerlink" title="中断系统配置"></a>中断系统配置</h3><p>msp430的中断系统比较简单，配置的话只需要对应好中断向量，以及打开某个标志位的中断，并在中断服务函数里面写上中断函数即可。</p>
-<h3 id="中断配置步骤"><a href="#中断配置步骤" class="headerlink" title="中断配置步骤"></a>中断配置步骤</h3><ol>
-<li>配置中断事件并打开中断（即配置中断向量）</li>
-<li>是能中断</li>
-<li>创建中断服务函数</li>
-</ol>
-<h3 id="按键举例"><a href="#按键举例" class="headerlink" title="按键举例"></a>按键举例</h3><ol>
-<li>初始化按键、使能中断、清空中断标志位。</li>
-<li>使用<code>_BIS_SR(GIE)</code>指令使能全局中断。</li>
-<li>编写中断服务函数</li>
-</ol>
-<ul>
-<li>中断服务函数写法：<blockquote>
-<p>#pragma vector=PORT1_VECTOR // 编译指令，告诉编译器将函数与中断向量链接起来，vector后面是中断向量地址的宏定义。<br><strong>interrupt void Port_1(void)//</strong>interrupt表示这是一个中断服务函数，后面的Port_1可以自己命名<br>{<br>   ……<br>}</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h1 id="5-定时器"><a href="#5-定时器" class="headerlink" title="5. 定时器"></a>5. 定时器</h1><h2 id="定时器简介"><a href="#定时器简介" class="headerlink" title="定时器简介"></a>定时器简介</h2><p>所有单片机中定时器都是非常重要的，定时器可以实现精准计时等操作。MSP430的定时器可以在手册上看到，由标题就可以轻易的知道，MSP430g2553的定时器分为TIM_A和TIM_B两个。定时器可以实现捕获、比较输出（PWM）等功能。  </p>
-<h3 id="如何了解一个定时器"><a href="#如何了解一个定时器" class="headerlink" title="如何了解一个定时器"></a>如何了解一个定时器</h3><p>了解一个定时器，要从以下几个方面了解  </p>
-<ol>
-<li>计数器的位数（他的计数值保存在这里）</li>
-<li>时钟来源</li>
-<li>通道情况（可以作为比较、捕获等）</li>
-<li>中断配置情况（如哪些状态位可以激活中断）</li>
-<li>工作模式（连续、向上、向下等）</li>
-</ol>
-<h2 id="定时器的使用"><a href="#定时器的使用" class="headerlink" title="定时器的使用"></a>定时器的使用</h2><h3 id="定时器的不同工作模式"><a href="#定时器的不同工作模式" class="headerlink" title="定时器的不同工作模式"></a>定时器的不同工作模式</h3><ol>
-<li>连续模式<br>连续模式下，定时器计数到溢出自动返回到0重新开始计数（有的单片机有自动重装载值，可能不一定返回到0）。</li>
-<li>向上计数<br>向上跟连续模式不同的地方在于向上的溢出值可以自己设定，相当于可以自己设定多久过后溢出（这里其实是超过比较值、不应该叫做溢出。更方便）。</li>
-<li>向上/向下<br>定时器达到设定的值后向下到0，这样才算一个周期，相当于周期乘以了2。</li>
-</ol>
-<h3 id="定时器中断"><a href="#定时器中断" class="headerlink" title="定时器中断"></a>定时器中断</h3><p>定时器的中断来源不同定时器不一样，msp430g2553的中断来源有CCR（捕获/比较）中断和TA0IFG（溢出）中断</p>
-<ol>
-<li>CCR0中断<br>计数器的值达到CCR0时产生的中断</li>
-<li>溢出中断<br>溢出中断一般是指TAR（计数器）为0相应的标记为置位，产生溢出中断。</li>
-</ol>
-<h3 id="定时器寄存器"><a href="#定时器寄存器" class="headerlink" title="定时器寄存器"></a>定时器寄存器</h3><p>这里的寄存器是以MSP430g2553的为例  </p>
-<ol>
-<li>TACTL 主要的控制寄存器，控制TIM_A的时钟来源、输入分频、模式、中断控制等等</li>
-<li>TACCRX 比较值</li>
-<li>TACCTLx 比较捕获配置</li>
-<li>TAIV 存放了一些中断的标志位</li>
-</ol>
-<h2 id="配置举例-1"><a href="#配置举例-1" class="headerlink" title="配置举例"></a>配置举例</h2><h3 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h3><ol>
-<li>选择时钟来源和分频值</li>
-<li>确定定时器工作模式</li>
-<li>跟据模式选择哪个中断</li>
-<li>编写对应的中断服务函数</li>
-</ol>
-<h3 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h3><ol>
-<li>一般设置计数器为连续模式，定义全局变量count来确定是否捕获中途发生溢出（需开启中断）。</li>
-<li>配置捕获模式，设置TACCTLx寄存器的CAP为1。</li>
-<li>选择哪个引脚作为捕获输入口，配置CCRx模块的捕获源寄存器CCISx。</li>
-<li>选择什么边沿捕获，设定CMx寄存器。</li>
-<li>确定同步捕获还是异步捕获，SCS寄存器（一般为同步，更精准）。</li>
-<li>CCR检测到带捕获功能IO口的电平边沿，瞬间读取TAR寄存器的值并写入TACCRx寄存器中等待读取。</li>
-</ol>
-<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>MSP430的PWM输出比较特殊。在该模式下，CCR0确定周期，CCRx确定占空比和输出引脚为TAx，步骤如下。</p>
-<ol>
-<li>设定PWM的输出端口，跟据MSP430g2553的定义，.0端口不能用于输出。并设置IO口的功能为 TIMx_Ax ，如图所示。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/20200711212837.png" alt></li>
-<li>设定 CCR0 和 CCRx 的值。</li>
-<li>选择比较/捕获模块的输出模式(一般选用输出模式7来生成PWM波)。</li>
-<li>选择定时器的时钟源和计数器源。</li>
-<li>MSP430自动生成PWM波，CPU可进入低功耗模式。<ul>
-<li>低功耗模式进入方法：<code>__BIS_SR(CPUOFF)</code>，__BIS_SR直接控制系统状态寄存器。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h1 id="串行通信"><a href="#串行通信" class="headerlink" title="串行通信"></a>串行通信</h1><h2 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h2><h3 id="常见的串行通信"><a href="#常见的串行通信" class="headerlink" title="常见的串行通信"></a>常见的串行通信</h3><p>串行通信常见的位IIC，SPI，UART等，MSP430在硬件上都支持，只需要配置寄存器就可以使用。</p>
-<h3 id="串行通信的介绍和相关信息"><a href="#串行通信的介绍和相关信息" class="headerlink" title="串行通信的介绍和相关信息"></a>串行通信的介绍和相关信息</h3><p>这个参考我的另一篇博客（各种通信协议笔记）</p>
-<h2 id="MSP430串行通信的使用"><a href="#MSP430串行通信的使用" class="headerlink" title="MSP430串行通信的使用"></a>MSP430串行通信的使用</h2><h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><ul>
-<li>UCAxCTLx 配置寄存器 （一般选择默认的即可，即不用配置）</li>
-<li>UCAxRXIE 接收中断配置寄存器</li>
-<li>UCAxTXIE 发送中断配置寄存器</li>
-<li>TXBUF发送缓冲器</li>
-<li>RXBUF接受缓冲器</li>
-<li>UCAxBRx、UCAxMCTL 控制波特率的寄存器</li>
-</ul>
-<h3 id="配置流程-1"><a href="#配置流程-1" class="headerlink" title="配置流程"></a>配置流程</h3><ol>
-<li>配置UCAxCTLx寄存器，一般不用配置，因为默认配置就是常用的8位，无奇偶校验等</li>
-<li>时钟选择，USCI的时钟为BRCLK，它可以选择3个时钟来源。</li>
-<li>波特率设置，通过配置配置UCAxBRx、UCAxMCTL寄存器达到配置的效果，得到固定波特率。下图附上16M主频下的常用波特率配置。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_bt.png" alt></li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/11/MSP430%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
