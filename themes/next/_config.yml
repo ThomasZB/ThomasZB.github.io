@@ -91,7 +91,7 @@ creative_commons:
   license: by-nc-sa
   sidebar: false
   post: false
-  language:
+  language: zh-Hans
 
 
 # ---------------------------------------------------------------
@@ -1000,7 +1000,11 @@ js: js
 images: images
 
 # 点击烟花效果
-fireworks: true
+# fireworks: true
+cursor_effect:
+  enabled: true
+  type: fireworks  # fireworks：礼花 | explosion：爆炸 | love：浮出爱心 | text：浮出文字
+
 
 # 动态壁纸
 # Canvas-nest

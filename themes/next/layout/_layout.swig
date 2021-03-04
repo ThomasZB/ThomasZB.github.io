@@ -51,15 +51,33 @@
   {%- endif %}
   {% include '_third-party/math/index.swig' %}
   {% include '_third-party/quicklink.swig' %}
+  
+  <!-- 点击爆炸 -->
+  {% if theme.cursor_effect %}
+    {% if theme.cursor_effect.type == "fireworks" %}
+      <script src="/js/cursor/fireworks.js"></script>
+    {% elseif theme.cursor_effect.type == "explosion" %}
+      <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+      <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+      <script src="/js/cursor/explosion.min.js"></script>
+    {% elseif theme.cursor_effect.type == "love" %}
+      <script src="/js/cursor/love.min.js"></script>
+    {% elseif theme.cursor_effect.type == "text" %}
+      <script src="/js/cursor/text.js"></script>
+    {% endif %}
+  {% endif %}
 
   {{- next_inject('bodyEnd') }}
   {%- if theme.pjax %}
     </div>
   {%- endif %}
+  <!-- 点击爆炸 -->
+  <!--
   {% if theme.fireworks %}
    <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
    <script type="text/javascript" src="/js/src/fireworks.js"></script>
   {% endif %}
+  -->
 </body>
 </html>

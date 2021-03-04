@@ -92,6 +92,21 @@ hexo的主题配置分三步走
       fireworks: true
       ```
 
-2. 动态背景
+2. 新建页面
 
-3. 添加宠物
+   * 添加自己的分类页面`hexo new page categories`
+
+   * 修改categories里面的index.md文档，改成如下
+
+     ```html
+     ---
+     title: 分类
+     date: 2021-03-03 22:39:24
+     type: categories
+     ---
+     ```
+
+   * 给自己的文章添加categories属性，并且clean后重新生成
+
+1. 动态背景
+2. 添加宠物
