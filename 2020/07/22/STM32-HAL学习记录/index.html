@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题 SD卡使用简介SD卡的使用分为3个步骤  初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低） 写 读  所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找 SD卡配置过程">
+  <meta name="description" content="stm32系列从f7系列开始就已经不支持标准库了，为了更上时代的步伐，了解以下hal库的使用非常有必要。同时hal库开始，代码的移植将变得非常简单，stm32的各个系列开发使用的库函数基本都相同">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32 HAL学习记录">
 <meta property="og:url" content="https://github.com/ThomasZB/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Thomas&#39;s Blog">
-<meta property="og:description" content="SD卡使用过程在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题 SD卡使用简介SD卡的使用分为3个步骤  初始化初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低） 写 读  所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找 SD卡配置过程">
+<meta property="og:description" content="stm32系列从f7系列开始就已经不支持标准库了，为了更上时代的步伐，了解以下hal库的使用非常有必要。同时hal库开始，代码的移植将变得非常简单，stm32的各个系列开发使用的库函数基本都相同">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png">
 <meta property="og:image" content="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png">
 <meta property="og:image" content="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png">
 <meta property="article:published_time" content="2020-07-22T04:08:55.000Z">
-<meta property="article:modified_time" content="2020-07-22T05:53:34.333Z">
+<meta property="article:modified_time" content="2021-03-04T06:08:17.004Z">
 <meta property="article:author" content="Thomas">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png">
@@ -189,10 +189,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-22 12:08:55 / 修改时间：13:53:34" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
+              <time title="创建时间：2020-07-22 12:08:55" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-04 14:08:17" itemprop="dateModified" datetime="2021-03-04T14:08:17+08:00">2021-03-04</time>
+              </span>
 
           
 
@@ -206,6 +212,12 @@
 
       
         <hr>
+<p align="center">
+    stm32系列从f7系列开始就已经不支持标准库了，为了更上时代的步伐，了解以下hal库的使用非常有必要。同时hal库开始，代码的移植将变得非常简单，stm32的各个系列开发使用的库函数基本都相同
+</p> 
+
+<a id="more"></a>
+
 <h2 id="SD卡使用过程"><a href="#SD卡使用过程" class="headerlink" title="SD卡使用过程"></a>SD卡使用过程</h2><p>在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题</p>
 <h3 id="SD卡使用简介"><a href="#SD卡使用简介" class="headerlink" title="SD卡使用简介"></a>SD卡使用简介</h3><p>SD卡的使用分为3个步骤</p>
 <ol>

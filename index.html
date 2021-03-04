@@ -266,10 +266,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-22 12:08:55 / 修改时间：13:53:34" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
+              <time title="创建时间：2020-07-22 12:08:55" itemprop="dateCreated datePublished" datetime="2020-07-22T12:08:55+08:00">2020-07-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-04 14:08:17" itemprop="dateModified" datetime="2021-03-04T14:08:17+08:00">2021-03-04</time>
+              </span>
 
           
 
@@ -283,31 +289,17 @@
 
       
           <hr>
-<h2 id="SD卡使用过程"><a href="#SD卡使用过程" class="headerlink" title="SD卡使用过程"></a>SD卡使用过程</h2><p>在32上使用HAL库配置SD卡很简单，唯一要注意的就是时钟问题，48Mhz的时钟一般没有什么问题</p>
-<h3 id="SD卡使用简介"><a href="#SD卡使用简介" class="headerlink" title="SD卡使用简介"></a>SD卡使用简介</h3><p>SD卡的使用分为3个步骤</p>
-<ol>
-<li>初始化<br>初始化时发送不同命令询问sd卡信息等，确认初始化sd卡可用（初始化一般要求时钟频率低）</li>
-<li>写</li>
-<li>读</li>
-</ol>
-<p>所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找<br><img src="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png" alt></p>
-<h3 id="SD卡配置过程"><a href="#SD卡配置过程" class="headerlink" title="SD卡配置过程"></a>SD卡配置过程</h3><ol>
-<li><p>使能SD卡传输<br>sd卡的使能很简单，如下配置就行<br><img src="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png" alt></p>
-</li>
-<li><p>配置SD卡时钟<br>使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示<br><img src="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png" alt><br><img src="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png" alt></p>
-</li>
-<li><p>使用sd卡<br>sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示<br><img src="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png" alt></p>
-</li>
-</ol>
-<p>这里要注意擦除后最好延时一段时间再读，测试时直接读有出错。</p>
-<hr>
-<h2 id="FATFS的移植"><a href="#FATFS的移植" class="headerlink" title="FATFS的移植"></a>FATFS的移植</h2><h3 id="FATFS简介"><a href="#FATFS简介" class="headerlink" title="FATFS简介"></a>FATFS简介</h3><p>FATFS可以根据需求添加文件系统的构成，可以移植到ROM很小的单片机上（功能可能很少）。<br>FATFS文件系统就是提供了一套操作SD卡文件的API，可以直接调用提供的API对SD卡中的文件进行读写操作（而不是原始的对块进行操作）。将FATFS移植到单片机，所有文件操作的逻辑等都可以通过函数实现。</p>
-<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图<br><img src="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png" alt><br>操作时遵循一下过程  </p>
-<ol>
-<li>挂载SD卡</li>
-<li>判断挂载是否成功（不成功可能是没有格式化成FAT32格式）</li>
-</ol>
-
+<p align="center">
+    stm32系列从f7系列开始就已经不支持标准库了，为了更上时代的步伐，了解以下hal库的使用非常有必要。同时hal库开始，代码的移植将变得非常简单，stm32的各个系列开发使用的库函数基本都相同
+</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/22/STM32-HAL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -982,7 +974,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-13 21:51:53" itemprop="dateModified" datetime="2021-01-13T21:51:53+08:00">2021-01-13</time>
+                <time title="修改时间：2021-03-04 14:36:21" itemprop="dateModified" datetime="2021-03-04T14:36:21+08:00">2021-03-04</time>
               </span>
 
           
@@ -997,53 +989,14 @@
 
       
           <h2 id="Github的介绍"><a href="#Github的介绍" class="headerlink" title="Github的介绍"></a>Github的介绍</h2><p>github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载，对于版本控制来说非常重要。对于工科来讲特别重要。</p>
-<h3 id="Git和Github的关系"><a href="#Git和Github的关系" class="headerlink" title="Git和Github的关系"></a>Git和Github的关系</h3><p>github是一个代码的托管平台，我们可以直接使用github网页端上传和备份自己的工程。但是对于程序员来说，如果更新一次版本都需要跑到网页端，然后自己根据修改了哪些文件选择文件上传，这是非常麻烦的。所以就可以使用Git这个管理工具，通过几行命令，就可对比该仓库目前哪些变化了，然后添加到仓库，再选择一个远程仓库提交，方便了工程的管理。</p>
-<h2 id="Git基本使用"><a href="#Git基本使用" class="headerlink" title="Git基本使用"></a>Git基本使用</h2><h3 id="Git配置命令"><a href="#Git配置命令" class="headerlink" title="Git配置命令"></a>Git配置命令</h3><p>git的系统配置保存在 <code>Git/etc/gitconfig</code><br>git的全局配置保存在 <code>C:用户/xxx(用户名)/.gitconfig</code><br><code>git config -l</code> 参看所有配置（l表示list）<br><code>git config --system --list</code> 查看系统配置<br><code>git config --global --list</code> 产看全局配置（一般是账户名和邮箱）<br><code>git config --global user.name &quot;xxxx&quot;</code> 编辑全局用户名<br><code>git config --global user.email &quot;xxx&quot;</code> 编辑全局邮箱  </p>
-<p>git的基本配置很简单，只需配置好全局邮箱和全局用户名就行，具体命令如上所述。</p>
-<h3 id="Git基本使用命令"><a href="#Git基本使用命令" class="headerlink" title="Git基本使用命令"></a>Git基本使用命令</h3><p>Git在平时的使用中，分为4个（层）目录，通过命令使自己的文件在不同地方保存。</p>
-<ul>
-<li>Workspace：工作目录，平时自己使用的文件夹</li>
-<li>index/Stage：暂存区，并不存在</li>
-<li>Repository：资源仓库，资源目录，分布式版本控制中本地的仓库，其中HEAD（.git隐藏文件夹里面）指向最新放入仓库的版本</li>
-<li>Remote：远程的Github服务器或Gitee的服务器（看自己爱好）</li>
-</ul>
-<p>git操作一般流程</p>
-<p>正向：</p>
-<p><code>git status</code>查看当前文件的状态<br><code>git add xxx</code>将xxx添加到暂存区（.代表所有文件）<br><code>git commit -m &quot;xxx&quot;</code>将暂存区文件提交到本地资源仓库，xxx代表当前版本的说明（提交的信息）<br><code>git push</code>将本地资源仓库的文件提交到远程服务器</p>
-<p>反向：</p>
-<p><code>git checkout</code>将暂存区里面的东西取消暂存<br><code>git reset xxx</code>将本地仓库里面某一个历史版本回滚<br><code>git pull</code>从远程仓库下载  </p>
-<h3 id="Git的忽略"><a href="#Git的忽略" class="headerlink" title="Git的忽略"></a>Git的忽略</h3><p>有时候我们在提交时，不想所有文件都提交到git仓库里面（比如训练集），就必须要忽略这些文件。忽略文件步骤如下</p>
-<ol>
-<li>在主目录下建立“.gitignore”文件</li>
-<li>添加忽略规则：<ol>
-<li>注释：”#“</li>
-<li>通配符：”*”</li>
-<li>例外规则，将不被忽略：”!”</li>
-<li>某个路径：”/“</li>
-</ol>
-</li>
-</ol>
-<h3 id="Git远程仓库"><a href="#Git远程仓库" class="headerlink" title="Git远程仓库"></a>Git远程仓库</h3><p>自己的项目除了在本地保存外，还可以提交到远程服务器。远程服务器可以根据自己需要选择，如：Github、Gitee、自己搭建Gitlab。这里我主要使用Github。</p>
-<ol>
-<li><p>免密码登录（使用ssh）</p>
-<p>使用ssh首先需要在本地的ssh存放公钥的目录下保存服务器端生成的公钥，这里刚好相反（其实本质一样）。现在本地生成公钥和私钥，再将公钥放到Github上</p>
-</li>
-<li><p>再Github上先建一个仓库</p>
-<p>直接在首页的左边有一个New，可以选择新建仓库</p>
-<p><img src="https://i.loli.net/2021/01/12/cvDu8Aosfh5ngB7.png" alt></p>
-<p><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/github%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt></p>
-<ol start="3">
-<li>将创建的仓库克隆到本地，然后开始自己的工程（不然的话容易出现版本冲突）。克隆下来后可以直接将自己的工程文件复制到该目录下继续工作。（或则将克隆下来的全部文件复制到工程目录下）</li>
-</ol>
-</li>
-</ol>
-<h2 id="GIT分支（合作时常用）"><a href="#GIT分支（合作时常用）" class="headerlink" title="GIT分支（合作时常用）"></a>GIT分支（合作时常用）</h2><h3 id="分支的作用"><a href="#分支的作用" class="headerlink" title="分支的作用"></a>分支的作用</h3><p>分支常用来合作、以及发行不同版本（如开发板、稳定版）等。可以保证代码不冲突，共存多个版本。</p>
-<h3 id="使用分支的常用命令"><a href="#使用分支的常用命令" class="headerlink" title="使用分支的常用命令"></a>使用分支的常用命令</h3><p><code>git branch</code>查看当前的分支<br><code>git branch -r</code>查看远程仓库上的分支<br><code>git branch xxx</code>新建一个名为xxx的分支<br><code>git checkout xxx</code>切换到xxx分支<br><code>git checkout -b xxx</code>新建一个xxx分支，并切换到该分支<br><code>git branch -d xxx</code>删除xxx分支<br><code>git push origin --delet xxx</code>删除远程仓库中的xxx分支<br><code>git branch -dr xxx</code>和上一个命令一样</p>
-<p>通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下</p>
-<p><code>git checkout -b xxx origin</code>创建远程的xxx分支到本地的xxx分支<br><code>git push origin xxx</code>提交当前代码到xxx分支（默认是主分支）</p>
-<h3 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h3><p>通常不同项目组开发一个项目时，有些项目组要调用另一个项目组的代码，所以就需要合并，合并后修改代码后提交可能会冲突，选择保留哪一个即可。</p>
-<p><code>git merge xxx</code>合并指定分支到当前分支（合并时有可能会遇到冲突，选择要保留的既可）</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/19/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8GIT/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
