@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="GDB的简介GDB用途GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(GDB官网)。 GDB可以完成以下事情  启动程序，传入参数 打断点 分析程序停下来时发生了什么 在运行过程中改变事务">
+  <meta name="description" content="作为一个靠c语言吃饭程序猿，GDB调试程序是必须掌握的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GDB的使用">
 <meta property="og:url" content="https://github.com/ThomasZB/2021/02/10/GDB%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Thomas&#39;s Blog">
-<meta property="og:description" content="GDB的简介GDB用途GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(GDB官网)。 GDB可以完成以下事情  启动程序，传入参数 打断点 分析程序停下来时发生了什么 在运行过程中改变事务">
+<meta property="og:description" content="作为一个靠c语言吃饭程序猿，GDB调试程序是必须掌握的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-10T06:19:54.000Z">
-<meta property="article:modified_time" content="2021-03-03T14:47:38.944Z">
+<meta property="article:modified_time" content="2021-03-04T07:46:03.656Z">
 <meta property="article:author" content="Thomas">
 <meta name="twitter:card" content="summary">
 
@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-03 22:47:38" itemprop="dateModified" datetime="2021-03-03T22:47:38+08:00">2021-03-03</time>
+                <time title="修改时间：2021-03-04 15:46:03" itemprop="dateModified" datetime="2021-03-04T15:46:03+08:00">2021-03-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -198,7 +198,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">Linux学习</span></a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
                 </span>
             </span>
 
@@ -213,7 +213,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="GDB的简介"><a href="#GDB的简介" class="headerlink" title="GDB的简介"></a>GDB的简介</h1><h2 id="GDB用途"><a href="#GDB用途" class="headerlink" title="GDB用途"></a>GDB用途</h2><p>GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(<a href="https://www.gnu.org/software/gdb/" target="_blank" rel="noopener">GDB官网</a>)。</p>
+        <p align="center">
+    作为一个靠c语言吃饭程序猿，GDB调试程序是必须掌握的
+</p>
+<a id="more"></a>
+
+
+<h1 id="GDB的简介"><a href="#GDB的简介" class="headerlink" title="GDB的简介"></a>GDB的简介</h1><h2 id="GDB用途"><a href="#GDB用途" class="headerlink" title="GDB用途"></a>GDB用途</h2><p>GDB是一款程序调试器，可以再程序运行时，一步一步的运行代码从而确定自己的错误发生在哪一行(<a href="https://www.gnu.org/software/gdb/" target="_blank" rel="noopener">GDB官网</a>)。</p>
 <p>GDB可以完成以下事情</p>
 <ol>
 <li>启动程序，传入参数</li>
@@ -221,8 +227,6 @@
 <li>分析程序停下来时发生了什么</li>
 <li>在运行过程中改变事务</li>
 </ol>
-<a id="more"></a>
-
 <h2 id="GDB适用语言"><a href="#GDB适用语言" class="headerlink" title="GDB适用语言"></a>GDB适用语言</h2><p>GDB支持哪些语言：</p>
 <ul>
 <li><p>Ada</p>
@@ -465,7 +469,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
