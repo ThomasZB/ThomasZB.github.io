@@ -1,9 +1,16 @@
 ---
-title: 如何使用vscode写markdown
+title: 如何写markdown
 date: 2020-05-14 10:55:53
 tags:
+categories: 程序猿基础技能
 ---
+<p align="center">
+    写博客必备，以前使用vscode，现在一般都用typora了
+</p>
+<!--more-->
+
 ## 使用vscode打开markdown
+
 vscode默认集成了markdown文档编辑插件
 使用vscode打开.md文件后使用ctrl+shift+p调出主命令框，输入markdown，选择打开侧边预览  
 ![](https://raw.githubusercontent.com/ThomasZB/picture/master/01.png)

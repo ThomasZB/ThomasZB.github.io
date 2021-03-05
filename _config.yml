@@ -103,3 +103,22 @@ deploy:
   type: git
   repo: git@github.com:ThomasZB/ThomasZB.github.io.git
   branch: master
+
+
+# 宠物配置
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  model:
+    use: live2d-widget-model-wanko  #选择哪种模型
+  display: #放置位置和大小
+    position: 300
+    width: 400
+    height: 400
+  mobile:
+    show: false #是否在手机端显示
+

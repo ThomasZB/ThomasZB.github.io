@@ -2,8 +2,14 @@
 title: GDB的使用
 date: 2021-02-10 14:19:54
 tags:
-categories: Linux学习
+categories: Linux
 ---
+
+<p align="center">
+    作为一个靠c语言吃饭程序猿，GDB调试程序是必须掌握的
+</p>
+<!--more-->
+
 
 # GDB的简介
 
@@ -17,8 +23,6 @@ GDB可以完成以下事情
 2. 打断点
 3. 分析程序停下来时发生了什么
 4. 在运行过程中改变事务
-
-<!--more-->
 
 ## GDB适用语言
 

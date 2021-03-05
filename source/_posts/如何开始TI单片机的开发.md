@@ -2,9 +2,17 @@
 title: 如何开始TI单片机的开发
 date: 2020-07-05 20:31:45
 tags:
+categories: MSP系列单片机
 ---
 
+<p align-"center">
+    瞎写的垃圾博客，改天删了
+</p>
+
+<!--more-->
+
 ## 下载开发环境
+
 1. 准备好[gcc](https://osdn.net/projects/mingw/releases/)和[java](https://www.java.com/en/download/manual.jsp)环境
 2. 安装[ccs](http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html)(Code Composer Studio)  
 3. 安装[驱动](http://www.ti.com/tool/download/SMARTRFTM-STUDIO)

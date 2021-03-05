@@ -2,11 +2,16 @@
 title: 如何使用GIT
 date: 2020-05-19 00:17:36
 tags:
+categories: 程序猿基础技能
 ---
-## Github的介绍
-github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载，对于版本控制来说非常重要。对于工科来讲特别重要。
-
+<p align="center">
+    程序猿必备技能
+</p>
 <!--more-->
+
+## Github的介绍
+
+github是一个代码托管平台，github可以实现对工程的托管，开源，版本备份，协同开发，比较著名的开源项目如Tensorflow等都在github上可以下载，对于版本控制来说非常重要。对于工科来讲特别重要。
 
 ### Git和Github的关系
 
@@ -71,22 +76,42 @@ git操作一般流程
        > cd ~./ssh
        >
        > ls
-       
+     
    * 创建一个ssh key
-     
-       > ssh-keygen -t rsa -C "xxxx"
-     
-       这一步是就是创建ssh密钥，包括公钥和私钥，各个参数含义：
-     
-       -t 指定加密类型，这里用rsa加密算法
-     
-       -C 用于识别这个密钥的注释，随便填就行，一般填自己邮箱
-     
-       这一步后面会弹出几个问题，如文件存储位置，push密码（git push时要输入的密码），一般一直回车就可以，为空时更方便
-     
+
+     > ssh-keygen -t rsa -C "xxxx"
+
+     这一步是就是创建ssh密钥，包括公钥和私钥，各个参数含义：
+
+     -t 指定加密类型，这里用rsa加密算法
+
+     -C 用于识别这个密钥的注释，随便填就行，一般填自己邮箱
+
+     这一步后面会弹出几个问题，如文件存储位置，push密码（git push时要输入的密码），一般一直回车就可以，为空时更方便
+
      * 拷贝id_rsa.pub文件里面的公钥放到git的sshkey下面
-     
+
        ![image-20210304143608605](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210304143608605.png)
+       
+     * 到这一步显然已经完了，但是如果已经使用过git，则需要对本地的一些git仓库进行更改
+
+       1. 查看当前地址：
+
+          > git remote -v
+
+          注意看上面的连接，如果时https开头说明之前是用https进行连接的，需要更换为ssh模式
+
+       2. 移除https方式
+
+          > git remote rm origin
+
+       3. 添加新的方式
+
+          > git remote add origin xxx
+
+          地址为下图所示地址
+
+          ![image-20210304152137110](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210304152137110.png)
 
 2. 再Github上先建一个仓库
 
