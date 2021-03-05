@@ -226,10 +226,10 @@
 <ol>
 <li>进入<a href="http://dev.ti.com/tirex/#/" target="_blank" rel="noopener">例程的网站</a></li>
 <li>找到对应的例程下载</li>
-<li>导入工程<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_example.png" alt></li>
+<li>导入工程<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_example.png" alt=""></li>
 </ol>
 <hr>
-<h1 id="2-io口控制"><a href="#2-io口控制" class="headerlink" title="2. io口控制"></a>2. io口控制</h1><h2 id="io控制寄存器"><a href="#io控制寄存器" class="headerlink" title="io控制寄存器"></a>io控制寄存器</h2><p>msp430的io控制寄存器特别多，不像51那样少，430的io控制寄存器在手册上有详细的说明，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_io_regegister.png" alt><br>有了详细的说明就可以对相应的寄存器进行控制了。</p>
+<h1 id="2-io口控制"><a href="#2-io口控制" class="headerlink" title="2. io口控制"></a>2. io口控制</h1><h2 id="io控制寄存器"><a href="#io控制寄存器" class="headerlink" title="io控制寄存器"></a>io控制寄存器</h2><p>msp430的io控制寄存器特别多，不像51那样少，430的io控制寄存器在手册上有详细的说明，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_io_regegister.png" alt=""><br>有了详细的说明就可以对相应的寄存器进行控制了。</p>
 <h3 id="主要寄存器"><a href="#主要寄存器" class="headerlink" title="主要寄存器"></a>主要寄存器</h3><ol>
 <li>PxIN为只读寄存器，在输入模式下可以读取按键上的电平。</li>
 <li>PxOUT为输出控制寄存器，在输出模式下可以输出高电平或低电平。</li>
@@ -254,7 +254,7 @@
 <li>读取PxIN获得输入的电平</li>
 </ol>
 <hr>
-<h1 id="3-时钟控制"><a href="#3-时钟控制" class="headerlink" title="3. 时钟控制"></a>3. 时钟控制</h1><h2 id="时钟系统简介"><a href="#时钟系统简介" class="headerlink" title="时钟系统简介"></a>时钟系统简介</h2><p>MSP430有很多系列，不同的款式有不同的时钟系统，这里从msp430g2553为例，对时钟配置过程做大概的记录。<br>MSP430g2553的时钟树如下图所示<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_clocksystem.png" alt><br>一般时钟树的看法就是从左到由，左边是输入，右边是输出。可以大概看出来左边有3个部分，右边有3个输出。上面的黑色小方框是相应的控制寄存器。就可以大概得出MSP430g2553的时钟构成和相应的配置过程。</p>
+<h1 id="3-时钟控制"><a href="#3-时钟控制" class="headerlink" title="3. 时钟控制"></a>3. 时钟控制</h1><h2 id="时钟系统简介"><a href="#时钟系统简介" class="headerlink" title="时钟系统简介"></a>时钟系统简介</h2><p>MSP430有很多系列，不同的款式有不同的时钟系统，这里从msp430g2553为例，对时钟配置过程做大概的记录。<br>MSP430g2553的时钟树如下图所示<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_clocksystem.png" alt=""><br>一般时钟树的看法就是从左到由，左边是输入，右边是输出。可以大概看出来左边有3个部分，右边有3个输出。上面的黑色小方框是相应的控制寄存器。就可以大概得出MSP430g2553的时钟构成和相应的配置过程。</p>
 <h2 id="时钟树的详细配置"><a href="#时钟树的详细配置" class="headerlink" title="时钟树的详细配置"></a>时钟树的详细配置</h2><h3 id="时钟配置的寄存器"><a href="#时钟配置的寄存器" class="headerlink" title="时钟配置的寄存器"></a>时钟配置的寄存器</h3><ol>
 <li>DCOCTL 这是DCO时钟的控制寄存器，具体配置手册上有，用于确定DCO的频率和模式</li>
 <li>BCSCTL1 </li>
@@ -284,7 +284,7 @@
 </li>
 </ol>
 <hr>
-<h1 id="4-中断控制"><a href="#4-中断控制" class="headerlink" title="4. 中断控制"></a>4. 中断控制</h1><h2 id="中断简介"><a href="#中断简介" class="headerlink" title="中断简介"></a>中断简介</h2><p>中断就是系统的某个事件发生，若为该事件配置有中断，则系统会进入中断函数。所以要搞懂一块单片机的中断至少要懂得他的中断向量表，如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_int.png" alt><br>有了这个表就知道有哪些中断，哪些中断时公用一个中断向量。</p>
+<h1 id="4-中断控制"><a href="#4-中断控制" class="headerlink" title="4. 中断控制"></a>4. 中断控制</h1><h2 id="中断简介"><a href="#中断简介" class="headerlink" title="中断简介"></a>中断简介</h2><p>中断就是系统的某个事件发生，若为该事件配置有中断，则系统会进入中断函数。所以要搞懂一块单片机的中断至少要懂得他的中断向量表，如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430g2553_int.png" alt=""><br>有了这个表就知道有哪些中断，哪些中断时公用一个中断向量。</p>
 <h2 id="中断的使用"><a href="#中断的使用" class="headerlink" title="中断的使用"></a>中断的使用</h2><h3 id="中断系统配置"><a href="#中断系统配置" class="headerlink" title="中断系统配置"></a>中断系统配置</h3><p>msp430的中断系统比较简单，配置的话只需要对应好中断向量，以及打开某个标志位的中断，并在中断服务函数里面写上中断函数即可。</p>
 <h3 id="中断配置步骤"><a href="#中断配置步骤" class="headerlink" title="中断配置步骤"></a>中断配置步骤</h3><ol>
 <li>配置中断事件并打开中断（即配置中断向量）</li>
@@ -345,7 +345,7 @@
 </ol>
 <h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>MSP430的PWM输出比较特殊。在该模式下，CCR0确定周期，CCRx确定占空比和输出引脚为TAx，步骤如下。</p>
 <ol>
-<li>设定PWM的输出端口，跟据MSP430g2553的定义，.0端口不能用于输出。并设置IO口的功能为 TIMx_Ax ，如图所示。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/20200711212837.png" alt></li>
+<li>设定PWM的输出端口，跟据MSP430g2553的定义，.0端口不能用于输出。并设置IO口的功能为 TIMx_Ax ，如图所示。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/20200711212837.png" alt=""></li>
 <li>设定 CCR0 和 CCRx 的值。</li>
 <li>选择比较/捕获模块的输出模式(一般选用输出模式7来生成PWM波)。</li>
 <li>选择定时器的时钟源和计数器源。</li>
@@ -368,7 +368,7 @@
 <h3 id="配置流程-1"><a href="#配置流程-1" class="headerlink" title="配置流程"></a>配置流程</h3><ol>
 <li>配置UCAxCTLx寄存器，一般不用配置，因为默认配置就是常用的8位，无奇偶校验等</li>
 <li>时钟选择，USCI的时钟为BRCLK，它可以选择3个时钟来源。</li>
-<li>波特率设置，通过配置配置UCAxBRx、UCAxMCTL寄存器达到配置的效果，得到固定波特率。下图附上16M主频下的常用波特率配置。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_bt.png" alt></li>
+<li>波特率设置，通过配置配置UCAxBRx、UCAxMCTL寄存器达到配置的效果，得到固定波特率。下图附上16M主频下的常用波特率配置。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_bt.png" alt=""></li>
 </ol>
 
     </div>

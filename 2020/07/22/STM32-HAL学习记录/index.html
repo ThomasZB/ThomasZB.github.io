@@ -229,19 +229,19 @@
 <li>写</li>
 <li>读</li>
 </ol>
-<p>所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找<br><img src="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png" alt></p>
+<p>所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找<br><img src="https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png" alt=""></p>
 <h3 id="SD卡配置过程"><a href="#SD卡配置过程" class="headerlink" title="SD卡配置过程"></a>SD卡配置过程</h3><ol>
-<li><p>使能SD卡传输<br>sd卡的使能很简单，如下配置就行<br><img src="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png" alt></p>
+<li><p>使能SD卡传输<br>sd卡的使能很简单，如下配置就行<br><img src="https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png" alt=""></p>
 </li>
-<li><p>配置SD卡时钟<br>使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示<br><img src="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png" alt><br><img src="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png" alt></p>
+<li><p>配置SD卡时钟<br>使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示<br><img src="https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png" alt=""><br><img src="https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png" alt=""></p>
 </li>
-<li><p>使用sd卡<br>sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示<br><img src="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png" alt></p>
+<li><p>使用sd卡<br>sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示<br><img src="https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png" alt=""></p>
 </li>
 </ol>
 <p>这里要注意擦除后最好延时一段时间再读，测试时直接读有出错。</p>
 <hr>
 <h2 id="FATFS的移植"><a href="#FATFS的移植" class="headerlink" title="FATFS的移植"></a>FATFS的移植</h2><h3 id="FATFS简介"><a href="#FATFS简介" class="headerlink" title="FATFS简介"></a>FATFS简介</h3><p>FATFS可以根据需求添加文件系统的构成，可以移植到ROM很小的单片机上（功能可能很少）。<br>FATFS文件系统就是提供了一套操作SD卡文件的API，可以直接调用提供的API对SD卡中的文件进行读写操作（而不是原始的对块进行操作）。将FATFS移植到单片机，所有文件操作的逻辑等都可以通过函数实现。</p>
-<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图<br><img src="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png" alt><br>操作时遵循一下过程  </p>
+<h3 id="配置过程"><a href="#配置过程" class="headerlink" title="配置过程"></a>配置过程</h3><p>配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图<br><img src="https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png" alt=""><br>操作时遵循一下过程  </p>
 <ol>
 <li>挂载SD卡</li>
 <li>判断挂载是否成功（不成功可能是没有格式化成FAT32格式）</li>

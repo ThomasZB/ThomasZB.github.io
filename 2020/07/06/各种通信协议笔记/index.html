@@ -235,10 +235,10 @@
 <li>注：由上述可以看出，传输数据过程中，SCL为高电平时不要改变SDA状态。</li>
 </ul>
 <h3 id="应答信号"><a href="#应答信号" class="headerlink" title="应答信号"></a>应答信号</h3><p>在传输完一个字节后，发送器释放数据总线（改变为上拉的接收模式）。判断接收器是否在下一个时钟发送一个低电平。<br>ACK：下一个时钟时为低电平<br>NACK：下一个时钟时为高电平（一般用Ā表示)</p>
-<h3 id="数据的有效性"><a href="#数据的有效性" class="headerlink" title="数据的有效性"></a>数据的有效性</h3><p>有效的数据在高电平期间数据不会改变，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/i2c_efficent.png" alt></p>
+<h3 id="数据的有效性"><a href="#数据的有效性" class="headerlink" title="数据的有效性"></a>数据的有效性</h3><p>有效的数据在高电平期间数据不会改变，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/i2c_efficent.png" alt=""></p>
 <h3 id="数据的传送"><a href="#数据的传送" class="headerlink" title="数据的传送"></a>数据的传送</h3><p>一个时钟周期传送1bit的数据</p>
 <hr>
-<h2 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>SPI是一种全双工通信方式，由两根数据线MISO、MOSI，一根时钟线SCLK，一根片选线CS总共4跟线构成。相当于两个移位寄存器构成的循环移位寄存器，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/SPI_Bref.png" alt><br>一般使用SPI都为硬件实现，在SPI开始工作前我们要确定如下配置：</p>
+<h2 id="SPI协议"><a href="#SPI协议" class="headerlink" title="SPI协议"></a>SPI协议</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>SPI是一种全双工通信方式，由两根数据线MISO、MOSI，一根时钟线SCLK，一根片选线CS总共4跟线构成。相当于两个移位寄存器构成的循环移位寄存器，如下图所示：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/SPI_Bref.png" alt=""><br>一般使用SPI都为硬件实现，在SPI开始工作前我们要确定如下配置：</p>
 <ul>
 <li>空闲状态</li>
 <li>数据采集</li>
@@ -262,7 +262,7 @@
 <li>Frame Format 帧格式有摩托罗拉和TI（TI的其实叫SSP而不是SPI）</li>
 </ol>
 <hr>
-<h2 id="串行UART通信"><a href="#串行UART通信" class="headerlink" title="串行UART通信"></a>串行UART通信</h2><h3 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h3><p>UART 为串行异步全双工通信，串行通信由于时钟不同步，起始信号和终止信号之间传输的数据量一般不大（仅为1个字节左右）。它由两根线（一根TX，一根RX构成）下图为连接方式：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/UART.png" alt><br>一般串行通信过程为：起始、数据、校验（可选）、结束（1-2位）如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_data.png" alt><br>所以串行通信要配置的信号如下所示：</p>
+<h2 id="串行UART通信"><a href="#串行UART通信" class="headerlink" title="串行UART通信"></a>串行UART通信</h2><h3 id="串行通信简介"><a href="#串行通信简介" class="headerlink" title="串行通信简介"></a>串行通信简介</h3><p>UART 为串行异步全双工通信，串行通信由于时钟不同步，起始信号和终止信号之间传输的数据量一般不大（仅为1个字节左右）。它由两根线（一根TX，一根RX构成）下图为连接方式：<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/UART.png" alt=""><br>一般串行通信过程为：起始、数据、校验（可选）、结束（1-2位）如下图。<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/uart_data.png" alt=""><br>所以串行通信要配置的信号如下所示：</p>
 <ul>
 <li>数据位数（九位模式下最后一位可以表示发送的信号为地址或数据）</li>
 <li>是否启用奇偶校验（默认不启用）</li>

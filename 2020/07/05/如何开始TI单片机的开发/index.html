@@ -231,12 +231,12 @@
 <li>再keil上下载对应单片机的支持包</li>
 <li>再sdk的目录下找到例程跑一跑(开发板/examples/nortos/开发板/driverlib/gpio_toggle_output)</li>
 </ol>
-<p>sdk目录结构如下<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_structer.png" alt></p>
+<p>sdk目录结构如下<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_structer.png" alt=""></p>
 <h2 id="开始开发（keil）"><a href="#开始开发（keil）" class="headerlink" title="开始开发（keil）"></a>开始开发（keil）</h2><h3 id="点亮开发板上的灯"><a href="#点亮开发板上的灯" class="headerlink" title="点亮开发板上的灯"></a>点亮开发板上的灯</h3><p>点灯相当于是单片机开发上的Hello World，在开始设计前，写一个程序点灯看看吧！</p>
 <ol>
 <li>打开示例里面的io操作例程  </li>
-<li>编译可得到如下结果<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/mdk_program.png" alt><br> （1）. code 是编译后代码的大小，存储在flash里面<br> （2）. ro-data 为read only数据，存储在flash里面<br> （3）. rw-data 为已经初始化的全局变量,存储在ram里面<br> （4）. zi-data 未初始化的全局变量，存储在ram里面<br> （5）. 实际中单片机初始化时，代码从flash转移到ram里面，所以烧录时Total ROM size（Code + RO Data +RW Data）</li>
-<li>下载代码，使用arm提供的通用cmsis可以快速下载。<h3 id="了解开发板的结构"><a href="#了解开发板的结构" class="headerlink" title="了解开发板的结构"></a>了解开发板的结构</h3>大概了解一下开发板由哪些构成，这个可以参考电路图，或则TI开发板的小卡片，上面写各个接口的位置，以及可以复用的功能。如下图所示：  <img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp432launchpad.jpg" width="50%" height="50%">  
+<li>编译可得到如下结果<br><img src="https://raw.githubusercontent.com/ThomasZB/picture/master/mdk_program.png" alt=""><br> （1）. code 是编译后代码的大小，存储在flash里面<br> （2）. ro-data 为read only数据，存储在flash里面<br> （3）. rw-data 为已经初始化的全局变量,存储在ram里面<br> （4）. zi-data 未初始化的全局变量，存储在ram里面<br> （5）. 实际中单片机初始化时，代码从flash转移到ram里面，所以烧录时Total ROM size（Code + RO Data +RW Data）</li>
+<li>下载代码，使用arm提供的通用cmsis可以快速下载。<h3 id="了解开发板的结构"><a href="#了解开发板的结构" class="headerlink" title="了解开发板的结构"></a>了解开发板的结构</h3>大概了解一下开发板由哪些构成，这个可以参考电路图，或则TI开发板的小卡片，上面写各个接口的位置，以及可以复用的功能。如下图所示：  <img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp432launchpad.jpg" width = 50% height = 50% />  
 ### 开始了解时钟树
 时钟是单片机的心脏，开发前很有必要了解，在对应型号的手册上有对应的时钟树，以及对应的每一个寄存器。根据寄存器和时钟树的拓扑图，构建好整个树上的配置，根据配置总结好最后寄存器的配置，写在单片机开头。
 ### 了解中断系统
