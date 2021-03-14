@@ -101,8 +101,9 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:ThomasZB/ThomasZB.github.io.git
-  branch: master
+  repo:
+    github: git@github.com:ThomasZB/ThomasZB.github.io.git,master
+    gitee: git@gitee.com:thomaszb/thomas-blog.git,master
 
 
 # 宠物配置

@@ -1,7 +1,11 @@
+---
+
 title: 如何使用hexo搭建个人博客
 date: 2020-05-15 20:06:42
 tags:
 categories: 程序猿基础技能
+
+---
 
 <p align="center">
     这就是这个博客的来源
@@ -41,7 +45,8 @@ categories: 程序猿基础技能
 2. 安装git部署插件：`cnpm install --save hexo-deployer-git`
 3. 配置`_config.yml`文件，在最后的Deployment配置如下  
    * 这里要注意，如如果使用ssh方式提交（不想输入密码）需要修改git仓库的地址为ssh方式
-<div align=left><img src ="https://raw.githubusercontent.com/ThomasZB/picture/master/deployment_set.png"/></div>
+<div align=left><img src ="https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193442.png"/></div>
+
 4. 部署到云端，现在默认下会使用https上传，输入github账户和密码就行了：`hexo d`
 
 # 主题配置
@@ -61,7 +66,7 @@ hexo的主题配置分三步走
 
 2. 修改_config.yml文件
 
-   ![image-20210210205648241](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210205648241.png)
+   ![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193554.png)
 
 3. 配置该主题
 

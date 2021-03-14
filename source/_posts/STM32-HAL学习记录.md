@@ -23,22 +23,22 @@ SD卡的使用分为3个步骤
 3. 读
 
 所有步骤都是通过指令实现，SD卡的四线模式如下图所示，CMD引脚走的是命令，可以通过该引脚配置SD卡，具体命令可以网上查找
-![](https://i.loli.net/2020/07/22/APGQOMfncTEaY9z.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308191936.png)
 
 ### SD卡配置过程
 
 1. 使能SD卡传输  
 sd卡的使能很简单，如下配置就行
-![](https://i.loli.net/2020/07/22/rmaQW3RdHjuChEJ.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308192001.png)
 
 2. 配置SD卡时钟  
 使能SD卡后可以看到有个SDMMC CLOCK（名字差不多就行），然后这里我将他的时钟配置为48Mhz（实测50M或者更高在我的这款SD卡上会出错）配置如下图所示
-![](https://i.loli.net/2020/07/22/I2oLwCenXH8P9Rm.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308192056.png)
 ![](https://i.loli.net/2020/07/22/KGa6x42kgnpFOme.png)
 
 3. 使用sd卡  
 sd卡的操作一般有读、写、擦除等，这些函数在HAL库都有提供，如下图所示
-![](https://i.loli.net/2020/07/22/abU1fwPpoeqGr62.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308192211.png)
 
 这里要注意擦除后最好延时一段时间再读，测试时直接读有出错。
 
@@ -50,7 +50,7 @@ FATFS文件系统就是提供了一套操作SD卡文件的API，可以直接调�
 
 ### 配置过程
 配置过程说起来很复杂，需要将读写sd卡等常用的函数写道fatfs的driver里面，然后通过修改一些宏定义决定是否要启用某些功能。但使用cubemx只需要根据自己的需求使能或者关闭相关的功能即可，如下图
-![](https://i.loli.net/2020/07/22/MmfGC7uREsB2wQV.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308192247.png)
 操作时遵循一下过程  
 1. 挂载SD卡
 2. 判断挂载是否成功（不成功可能是没有格式化成FAT32格式）

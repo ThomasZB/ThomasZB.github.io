@@ -26,7 +26,7 @@ ccs安装的时候选择offline版本的，安装时根据单片机型号选择�
 4. 再sdk的目录下找到例程跑一跑(开发板/examples/nortos/开发板/driverlib/gpio_toggle_output)
 
 sdk目录结构如下
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/msp430_structer.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308192949.png)
 
 
 ## 开始开发（keil）
@@ -36,7 +36,7 @@ sdk目录结构如下
 
 1. 打开示例里面的io操作例程  
 2. 编译可得到如下结果
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/mdk_program.png)  
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193003.png)  
     （1）. code 是编译后代码的大小，存储在flash里面  
     （2）. ro-data 为read only数据，存储在flash里面
     （3）. rw-data 为已经初始化的全局变量,存储在ram里面
@@ -45,7 +45,9 @@ sdk目录结构如下
 3. 下载代码，使用arm提供的通用cmsis可以快速下载。
 ### 了解开发板的结构
 大概了解一下开发板由哪些构成，这个可以参考电路图，或则TI开发板的小卡片，上面写各个接口的位置，以及可以复用的功能。如下图所示：  
-<img src="https://raw.githubusercontent.com/ThomasZB/picture/master/msp432launchpad.jpg" width = 50% height = 50% />  
+
+<img src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193011.png" width = 50% height = 50% />  
+
 ### 开始了解时钟树
 时钟是单片机的心脏，开发前很有必要了解，在对应型号的手册上有对应的时钟树，以及对应的每一个寄存器。根据寄存器和时钟树的拓扑图，构建好整个树上的配置，根据配置总结好最后寄存器的配置，写在单片机开头。
 ### 了解中断系统

@@ -91,7 +91,7 @@ git操作一般流程
 
      * 拷贝id_rsa.pub文件里面的公钥放到git的sshkey下面
 
-       ![image-20210304143608605](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210304143608605.png)
+       ![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193100.png)
        
      * 到这一步显然已经完了，但是如果已经使用过git，则需要对本地的一些git仓库进行更改
 
@@ -111,15 +111,15 @@ git操作一般流程
 
           地址为下图所示地址
 
-          ![image-20210304152137110](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210304152137110.png)
+          ![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193119.png)
 
 2. 再Github上先建一个仓库
 
    直接在首页的左边有一个New，可以选择新建仓库
 
-   ![](https://i.loli.net/2021/01/12/cvDu8Aosfh5ngB7.png)
+   ![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193127.png)
 
-   ![](https://raw.githubusercontent.com/ThomasZB/picture/master/github%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png)
+   ![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193205.png)
 
    3. 将创建的仓库克隆到本地，然后开始自己的工程（不然的话容易出现版本冲突）。克隆下来后可以直接将自己的工程文件复制到该目录下继续工作。（或则将克隆下来的全部文件复制到工程目录下）
 

@@ -27,19 +27,23 @@ categories: 程序猿基础技能
 除了上一步介绍的启动方法之外，还可以使用`service v2ray start/stop/status`来启动、关闭或者查看状态。一般启动后都要用`service v2ray status`查看是否启动成功。
 ### 查看v2ray信息
 通过`cat /etc/v2ray/config.json`查看配置信息，配置信息里面信息也可以自己更改，默认的模式是vmess模式，可以根据需求自己再更改（vmess模式目前不是最安全的，会被识别，可以用websocket+tls伪装更安全）。这里的配置信息需要记住`"inbounds"`里面的信息，包括`port`，`id`，`alterID`三个信息，待会儿客户端连接时需要用到。  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9001.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193243.png)
+
 ## 客户端操作(主要时windows)
 ### 安装v2ray
 安装v2ray有很多种方法，我只介绍一种，[点击这里下载](https://github.com/2dust/v2rayN/releases)客户端。选择`v2rayN-Core.zip`，这个安装包包含了v2rayN和v2ray-core，下载后可以直接使用。  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9002.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193305.png)
 下载后选择一个目录解压，解压后得到一堆文件，运行以下文件  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9003.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193342.png)
+
 ### 配置客户端
 打开客户端，选择下面配置，当然如果配置时不是用的vmess就选其它的  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9004.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193353.png)
 然后把服务器看到的信息按下面顺序填入客户端  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9005.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193403.png)
+
 ### 启动客户端
 配置完后启动开始上网吧  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8v2ray%E6%90%AD%E5%BB%BA%E6%A2%AF%E5%AD%9006.png)
+
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193413.png)
 

@@ -54,7 +54,7 @@ language_switcher: false
 # 页脚
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2020
 
   # Icon between year and copyright info.
   icon:
@@ -165,7 +165,7 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: https://raw.githubusercontent.com/ThomasZB/picture/master/QQ%E5%9B%BE%E7%89%8720200927171142.jpg
+  url: https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193801.png
   # If true, the avatar will be dispalyed in circle.
   rounded: true
   # If true, the avatar will be rotated with the cursor.
@@ -1016,3 +1016,9 @@ canvas_nest: # 网络背景
   opacity: 0.5 # the opacity of line: 0~1
   zIndex: -1 # z-index property of the background
   count: 150 # the number of lines
+
+
+# 开启打赏功能
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay: /images/wechat.png
+alipay: /images/alipay.jpg

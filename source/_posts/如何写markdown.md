@@ -13,7 +13,7 @@ categories: 程序猿基础技能
 
 vscode默认集成了markdown文档编辑插件
 使用vscode打开.md文件后使用ctrl+shift+p调出主命令框，输入markdown，选择打开侧边预览  
-![](https://raw.githubusercontent.com/ThomasZB/picture/master/01.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193653.png)
 这样就可以愉快的一遍编辑文档一边看效果啦！！！
 
 ___
@@ -51,4 +51,4 @@ int main()
 
 使用picgo+typora配置如下图所示：
 
-![image-20210210133644549](https://raw.githubusercontent.com/ThomasZB/picture/master/image-20210210133644549.png)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com//blog_pic/20210308193637.png)
