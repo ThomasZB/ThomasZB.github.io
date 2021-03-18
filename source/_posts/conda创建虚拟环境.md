@@ -1,5 +1,5 @@
 ---
-title: conda创建虚拟环境
+title: Conda创建虚拟环境
 date: 2020-06-03 09:52:27
 tags:
 categories: 深度学习

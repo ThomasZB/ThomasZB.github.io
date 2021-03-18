@@ -34,8 +34,8 @@ categories: C/C++
   * 例：
 
     ```makefile
-    hello.i:hello.c
-    	gcc -E hello.c -o hello.i
+    hello:hello.o
+    	gcc hello.o -o hello
     
     hello.o:hello.s
     	gcc -C hello.s -o hello.o
@@ -81,7 +81,7 @@ categories: C/C++
 
 ## 变量
 
-* 简单的替换：=（使用$取值）
+* 简单的替换：=（使用$()取值）
 
   * 说明：直接用该变量后面的所有内容替换相应的定义
 
@@ -172,7 +172,7 @@ categories: C/C++
    * 对应的gcc指令： gcc -S hello.i -o hello.s
 3. 汇编：
    * 将汇编语言转化为机器码
-   * 生成汇编文件（即.s文件）
+   * 生成二进制文件（编译生成的二进制文件，可由计算机直接执行）
    * 对应的gcc指令： gcc -S hello.i -o hello.s
 4. 链接：
    * 生成最终可执行文件（程序）
