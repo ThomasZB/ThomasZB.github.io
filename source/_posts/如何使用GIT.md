@@ -25,6 +25,10 @@ git的全局配置保存在 `C:用户/xxx(用户名)/.gitconfig`
 `git config --global --list` 产看全局配置（一般是账户名和邮箱）  
 `git config --global user.name "xxxx"` 编辑全局用户名  
 `git config --global user.email "xxx"` 编辑全局邮箱  
+`git config http.proxy http://127.0.0.1:10809`设置git当前代理
+`git config --global http.proxy http://127.0.0.1:10809`设置git全局代理
+`git config  --unset http.proxy`取消git当前代理
+`git config --global --unset http.proxy`取消git全局代理
 
 git的基本配置很简单，只需配置好全局邮箱和全局用户名就行，具体命令如上所述。
 ### Git基本使用命令
