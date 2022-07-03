@@ -28,10 +28,8 @@ GDB可以完成以下事情
 
 GDB支持哪些语言：
 
-* Ada
-
-* Assembly（汇编）
-
+- Ada
+- Assembly
 - C
 - C++
 - D

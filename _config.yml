@@ -7,7 +7,7 @@ title: Thomas's Blog
 subtitle: ''
 description: ''
 keywords:
-author: Thomas
+author: hang chen
 language: zh-CN
 timezone: ''
 
@@ -103,7 +103,6 @@ deploy:
   type: git
   repo:
     github: git@github.com:ThomasZB/ThomasZB.github.io.git,master
-    gitee: git@gitee.com:thomaszb/thomas-blog.git,master
 
 
 # 宠物配置

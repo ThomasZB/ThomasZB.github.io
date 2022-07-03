@@ -16,10 +16,14 @@ categories: 程序猿基础技能
 # 准备工作
 
 我这里使用github+hexo的组合搭建，所以要安装git和hexo，git安装我后面再建个博客写，这里我先介绍hexo的安装
+
+官方教程：[文档 | Hexo](https://hexo.io/zh-cn/docs/)
+
 ## 下载[nodejs](https://nodejs.org/en/)
 
 一般选择LTS（长期支持版）。安装完后有两个组件，一个是nodejs组件（hexo需要nodejs支持），一个是npm软件管理包。下载下来安装一直点next差不多就可以了。  
 下载完后用`node -v`和`npm -v`查看是否安装成功。
+
 ## 安装cnpm（换成淘宝源）
 
 由于npm服务器在国外，下载速度慢，所以换成cnpm。使用命令`npm install -g cnpm --registry=https://registry.npm.taobao.org`安装。
@@ -35,10 +39,11 @@ categories: 程序猿基础技能
 创建一个存放博客文件的空间，以后博客的管理等等都在该空间
 ## hexo博客常用命令
 * 初始化一个博客：`hexo init`
-* 创建一篇博客，创建的博客默认保存在`source/_posts/`，该命令在博客目录执行：`hexo n "xxx"`
+* 创建一篇博客：`hexo n "xxx"`，创建的博客默认保存在`source/_posts/`
 * 清理：`hexo clean`
 * 生成：`hexo g`
 * 启动：`hexo s`
+* 删除博客：删除博客，然后清理、生成、启动
 
 ## 将hexo博客同步到github云端
 1. 在github上创建博客的仓库，名称为`username.github.io`
