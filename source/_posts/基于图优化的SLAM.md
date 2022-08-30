@@ -16,9 +16,49 @@ categories: 机器人
 
 # SLAM简介
 
-​		SLAM即同时定位和建图（simultaneous localization and mapping），目前主流有2种方法，一种是基于滤波器的SLAM，一种是基于图优化的SLAM。基于滤波器的SLAM由于误差会累计，目前更流行的方法为基于图优化的SLAM，本文也主要讲解基于图优化的SLAM。
+SLAM即同时定位和建图（simultaneous localization and mapping），目前主流有2种方法，一种是基于滤波器的SLAM，一种是基于图优化的SLAM。基于滤波器的SLAM由于误差会累计，目前更流行的方法为基于图优化的SLAM，本文也主要讲解基于图优化的SLAM。
 
-​		SLAM中定位常用`scan-match`，建图目前我只了解了栅格地图的构建方法，栅格地图的构建主要分为覆盖栅格建图和计数建图。
+SLAM中定位常用`scan-match`，建图目前我只了解了栅格地图的构建方法，栅格地图的构建主要分为覆盖栅格建图和计数建图。
+
+## 几种scan-match
+
+scan-match是匹配scan数据的一种方式，scan数据这里指的是range data，在2d激光雷达定位中指的通常是激光数据。激光数据通常可以用结构体表示，通常可以用以下数据结构表示
+
+```c++
+struct RangeData{
+    Eigen::Vector3f origin;
+    PointCloud returns;
+    PointCloud misses;
+};
+```
+
+其中origin为激光数据的中心位姿，returns为激光扫描到的数据，里面有激光相对于origin的vector数据。misses为激光发射出去，未返回的数据。也就是没射到障碍物。
+
+scan-match分为以下几类：
+
+1. scan-to-scan：激光数据和激光数据做对比，可以得到两帧激光数据的相对位姿
+2. scan-to-map：可以得到激光数据在map中的相对位姿
+3. map-to-map：可以得到两个地图的相对位姿
+
+## SLAM建图的基本原理-覆盖栅格建图
+
+1. 获得预测位姿
+
+   获得预测位姿通常有多种方法，通常是通过里程计和IMU获得位姿的预测。也可以通过scan-match来。
+
+2. 将激光数据插入地图中
+
+   根据预测的位姿，将激光点加入到
+
+## SLAM中的简单问题
+
+
+
+## SLAM中的误差累计问题
+
+
+
+
 
 # 基于图优化的SLAM
 
