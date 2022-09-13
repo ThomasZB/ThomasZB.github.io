@@ -175,7 +175,7 @@ categories: C/C++
 3. 汇编：
    * 将汇编语言转化为机器码
    * 生成二进制文件（编译生成的二进制文件，可由计算机直接执行）
-   * 对应的gcc指令： gcc -S hello.i -o hello.s
+   * 对应的gcc指令： gcc -C hello.i -o hello.s
 4. 链接：
    * 生成最终可执行文件（程序）
    * 对应的gcc命令：gcc hello.o -o hello
