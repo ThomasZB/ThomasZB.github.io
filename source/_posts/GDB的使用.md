@@ -2,7 +2,7 @@
 title: GDB的使用
 date: 2021-02-10 14:19:54
 tags:
-categories: Linux
+categories: C/C++
 ---
 
 <p align="center">

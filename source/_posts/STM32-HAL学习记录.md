@@ -2,7 +2,7 @@
 title: STM32 HAL学习记录
 date: 2020-07-22 12:08:55
 tags:
-categories: stm32系列单片机
+categories: 嵌入式
 ---
 
 ---
