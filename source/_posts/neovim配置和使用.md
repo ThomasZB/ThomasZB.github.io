@@ -134,6 +134,11 @@ packer插件的github官网为：
 4. 打开的文件栏
 5. 文件搜索
 
+## 删除插件
+
+1. 注释插件安装处的lua配置`use-end`块
+2. `PackerClean`删除
+
 # neovim快捷键设置
 
 
