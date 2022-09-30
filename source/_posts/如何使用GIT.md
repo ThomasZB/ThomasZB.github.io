@@ -54,6 +54,13 @@ git操作一般流程
 `git reset xxx`将本地仓库里面某一个历史版本回滚  
 `git pull`从远程仓库下载  
 
+代理设置：
+
+```shell
+git config --global http.proxy http://127.0.0.1:8080
+git config --global https.proxy https://127.0.0.1:8080
+```
+
 ### Git的忽略
 
 有时候我们在提交时，不想所有文件都提交到git仓库里面（比如训练集），就必须要忽略这些文件。忽略文件步骤如下

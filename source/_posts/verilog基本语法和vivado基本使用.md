@@ -13,7 +13,7 @@ categories: 嵌入式
 
 # 语法
 
-verilog的语法相比其他语言比较少，用于描述硬件，要实现功能主要还是模块之间的组合
+`verilog`的语法相比其他语言比较少，用于描述硬件，要实现功能主要还是模块之间的组合
 
 ## 基本结构和语句要求
 
@@ -158,7 +158,7 @@ reg [3:0] a
    end
    ```
 
-   
+3. 找到公用电路，尽早实现（如选择）
 
 ## 其他默认规则
 
@@ -260,12 +260,13 @@ reg [3:0] a
            case(I)
                1: t = 0;
                2: t = 1;
-           default: t=0;
+           	default: t=0;
+           endcase
         end
-   ```
-
-   * 带优先级的（`if-else`）
-
+```
+   
+* 带优先级的（`if-else`）
+   
    ```verilog
    always @ (I)
        begin
@@ -273,10 +274,10 @@ reg [3:0] a
            else if(I[2]) t = 2'b10;
            else t = 2'b00;
        end
-   ```
-
-   * 带优先级的（`switch-case`）
-
+```
+   
+* 带优先级的（`switch-case`）
+   
    ```verilog
    always @ (I)
        begin
@@ -544,4 +545,38 @@ endmodule
    
 
 # vivado使用
+
+## 创建工程和添加文件
+
+1. 打开`vivado`软件，可以看首页的`Quick Start`，点击`Create Project`进入创建工程界面
+
+2. 进入后选择路径，进入下一步，选择`RTL Project`，选择`Do not ...`（一般建好工程再添加文件）
+
+   ![image-20220930142227230](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142227230.png)
+
+3. 选择芯片型号后，选择`Finish`，可以看到如下界面：
+
+   ![image-20220930142714080](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142714080.png)
+
+## 综合和分析
+
+1. 在`Design Sources`中添加源文件，完成代码编写
+
+2. 在右边框的综合中选择`Run Synthesis`
+
+   ![image-20220930142936563](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142936563.png)
+
+3. `Launch Runs`弹窗选择`ok`即可
+
+4. `Synthesis Completed`看情况选择，如果不实施选择`View Reports`即可
+
+5. 完成后点击综合中的`Schematic`可以查看原理图
+
+   ![image-20220930143349129](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930143349129.png)
+
+## 仿真
+
+## 约束的输入
+
+
 
