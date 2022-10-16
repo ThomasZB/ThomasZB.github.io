@@ -112,6 +112,26 @@ sudo apt-get install neovim
 
 常用快捷键基本就是以上这些，当然快捷键还可以自己设置，结合neovim安装的插件可以让开发效率更快。
 
+## 基本配置
+
+neovim配置可以通过lua文件配置，默认使用的配置文件地址为`${HOME}/.config/nvim/init.lua`，常用的配置如下
+
+```lua
+vim.o.number = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.termguicolors = true
+vim.o.cursorline = true
+
+vim.g.mapleader = ' '
+```
+
+当然，打开nvim后再命令模式也可以修改上述配置（vim可以，nvim有待验证），比如我常修改`tabsize`:
+
+> set ts=4
+
 # neovim插件安装
 
 neovim可以使用lua文件来进行插件的配置，插件一般在github上可以搜索到。neovim可以使用packer插件来进行插件的管理（一个管理插件的插件>_>）
