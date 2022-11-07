@@ -1,10 +1,10 @@
 ---
 title: 基于图优化的SLAM
 date: 2022-06-30 13:50:54
-mathjax: true
 tags:
 categories: 机器人
-
+plugins:
+  - mathjax
 ---
 
 <p align="center">

@@ -3,6 +3,7 @@ title: verilog基本语法和vivado基本使用
 date: 2022-09-21 19:24:26
 tags:
 categories: 嵌入式
+author: hang chen
 ---
 
 <p align="center">
@@ -263,6 +264,7 @@ reg [3:0] a
            	default: t=0;
            endcase
         end
+   ```
 ```
    
 * 带优先级的（`if-else`）
@@ -275,9 +277,9 @@ reg [3:0] a
            else t = 2'b00;
        end
 ```
-   
+
 * 带优先级的（`switch-case`）
-   
+  
    ```verilog
    always @ (I)
        begin
