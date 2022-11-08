@@ -369,4 +369,58 @@ hexo的主题配置分三步走
 
 1. 公式：不同的主题参考不同的改法，不过一般都需要更换一些更好的渲染器：[Hexo中的数学公式 - 简书 (jianshu.com)](https://www.jianshu.com/p/9024d6b23c3a)
 
-   
+
+# 多设备博客同步问题
+
+之前一直有两个设备，使用时问题好像不大，不过现在我只有一个设备，而且工作经常在ubuntu下，有时想要记录个东西就比较麻烦。目前我的解决方案是：
+
+1. 将`source`文件夹中的博客同步到github
+2. 在不同的环境下各自生成一个博客的空间
+
+这里记录一下博客的初始化
+
+1. 正常安装node，按照主题volants的需求（node和npm的版本一定要满足）：
+
+   ```
+   Hexo: 5.4 ~ 6.x
+   hexo-cli: 4.3 ~ latest
+   node.js: 16.x LTS ~ latest LTS
+   npm: 8.x ~ latest LTS
+   ```
+
+2. 使用`hexo init`初始化博客空间，后面的命令都在该空间执行
+
+3. 检查空间下的插件和版本`hexo -v`，如果`hexo`版本不满足要求则需要升级
+
+   ```shell
+   # 更新 package.json 中的 hexo 及个插件版本
+   npm install -g npm-check           # 检查之前安装的插件，都有哪些是可以升级的 
+   npm install -g npm-upgrade         # 升级系统中的插件
+   npm-check
+   npm-upgrade
+   # 更新 hexo 及所有插件
+   cnpm update
+   # 确认 hexo 已经更新
+   hexo -v
+   ```
+
+4. 由于使用到公式，需要换一下更好用的渲染器
+
+   ```shell
+   npm un hexo-renderer-marked
+   npm i hexo-renderer-pandoc
+   ```
+
+   * 这里由于pandoc的兼容性不好，ubuntu下主要通过`github`安装2.2.3.2版本：https://github.com/jgm/pandoc/releases?page=6
+
+5. 除此之外，还需要安装一些其他插件：
+
+   ```shell
+   npm i hexo-theme-volantis 	# 主题
+   npm i -S hexo-generator-json-content  # 评论系统
+   npm install --save hexo-deployer-git  # 用于deploy到github
+   ```
+
+6. 将`_config.yml`覆盖，博客复制到source目录下
+
+7. `hexo g`生成`hexo s`查看是否成功
