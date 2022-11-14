@@ -18,6 +18,10 @@ plugins:
 
 SLAM即同时定位和建图（simultaneous localization and mapping），目前主流有2种方法，一种是基于滤波器的SLAM，一种是基于图优化的SLAM。基于滤波器的SLAM由于误差会累计，目前更流行的方法为基于图优化的SLAM，本文也主要讲解基于图优化的SLAM。
 
+## 环境理想下的机器人定位
+
+
+
 SLAM中定位常用`scan-match`，建图目前我只了解了栅格地图的构建方法，栅格地图的构建主要分为覆盖栅格建图和计数建图。
 
 ## 几种scan-match
