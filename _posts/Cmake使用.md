@@ -408,6 +408,40 @@ target_link_libraries(hello libhello.so)
 
 这里的库可以使用`find`来找，这里先不做介绍
 
+## FIND_PACKAGE
+
+`find_package`常用来寻找库，得到库的一些信息，然后使用。注意：`find_package`只能寻找用`cmake`安装的库，本质是查找环境变量中对应库的`xxx.cmake`，如果库目录中没有该文件，显然是无法通过`find_package`来找的，不过还好大部分库都是通过`cmake`安装的。
+
+### find_pacakge命令介绍
+
+1. 功能：查找库
+2. 参数：
+   * `REQUEST`：可选，如果选择，找不到包时就终止`cmake`命令
+   * 库：可以有多个
+
+如果找到了想要的库，一般会得到以下几个环境变量：
+
+* `<LibaryName>_FOUND`：返回值，是否找到，可以用在`if`语句进行某些操作
+* `<LibaryName>_INCLUDE_DIR`：头文件目录
+* `<LibaryName>_INCLUDES`：头文件
+* `<LibaryName>_LIBRARY`：库目录
+* `<LibaryName>_LIBRARIES`：库
+
+### 使用步骤
+
+首先通过`find_package`找需要的包
+
+```cmake
+find_package(CURL)
+```
+
+然后添加头文件和链接库
+
+```cmake
+target_include_directories(clib PRIVATE ${CURL_INCLUDE_DIR})
+target_link_libraries(curltest ${CURL_LIBRARY})
+```
+
 # 注意事项
 
 1. windows下如果用的mingw的话，编译要加上`-G"MinGW Makefiles"`（不然会调用vs的nmake），则编译指令（如果编译过的话就需要删除之前的编译文件重新编译）：
@@ -417,3 +451,7 @@ target_link_libraries(hello libhello.so)
 2. 可调试版本生成（可用gdb调试）：
 
    > cmake .. -DCMAKE_BUILD_TYPE=debug
+
+# 参考链接
+
+https://zhuanlan.zhihu.com/p/97369704
