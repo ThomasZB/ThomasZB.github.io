@@ -143,17 +143,25 @@ git config --global https.proxy https://127.0.0.1:8080
 ### 使用分支的常用命令
 
 `git branch`查看当前的分支
+
 `git branch -r`查看远程仓库上的分支
+
 `git branch xxx`新建一个名为xxx的分支
+
 `git checkout xxx`切换到xxx分支
+
 `git checkout -b xxx`新建一个xxx分支，并切换到该分支
+
 `git branch -d xxx`删除xxx分支
+
 `git push origin --delet xxx`删除远程仓库中的xxx分支
+
 `git branch -dr xxx`和上一个命令一样
 
 通常，克隆后只有master分支，还要手动创建其他分支，具体步骤如下
 
 `git checkout -b xxx origin/yyy`将远程的yyy分支关联到本地的xxx分支
+
 `git push origin xxx`提交当前代码到xxx分支（默认是主分支）
 
 `git push -u origin xxx`提交当前分支到远程的xxx分支，`-u`后以后该分支就默认连接到远程的xxx分支
