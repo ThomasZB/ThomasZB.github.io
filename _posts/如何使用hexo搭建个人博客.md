@@ -423,4 +423,14 @@ hexo的主题配置分三步走
 
 6. 将`_config.yml`覆盖，博客复制到source目录下
 
-7. `hexo g`生成`hexo s`查看是否成功
+7. 修改配置文件：`node_modules/HEXO-THEME-VOLANTIS/source/css/_first/base_first.style`
+
+   ​	修改自己喜欢的透明度
+
+   ```css
+   .translucent
+     @supports (backdrop-filter: blur(20px))
+       background: alpha($color-card, .6) !important
+   ```
+
+8. `hexo g`生成`hexo s`查看是否成功
