@@ -22,6 +22,8 @@ sudo apt-get update
 sudo apt-get install neovim
 ```
 
+经过验证，该方法在ubuntu18.04里面只能下载到0.6的neovim，想要最新版neovim可以选择github下载二进制文件或者自己编译。具体的教程github的wiki上写的较为详细：https://github.com/neovim/neovim
+
 ## 使用
 
 目前体验下来，neovim和vim基本一致，差别主要在于插件。vim的教程可以大概看一下man手册，vim在操作时主要分为以下四种模式：
@@ -66,6 +68,8 @@ sudo apt-get install neovim
 
 * 其他技巧：
   * 数字加上述命令可以多次执行。如5j，向下5行，3x，删除3个。
+
+在该模式下按`ctrl+v`可以进入多行编辑模式，选择要编辑的多行，按大写的`I`编辑，编辑完后esc退出即可插入到每一行。同时在该模式下，可以使用`>、<`来实现多行tab的功能。
 
 ### 命令模式
 
@@ -118,8 +122,8 @@ neovim配置可以通过lua文件配置，默认使用的配置文件地址为`$
 
 ```lua
 vim.o.number = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.termguicolors = true
@@ -146,13 +150,21 @@ packer插件的github官网为：
 
 安装时跟着官网的教程走即可
 
-## 其他常用插件
+## 其他常用插件推荐
 
-1. 主题
-2. 代码提示
-3. 侧边栏
-4. 打开的文件栏
-5. 文件搜索
+1. 主题：tokyonight
+2. 代码提示：nvim-lspconfig
+3. 侧边栏：nvim-tree.lua
+4. 打开的文件栏：telescope
+5. 文件搜索：telescope
+
+这里就不介绍具体的安装方式什么的了，后面我会将我的配置放在github上。
+
+安装好插件后，插件的使用一般参考官方的文档即可。也是比较麻烦，这里我记录下我常用的插件的几个快捷键。
+
+### goto-preview
+
+使用该
 
 ## 删除插件
 
@@ -161,7 +173,27 @@ packer插件的github官网为：
 
 # neovim快捷键设置
 
+设置快捷键使用的命令较长`vim.api.nvim_set_keymap`，这里可以使用`local`命令重命名一下，下面直接给出快捷键设置的示例：
 
+```lua
+local map = vim.api.nvim_set_keymap                                                                                                                                  
+local opt = {noremap = true, silent = true}
+
+-- set up down to 9 line    
+map("n", "<S-j>", "9j", opt)    
+map("n", "<S-k>", "9k", opt)    
+    
+-- file explore    
+map("n", "<C-b>", ":NvimTreeToggle<CR>", opt)    
+    
+-- buffer line toggle    
+map("n", "<S-h>", ':BufferLineCyclePrev<CR>', opt)    
+map("n", "<S-l>", ':BufferLineCycleNext<CR>', opt)    
+    
+map("n", "<C-f>", ':Telescope find_files<CR>', opt)
+```
+
+其中，opt为选项，我也不知道啥意思。
 
 # 参考文档
 
