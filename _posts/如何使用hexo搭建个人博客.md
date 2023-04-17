@@ -22,11 +22,13 @@ categories: 程序猿基础技能
 ## 下载[nodejs](https://nodejs.org/en/)
 
 一般选择LTS（长期支持版）。安装完后有两个组件，一个是nodejs组件（hexo需要nodejs支持），一个是npm软件管理包。下载下来安装一直点next差不多就可以了。  
+
 下载完后用`node -v`和`npm -v`查看是否安装成功。
 
 ## 安装cnpm（换成淘宝源）
 
 由于npm服务器在国外，下载速度慢，所以换成cnpm。使用命令`npm install -g cnpm --registry=https://registry.npm.taobao.org`安装。
+
 ## 利用cnpm安装hexo博客
 
 命令`cnpm install -g hexo-cli`，`-g`的意思是全局安装，就可以在命令行使用这个命令（相当于添加环境变量）。安装后使用`hexo -v`查看是否安装成功。
@@ -37,6 +39,7 @@ categories: 程序猿基础技能
 
 ## 创建博客的空间
 创建一个存放博客文件的空间，以后博客的管理等等都在该空间
+
 ## hexo博客常用命令
 * 初始化一个博客：`hexo init`
 * 创建一篇博客：`hexo n "xxx"`，创建的博客默认保存在`source/_posts/`
@@ -412,6 +415,7 @@ hexo的主题配置分三步走
    ```
 
    * 这里由于pandoc的兼容性不好，ubuntu下主要通过`github`安装2.2.3.2版本：https://github.com/jgm/pandoc/releases?page=6
+   * pandoc需要自己安装软件，上面的命令只是下载一个调用pandoc的脚本。
 
 5. 除此之外，还需要安装一些其他插件：
 
