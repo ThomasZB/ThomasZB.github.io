@@ -1,0 +1,3827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/#6.0.0-alpha.1'>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="Volantis" content="6.0.0-alpha.1">
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+  <link rel="canonical" href="https://thomaszb.cn/2022/12/20/一些c++好用的三方库/"/>
+  <!-- 渲染优化 -->
+    <meta http-equiv='x-dns-prefetch-control' content='on' />
+      <link rel='dns-prefetch' href='https://unpkg.com'>
+      <link rel="preconnect" href="https://unpkg.com" crossorigin>
+      <link rel='dns-prefetch' href='https://cdn.bootcdn.net'>
+      <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Security-Policy" content=" default-src 'self' https:; block-all-mixed-content; base-uri 'self' https:; form-action 'self' https:; worker-src 'self' https:; connect-src 'self' https: *; img-src 'self' data: https: *; media-src 'self' https: *; font-src 'self' data: https: *; frame-src 'self' https: *; manifest-src 'self' https: *; child-src https:; script-src 'self' https: 'unsafe-inline' *; style-src 'self' https: 'unsafe-inline' *; ">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <!-- import head_begin begin -->
+  <!-- import head_begin end -->
+  <!-- Custom Files headBegin begin-->
+  
+  <!-- Custom Files headBegin end-->
+  <link rel="preload" href="/css/style.css" as="style">
+  <link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+<link rel="preload" href="https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <!-- feed -->
+  <!-- 页面元数据 -->
+  <title>一些c++好用的三方库 - Thomas's Blog</title>
+  <meta name="keywords" content="null">
+  <meta desc name="description" content="
+
+
+c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
+ - hang chen - Thomas's Blog">
+  
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些c++好用的三方库">
+<meta property="og:url" content="https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/index.html">
+<meta property="og:site_name" content="Thomas&#39;s Blog">
+<meta property="og:description" content="c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2022-12-20T13:23:19.000Z">
+<meta property="article:modified_time" content="2023-07-13T16:15:16.119Z">
+<meta property="article:author" content="hang chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+  <style>
+    /* 首屏样式 */
+    #safearea {
+  display: none;
+}
+:root {
+  --color-site-body: #f4f4f4;
+  --color-site-bg: #f4f4f4;
+  --color-site-inner: #fff;
+  --color-site-footer: #666;
+  --color-card: #fff;
+  --color-text: #444;
+  --color-block: #f6f6f6;
+  --color-inlinecode: #c74f00;
+  --color-codeblock: #fff7ea;
+  --color-h1: #3a3a3a;
+  --color-h2: #3a3a3a;
+  --color-h3: #333;
+  --color-h4: #444;
+  --color-h5: #555;
+  --color-h6: #666;
+  --color-p: #444;
+  --color-list: #666;
+  --color-list-hl: #30ad91;
+  --color-meta: #888;
+  --color-read-bkg: #e0d8c8;
+  --color-read-post: #f8f1e2;
+  --color-copyright-bkg: #f5f5f5;
+}
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+*::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+*::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3dd9b6;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+html {
+  color: var(--color-text);
+  width: 100%;
+  height: 100%;
+  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  font-size: 16px;
+}
+html >::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+html >::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+html >::-webkit-scrollbar-thumb {
+  background: #3dd9b6;
+  cursor: pointer;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+html >::-webkit-scrollbar-thumb:hover {
+  background: #ff5722;
+}
+body {
+  background-color: var(--color-site-body);
+  text-rendering: optimizelegibility;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body.modal-active {
+  overflow: hidden;
+}
+@media screen and (max-width: 680px) {
+  body.modal-active {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+a {
+  color: #2092ec;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+a:hover {
+  color: #ff5722;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+ul,
+ol {
+  padding-left: 0;
+}
+ul li,
+ol li {
+  list-style: none;
+}
+header {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+img {
+  border: 0;
+  background: none;
+  max-width: 100%;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  height: 0;
+  border: 0;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-bottom: 1px solid rgba(68,68,68,0.1);
+}
+button,
+input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+@supports (backdrop-filter: blur(20px)) {
+  .blur {
+    background: rgba(255,255,255,0.9) !important;
+    backdrop-filter: saturate(200%) blur(20px);
+  }
+}
+.shadow {
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+}
+.shadow.floatable {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.shadow.floatable:hover {
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 2px 4px 0px rgba(0,0,0,0.1), 0 4px 8px 0px rgba(0,0,0,0.1), 0 8px 16px 0px rgba(0,0,0,0.1);
+}
+#l_cover {
+  min-height: 64px;
+}
+.cover-wrapper {
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: 100vh;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  color: var(--color-site-inner);
+  padding: 0 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -100px;
+}
+.cover-wrapper .cover-body {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cover-wrapper#full {
+  height: calc(100vh + 100px);
+  padding-bottom: 100px;
+}
+.cover-wrapper#half {
+  max-height: 640px;
+  min-height: 400px;
+  height: calc(36vh - 64px + 200px);
+}
+.cover-wrapper #scroll-down {
+  width: 100%;
+  height: 64px;
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+.cover-wrapper #scroll-down .scroll-down-effects {
+  color: #fff;
+  font-size: 24px;
+  line-height: 64px;
+  position: absolute;
+  width: 24px;
+  left: calc(50% - 12px);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  animation: scroll-down-effect 1.5s infinite;
+  -webkit-animation: scroll-down-effect 1.5s infinite;
+  -khtml-animation: scroll-down-effect 1.5s infinite;
+  -moz-animation: scroll-down-effect 1.5s infinite;
+  -o-animation: scroll-down-effect 1.5s infinite;
+  -ms-animation: scroll-down-effect 1.5s infinite;
+}
+@-moz-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-webkit-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-o-keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@keyframes scroll-down-effect {
+  0% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+  50% {
+    top: -16px;
+    opacity: 0.4;
+    -webkit-opacity: 0.4;
+    -moz-opacity: 0.4;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+.cover-wrapper .cover-body {
+  margin-top: 64px;
+  margin-bottom: 100px;
+}
+.cover-wrapper .cover-body,
+.cover-wrapper .cover-body .top,
+.cover-wrapper .cover-body .bottom {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  max-width: 100%;
+}
+.cover-wrapper .cover-body .bottom {
+  margin-top: 32px;
+}
+.cover-wrapper .cover-body .title {
+  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+  font-size: 3.125rem;
+  line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.cover-wrapper .cover-body .subtitle {
+  font-size: 20px;
+}
+.cover-wrapper .cover-body .logo {
+  max-height: 120px;
+  max-width: calc(100% - 4 * 16px);
+}
+@media screen and (min-height: 1024px) {
+  .cover-wrapper .cover-body .title {
+    font-size: 3rem;
+  }
+  .cover-wrapper .cover-body .subtitle {
+    font-size: 1.05rem;
+  }
+  .cover-wrapper .cover-body .logo {
+    max-height: 150px;
+  }
+}
+.cover-wrapper .cover-body .m_search {
+  position: relative;
+  max-width: calc(100% - 16px);
+  width: 320px;
+  vertical-align: middle;
+}
+.cover-wrapper .cover-body .m_search .form {
+  position: relative;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  width: 100%;
+}
+.cover-wrapper .cover-body .m_search .icon,
+.cover-wrapper .cover-body .m_search .input {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.cover-wrapper .cover-body .m_search .icon {
+  position: absolute;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  line-height: 2.5rem;
+  width: 32px;
+  top: 0;
+  left: 5px;
+  color: rgba(68,68,68,0.75);
+}
+.cover-wrapper .cover-body .m_search .input {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  height: 2.5rem;
+  width: 100%;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 0.875rem;
+  -webkit-appearance: none;
+  padding-left: 36px;
+  border-radius: 1.4rem;
+  -webkit-border-radius: 1.4rem;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  color: var(--color-text);
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper .cover-body .m_search .input {
+    padding-left: 36px;
+  }
+}
+.cover-wrapper .cover-body .m_search .input:hover {
+  background: rgba(255,255,255,0.8);
+}
+.cover-wrapper .cover-body .m_search .input:focus {
+  background: #fff;
+}
+.cover-wrapper .list-h {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -khtml-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  align-items: stretch;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.cover-wrapper .list-h a {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 0;
+  -ms-flex: 1 0;
+  flex: 1 0;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  font-weight: 600;
+}
+.cover-wrapper .list-h a img {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  margin: 4px;
+  min-width: 40px;
+  max-width: 44px;
+}
+@media screen and (max-width: 768px) {
+  .cover-wrapper .list-h a img {
+    min-width: 36px;
+    max-width: 40px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper .list-h a img {
+    margin: 2px 4px;
+    min-width: 32px;
+    max-width: 36px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .cover-wrapper .list-h a img {
+    min-width: 28px;
+    max-width: 32px;
+  }
+}
+.cover-wrapper {
+  max-width: 100%;
+}
+.cover-wrapper.search .bottom .menu {
+  margin-top: 16px;
+}
+.cover-wrapper.search .bottom .menu .list-h a {
+  white-space: nowrap;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  align-items: baseline;
+  padding: 2px;
+  margin: 4px;
+  color: var(--color-site-inner);
+  opacity: 0.75;
+  -webkit-opacity: 0.75;
+  -moz-opacity: 0.75;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border-bottom: 2px solid transparent;
+}
+.cover-wrapper.search .bottom .menu .list-h a i {
+  margin-right: 4px;
+}
+.cover-wrapper.search .bottom .menu .list-h a p {
+  font-size: 0.9375rem;
+}
+.cover-wrapper.search .bottom .menu .list-h a:hover,
+.cover-wrapper.search .bottom .menu .list-h a.active,
+.cover-wrapper.search .bottom .menu .list-h a:active {
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  border-bottom: 2px solid var(--color-site-inner);
+}
+.cover-wrapper.dock .menu,
+.cover-wrapper.featured .menu,
+.cover-wrapper.focus .menu {
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+.cover-wrapper.dock .menu .list-h a,
+.cover-wrapper.featured .menu .list-h a,
+.cover-wrapper.focus .menu .list-h a {
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  line-height: 24px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-bottom: none;
+  text-align: center;
+  align-content: flex-end;
+  color: rgba(68,68,68,0.7);
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper.dock .menu .list-h a,
+  .cover-wrapper.featured .menu .list-h a,
+  .cover-wrapper.focus .menu .list-h a {
+    padding: 12px 8px;
+  }
+}
+.cover-wrapper.dock .menu .list-h a i,
+.cover-wrapper.featured .menu .list-h a i,
+.cover-wrapper.focus .menu .list-h a i {
+  margin: 8px;
+}
+.cover-wrapper.dock .menu .list-h a p,
+.cover-wrapper.featured .menu .list-h a p,
+.cover-wrapper.focus .menu .list-h a p {
+  font-size: 0.875rem;
+}
+.cover-wrapper.dock .menu .list-h a.active,
+.cover-wrapper.featured .menu .list-h a.active,
+.cover-wrapper.focus .menu .list-h a.active {
+  background: var(--color-card);
+  backdrop-filter: none;
+}
+.cover-wrapper.dock .menu .list-h a.active i,
+.cover-wrapper.featured .menu .list-h a.active i,
+.cover-wrapper.focus .menu .list-h a.active i,
+.cover-wrapper.dock .menu .list-h a.active i+p,
+.cover-wrapper.featured .menu .list-h a.active i+p,
+.cover-wrapper.focus .menu .list-h a.active i+p {
+  color: #3dd9b6;
+}
+.cover-wrapper.dock .menu .list-h a.active img+p,
+.cover-wrapper.featured .menu .list-h a.active img+p,
+.cover-wrapper.focus .menu .list-h a.active img+p {
+  color: var(--color-text);
+}
+.cover-wrapper.dock .menu .list-h a:hover,
+.cover-wrapper.featured .menu .list-h a:hover,
+.cover-wrapper.focus .menu .list-h a:hover {
+  background: var(--color-card);
+}
+.cover-wrapper.dock .top {
+  margin-bottom: 48px;
+}
+.cover-wrapper.dock .menu {
+  background: rgba(255,255,255,0.5);
+  position: absolute;
+  bottom: 0;
+  max-width: 100%;
+}
+.cover-wrapper.dock .menu .list-h {
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  margin: 4px;
+}
+.cover-wrapper.dock .menu .list-h a+a {
+  margin-left: 4px;
+}
+@media screen and (max-width: 500px) {
+  .cover-wrapper.dock .menu .list-h {
+    overflow-x: scroll;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-thumb {
+    background: #3dd9b6;
+    cursor: pointer;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+  }
+  .cover-wrapper.dock .menu .list-h::-webkit-scrollbar-thumb:hover {
+    background: #ff5722;
+  }
+}
+@supports (backdrop-filter: blur(20px)) {
+  .cover-wrapper.dock .menu {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: saturate(200%) blur(20px);
+  }
+}
+.cover-wrapper #parallax-window {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.parallax-mirror {
+  animation-delay: 0s;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-name: fadeIn;
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-mode: 'dark';
+  }
+  :root:not([color-scheme]) {
+    --color-site-body: #121212;
+    --color-read-bkg: #1f1f1f;
+    --color-read-post: #262626;
+    --color-site-bg: #1f1f1f;
+    --color-site-inner: rgba(238,238,238,0.871);
+    --color-site-footer: rgba(170,170,170,0.871);
+    --color-card: #262626;
+    --color-text: rgba(238,238,238,0.871);
+    --color-block: #434343;
+    --color-codeblock: #1f1f1f;
+    --color-inlinecode: #d56d28;
+    --color-h1: rgba(255,255,255,0.871);
+    --color-h2: rgba(255,255,255,0.871);
+    --color-h3: rgba(255,255,255,0.6);
+    --color-h4: rgba(255,255,255,0.6);
+    --color-h5: rgba(255,255,255,0.6);
+    --color-h6: rgba(255,255,255,0.6);
+    --color-p: rgba(217,217,217,0.871);
+    --color-list: rgba(217,217,217,0.871);
+    --color-list-hl: #63e0c4;
+    --color-meta: rgba(191,191,191,0.871);
+    --color-link: rgba(191,191,191,0.871);
+    --color-copyright-bkg: #21252b;
+  }
+  :root:not([color-scheme]) img {
+    filter: brightness(70%) !important;
+  }
+  :root:not([color-scheme]) .blur {
+    background: rgba(31,31,31,0.9) !important;
+  }
+  :root:not([color-scheme]) .white-box.blur {
+    background: rgba(38,38,38,0.9) !important;
+  }
+  :root:not([color-scheme]) .nav-main .u-search-input {
+    background: var(--color-card) !important;
+  }
+  :root:not([color-scheme]) #l_main .article .prev-next>a {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) #l_main .article .prev-next>a:hover {
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) .article blockquote {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .article-title a {
+    color: var(--color-h1) !important;
+  }
+  :root:not([color-scheme]) details>summary {
+    color: var(--color-p) !important;
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) details {
+    border: 1px solid var(--color-site-bg) !important;
+    background: var(--color-site-bg) !important;
+  }
+  :root:not([color-scheme]) #u-search .modal,
+  :root:not([color-scheme]) #u-search .modal-header,
+  :root:not([color-scheme]) #u-search .modal-body {
+    background: var(--color-card) !important;
+  }
+  :root:not([color-scheme]) #u-search .modal-body .modal-results .result:hover {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .u-search-input:hover {
+    background: var(--color-block) !important;
+  }
+  :root:not([color-scheme]) .u-search-input:focus {
+    background: var(--color-site-body) !important;
+  }
+}
+[color-scheme='dark'] {
+  --color-site-body: #121212;
+  --color-read-bkg: #1f1f1f;
+  --color-read-post: #262626;
+  --color-site-bg: #1f1f1f;
+  --color-site-inner: rgba(238,238,238,0.871);
+  --color-site-footer: rgba(170,170,170,0.871);
+  --color-card: #262626;
+  --color-text: rgba(238,238,238,0.871);
+  --color-block: #434343;
+  --color-codeblock: #1f1f1f;
+  --color-inlinecode: #d56d28;
+  --color-h1: rgba(255,255,255,0.871);
+  --color-h2: rgba(255,255,255,0.871);
+  --color-h3: rgba(255,255,255,0.6);
+  --color-h4: rgba(255,255,255,0.6);
+  --color-h5: rgba(255,255,255,0.6);
+  --color-h6: rgba(255,255,255,0.6);
+  --color-p: rgba(217,217,217,0.871);
+  --color-list: rgba(217,217,217,0.871);
+  --color-list-hl: #63e0c4;
+  --color-meta: rgba(191,191,191,0.871);
+  --color-link: rgba(191,191,191,0.871);
+  --color-copyright-bkg: #21252b;
+}
+[color-scheme='dark'] img {
+  filter: brightness(70%) !important;
+}
+[color-scheme='dark'] .blur {
+  background: rgba(31,31,31,0.9) !important;
+}
+[color-scheme='dark'] .white-box.blur {
+  background: rgba(38,38,38,0.9) !important;
+}
+[color-scheme='dark'] .nav-main .u-search-input {
+  background: var(--color-card) !important;
+}
+[color-scheme='dark'] #l_main .article .prev-next>a {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] #l_main .article .prev-next>a:hover {
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] .article blockquote {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .article-title a {
+  color: var(--color-h1) !important;
+}
+[color-scheme='dark'] details>summary {
+  color: var(--color-p) !important;
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] details {
+  border: 1px solid var(--color-site-bg) !important;
+  background: var(--color-site-bg) !important;
+}
+[color-scheme='dark'] #u-search .modal,
+[color-scheme='dark'] #u-search .modal-header,
+[color-scheme='dark'] #u-search .modal-body {
+  background: var(--color-card) !important;
+}
+[color-scheme='dark'] #u-search .modal-body .modal-results .result:hover {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .u-search-input:hover {
+  background: var(--color-block) !important;
+}
+[color-scheme='dark'] .u-search-input:focus {
+  background: var(--color-site-body) !important;
+}
+@media screen and (max-width: 500px) {
+  [color-scheme='dark'] .l_header .m_search {
+    background: var(--color-site-bg) !important;
+  }
+}
+@font-face {
+  font-family: 'UbuntuMono';
+  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Varela Round';
+  src: url("https://unpkg.com/volantis-static@0.0.1660614606622/media/fonts/VarelaRound/VarelaRound-Regular.ttf");
+  font-weight: 'normal';
+  font-style: 'normal';
+  font-display: swap;
+}
+.l_header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: var(--color-card);
+  box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
+}
+.l_header.auto {
+  transition: opacity 0.4s ease;
+  -webkit-transition: opacity 0.4s ease;
+  -khtml-transition: opacity 0.4s ease;
+  -moz-transition: opacity 0.4s ease;
+  -o-transition: opacity 0.4s ease;
+  -ms-transition: opacity 0.4s ease;
+  visibility: hidden;
+}
+.l_header.auto.show {
+  opacity: 1 !important;
+  -webkit-opacity: 1 !important;
+  -moz-opacity: 1 !important;
+  visibility: visible;
+}
+.l_header .container {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.l_header #wrapper {
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.l_header #wrapper .nav-main,
+.l_header #wrapper .nav-sub {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -khtml-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-justify-content: space-between;
+  align-items: center;
+}
+.l_header #wrapper .nav-main {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.l_header #wrapper.sub .nav-main {
+  transform: translateY(-64px);
+  -webkit-transform: translateY(-64px);
+  -khtml-transform: translateY(-64px);
+  -moz-transform: translateY(-64px);
+  -o-transform: translateY(-64px);
+  -ms-transform: translateY(-64px);
+}
+.l_header #wrapper .nav-sub {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  opacity: 0;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  height: 64px;
+  width: calc(100% - 2 * 16px);
+  position: absolute;
+}
+.l_header #wrapper .nav-sub ::-webkit-scrollbar {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+}
+@media screen and (min-width: 2048px) {
+  .l_header #wrapper .nav-sub {
+    max-width: 55vw;
+    margin: auto;
+  }
+}
+.l_header #wrapper.sub .nav-sub {
+  opacity: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+}
+.l_header #wrapper .title {
+  position: relative;
+  color: var(--color-text);
+  padding-left: 24px;
+  max-height: 64px;
+}
+.l_header #wrapper .nav-main .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  line-height: 64px;
+  padding: 0 24px;
+  font-size: 1.25rem;
+  font-family: "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Helvetica, monospace;
+}
+.l_header #wrapper .nav-main .title img {
+  height: 64px;
+}
+.l_header .nav-sub {
+  max-width: 1080px;
+  margin: auto;
+}
+.l_header .nav-sub .title {
+  font-weight: bold;
+  font-family: UbuntuMono, "Varela Round", "PingFang SC", "Microsoft YaHei", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+  line-height: 1.2;
+  max-height: 64px;
+  white-space: normal;
+  flex-shrink: 1;
+}
+.l_header .switcher {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  line-height: 64px;
+  align-items: center;
+}
+.l_header .switcher .s-toc {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .l_header .switcher .s-toc {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: -ms-flexbox /* TWEENER - IE 10 */;
+    display: -webkit-flex /* NEW - Chrome */;
+    display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+    display: flex;
+  }
+}
+.l_header .switcher >li {
+  height: 48px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  margin: 2px;
+}
+@media screen and (max-width: 500px) {
+  .l_header .switcher >li {
+    margin: 0 1px;
+    height: 48px;
+  }
+}
+.l_header .switcher >li >a {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0.85em 1.1em;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  color: #3dd9b6;
+}
+.l_header .switcher >li >a:hover {
+  border: none;
+}
+.l_header .switcher >li >a.active,
+.l_header .switcher >li >a:active {
+  border: none;
+  background: var(--color-site-bg);
+}
+@media screen and (max-width: 500px) {
+  .l_header .switcher >li >a {
+    width: 36px;
+    height: 48px;
+  }
+}
+.l_header .nav-sub .switcher {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+}
+.l_header .m_search {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  height: 64px;
+  width: 240px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+@media screen and (max-width: 1024px) {
+  .l_header .m_search {
+    width: 44px;
+    min-width: 44px;
+  }
+  .l_header .m_search input::placeholder {
+    opacity: 0;
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+  }
+  .l_header .m_search:hover {
+    width: 240px;
+  }
+  .l_header .m_search:hover input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@media screen and (min-width: 500px) {
+  .l_header .m_search:hover .input {
+    width: 100%;
+  }
+  .l_header .m_search:hover .input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search {
+    min-width: 0;
+  }
+  .l_header .m_search input::placeholder {
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+  }
+}
+.l_header .m_search .form {
+  position: relative;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.l_header .m_search .icon {
+  position: absolute;
+  width: 36px;
+  left: 5px;
+  color: var(--color-meta);
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search .icon {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: none;
+  }
+}
+.l_header .m_search .input {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 1.3;
+  width: 100%;
+  color: var(--color-text);
+  background: #fafafa;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-left: 40px;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border: none;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+@media screen and (min-width: 500px) {
+  .l_header .m_search .input:focus {
+    box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 4px 8px 0px rgba(0,0,0,0.1);
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .m_search .input {
+    background: var(--color-block);
+    padding-left: 8px;
+    border: none;
+  }
+  .l_header .m_search .input:hover,
+  .l_header .m_search .input:focus {
+    border: none;
+  }
+}
+@media (max-width: 500px) {
+  .l_header .m_search {
+    left: 0;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+    background: #fff;
+    transition: all 0.28s ease;
+    -webkit-transition: all 0.28s ease;
+    -khtml-transition: all 0.28s ease;
+    -moz-transition: all 0.28s ease;
+    -o-transition: all 0.28s ease;
+    -ms-transition: all 0.28s ease;
+  }
+  .l_header .m_search .input {
+    border-radius: 32px;
+    -webkit-border-radius: 32px;
+    margin-left: 16px;
+    padding-left: 16px;
+  }
+  .l_header.z_search-open .m_search {
+    width: 100%;
+  }
+  .l_header.z_search-open .m_search .input {
+    width: calc(100% - 120px);
+  }
+}
+ul.m-pc >li>a {
+  color: inherit;
+  border-bottom: 2px solid transparent;
+}
+ul.m-pc >li>a:active,
+ul.m-pc >li>a.active {
+  border-bottom: 2px solid #3dd9b6;
+}
+ul.m-pc li:hover >ul.list-v,
+ul.list-v li:hover >ul.list-v {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+ul.nav-list-h {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: -ms-flexbox /* TWEENER - IE 10 */;
+  display: -webkit-flex /* NEW - Chrome */;
+  display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+  display: flex;
+  align-items: stretch;
+}
+ul.nav-list-h>li {
+  position: relative;
+  justify-content: center;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  height: 100%;
+  line-height: 2.4;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+ul.nav-list-h>li >a {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+}
+ul.list-v {
+  z-index: 1;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  position: absolute;
+  background: var(--color-card);
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,0.08), 0 4px 8px 0px rgba(0,0,0,0.08), 0 8px 16px 0px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0 2px 4px 0px rgba(0,0,0,0.08), 0 4px 8px 0px rgba(0,0,0,0.08), 0 8px 16px 0px rgba(0,0,0,0.08);
+  margin-top: -6px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding: 8px 0;
+}
+ul.list-v.show {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+}
+ul.list-v hr {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+ul.list-v >li {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+ul.list-v >li.header {
+  font-size: 0.78125rem;
+  font-weight: bold;
+  line-height: 2em;
+  color: var(--color-meta);
+  margin: 8px 16px 4px;
+}
+ul.list-v >li.header i {
+  margin-right: 8px;
+}
+ul.list-v >li ul {
+  margin-left: 0;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  margin-top: -40px;
+}
+ul.list-v .aplayer-container {
+  min-height: 64px;
+  padding: 6px 16px;
+}
+ul.list-v >li>a {
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  color: var(--color-list);
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 36px;
+  padding: 0 20px 0 16px;
+  text-overflow: ellipsis;
+  margin: 0 4px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+@media screen and (max-width: 1024px) {
+  ul.list-v >li>a {
+    line-height: 40px;
+  }
+}
+ul.list-v >li>a >i {
+  margin-right: 8px;
+}
+ul.list-v >li>a:active,
+ul.list-v >li>a.active {
+  color: var(--color-list-hl);
+}
+ul.list-v >li>a:hover {
+  color: var(--color-list-hl);
+  background: var(--color-site-bg);
+}
+.l_header .menu >ul>li>a {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: block;
+  padding: 0 8px;
+}
+.l_header .menu >ul>li>a >i {
+  margin-right: 4px;
+}
+.l_header ul.nav-list-h>li {
+  color: var(--color-list);
+  line-height: 64px;
+}
+.l_header ul.nav-list-h>li >a {
+  max-height: 64px;
+  overflow: hidden;
+  color: inherit;
+}
+.l_header ul.nav-list-h>li >a:active,
+.l_header ul.nav-list-h>li >a.active {
+  color: #3dd9b6;
+}
+.l_header ul.nav-list-h>li:hover>a {
+  color: var(--color-list-hl);
+}
+.l_header ul.nav-list-h>li i.music {
+  animation: rotate-effect 1.5s linear infinite;
+  -webkit-animation: rotate-effect 1.5s linear infinite;
+  -khtml-animation: rotate-effect 1.5s linear infinite;
+  -moz-animation: rotate-effect 1.5s linear infinite;
+  -o-animation: rotate-effect 1.5s linear infinite;
+  -ms-animation: rotate-effect 1.5s linear infinite;
+}
+@-moz-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+@keyframes rotate-effect {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -khtml-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -o-transform: rotate(0);
+    -ms-transform: rotate(0);
+  }
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -khtml-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -khtml-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+    -khtml-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -khtml-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
+}
+.menu-phone li ul.list-v {
+  right: calc(100% - 0.5 * 16px);
+}
+.menu-phone li ul.list-v ul {
+  right: calc(100% - 0.5 * 16px);
+}
+#wrapper {
+  max-width: 1080px;
+  margin: auto;
+}
+@media screen and (min-width: 2048px) {
+  #wrapper {
+    max-width: 55vw;
+  }
+}
+#wrapper .menu {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1;
+  -ms-flex: 1 1;
+  flex: 1 1;
+  margin: 0 16px 0 0;
+}
+#wrapper .menu .list-v ul {
+  left: calc(100% - 0.5 * 16px);
+}
+.menu-phone {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  margin-top: 16px;
+  right: 8px;
+  transition: all 0.28s ease;
+  -webkit-transition: all 0.28s ease;
+  -khtml-transition: all 0.28s ease;
+  -moz-transition: all 0.28s ease;
+  -o-transition: all 0.28s ease;
+  -ms-transition: all 0.28s ease;
+}
+.menu-phone ul {
+  right: calc(100% - 0.5 * 16px);
+}
+@media screen and (max-width: 500px) {
+  .menu-phone {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: block;
+  }
+}
+.l_header {
+  max-width: 65vw;
+  left: calc((100% - 65vw) * 0.5);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+@media screen and (max-width: 2048px) {
+  .l_header {
+    max-width: 1112px;
+    left: calc((100% - 1112px) * 0.5);
+  }
+}
+@media screen and (max-width: 1112px) {
+  .l_header {
+    left: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .l_header .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .l_header #wrapper .nav-main .title {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .l_header #wrapper .nav-sub {
+    width: 100%;
+  }
+  .l_header #wrapper .nav-sub .title {
+    overflow-y: scroll;
+    margin-top: 2px;
+    padding: 8px 16px;
+  }
+  .l_header #wrapper .switcher {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: -ms-flexbox /* TWEENER - IE 10 */;
+    display: -webkit-flex /* NEW - Chrome */;
+    display: flex /* NEW, Spec - Opera 12.1, Firefox 20+ */;
+    display: flex;
+    margin-right: 8px;
+  }
+  .l_header .menu {
+    display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+    display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .list-v li {
+    max-width: 270px;
+  }
+}
+#u-search {
+  display: -webkit-box /* OLD - iOS 6-, Safari 3.1-6 */;
+  display: -moz-box /* OLD - Firefox 19- (buggy but mostly works) */;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 60px 20px;
+  z-index: 1001;
+}
+@media screen and (max-width: 680px) {
+  #u-search {
+    padding: 0px;
+  }
+}
+@media screen and (prefers-color-scheme: dark) and (max-width: 500px) {
+  .l_header .m_search {
+    background: var(--color-site-bg) !important;
+  }
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+    <script>
+      let userColorScheme=localStorage.getItem("color-scheme")
+      if(userColorScheme){
+        document.documentElement.setAttribute("color-scheme", userColorScheme);
+      }
+    </script>
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+    '.kill-t{'+
+      'font-size: 2rem;'+
+    '}'+
+    '.kill-c{'+
+      'font-size: 1.2rem;'+
+    '}'+
+		'#l_header,#l_body{'+
+			'display: none;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        `<span class="kill-t"><b>抱歉，您的浏览器无法访问本站</b></span><br/>`+
+        `<span class="kill-c">微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</span><br/>`+
+        `<a target="_blank" rel="noopener" href="https://blogs.windows.com/windowsexperience/2021/05/19/the-future-of-internet-explorer-on-windows-10-is-in-microsoft-edge/"><strong>了解详情 ></strong></a>`+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+    .kill-t{
+      font-size: 2rem;
+    }
+    .kill-c{
+      font-size: 1.2rem;
+    }
+		#l_header,#l_body{
+			display: none;
+		}
+	</style>
+    <div class="kill-noscript">
+        <span class="kill-t"><b>抱歉，您的浏览器无法访问本站</b></span><br/>
+        <span class="kill-c">本页面需要浏览器支持（启用）JavaScript</span><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+
+  <script>
+  /************这个文件存放不需要重载的全局变量和全局函数*********/
+  window.volantis = {}; // volantis 全局变量
+  volantis.debug = "env"; // 调试模式
+  volantis.dom = {}; // 页面Dom see: /source/js/app.js etc.
+  /******************** volantis.dom.$ ********************************/
+  // 注：这里没有选择器，也没有forEach一次只处理一个dom，这里重新封装主题常用的dom方法，返回的是dom对象，对象包含了以下方法，同时保留dom的原生API
+  function volantisDom(ele) {
+    if (!ele) ele = document.createElement("div")
+    this.ele = ele;
+    // ==============================================================
+    this.ele.find = (c) => {
+      let q = this.ele.querySelector(c)
+      if (q)
+        return new volantisDom(q)
+    }
+    // ==============================================================
+    this.ele.hasClass = (c) => {
+      return this.ele.className.match(new RegExp('(\\s|^)' + c + '(\\s|$)'));
+    }
+    this.ele.addClass = (c) => {
+      this.ele.classList.add(c);
+      return this.ele
+    }
+    this.ele.removeClass = (c) => {
+      this.ele.classList.remove(c);
+      return this.ele
+    }
+    this.ele.toggleClass = (c) => {
+      if (this.ele.hasClass(c)) {
+        this.ele.removeClass(c)
+      } else {
+        this.ele.addClass(c)
+      }
+      return this.ele
+    }
+    // ==============================================================
+    this.ele.on = (c, f) => {
+      this.ele.addEventListener(c, f, false)
+      return this.ele
+    }
+    this.ele.click = (f, r) => {
+      this.ele.on("click", f, r)
+      return this.ele
+    }
+    this.ele.scroll = (f, r) => {
+      this.ele.on("scroll", f, r)
+      return this.ele
+    }
+    // ==============================================================
+    this.ele.html = (c) => {
+      // if(c=== undefined){
+      //   return this.ele.innerHTML
+      // }else{
+      this.ele.innerHTML = c
+      return this.ele
+      // }
+    }
+    // ==============================================================
+    this.ele.hide = (c) => {
+      this.ele.style.display = "none"
+      return this.ele
+    }
+    this.ele.show = (c) => {
+      this.ele.style.display = "block"
+      return this.ele
+    }
+    // ==============================================================
+    return this.ele
+  }
+  volantis.dom.$ = (ele) => {
+    return !!ele ? new volantisDom(ele) : null;
+  }
+  /******************** RunItem ********************************/
+  function RunItem() {
+    this.list = []; // 存放回调函数
+    this.start = () => {
+      for (var i = 0; i < this.list.length; i++) {
+        this.list[i].run();
+      }
+    };
+    this.push = (fn, name, setRequestAnimationFrame = true) => {
+      let myfn = fn
+      if (setRequestAnimationFrame) {
+        myfn = () => {
+          volantis.requestAnimationFrame(fn)
+        }
+      }
+      var f = new Item(myfn, name);
+      this.list.push(f);
+    };
+    this.remove = (name) => {
+      for (let index = 0; index < this.list.length; index++) {
+        const e = this.list[index];
+        if (e.name == name) {
+          this.list.splice(index, 1);
+        }
+      }
+    }
+    // 构造一个可以run的对象
+    function Item(fn, name) {
+      // 函数名称
+      this.name = name || fn.name;
+      // run方法
+      this.run = () => {
+        try {
+          fn()
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    }
+  }
+  /******************** RightMenu ********************************/
+  // volantis.rightmenu.handle(callBack[,"callBackName"]) 外部菜单项控制
+  // 可在 volantis.mouseEvent 处获取右键事件
+  volantis.rightmenu = {};
+  volantis.rightmenu.method = {
+    handle: new RunItem(),
+  }
+  volantis.rightmenu = Object.assign(volantis.rightmenu, {
+    handle: volantis.rightmenu.method.handle.push,
+  });
+  /********************  Dark Mode  ********************************/
+  // /layout/_partial/scripts/darkmode.ejs
+  // volantis.dark.mode 当前模式 dark or light
+  // volantis.dark.toggle() 暗黑模式触发器
+  // volantis.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
+  volantis.dark = {};
+  volantis.dark.method = {
+    toggle: new RunItem(),
+  };
+  volantis.dark = Object.assign(volantis.dark, {
+    push: volantis.dark.method.toggle.push,
+  });
+  /********************  Message  ********************************/
+  // VolantisApp.message
+  /********************  isMobile  ********************************/
+  // /source/js/app.js
+  // volantis.isMobile
+  // volantis.isMobileOld
+  /********************脚本动态加载函数********************************/
+  // volantis.js(src, cb)  cb 可以传入onload回调函数 或者 JSON对象 例如: volantis.js("src", ()=>{}) 或 volantis.js("src", {defer:true,onload:()=>{}})
+  // volantis.css(src)
+
+  // 返回Promise对象，如下方法同步加载资源，这利于处理文件资源之间的依赖关系，例如：APlayer 需要在 MetingJS 之前加载
+  // (async () => {
+  //     await volantis.js("...theme.plugins.aplayer.js.aplayer...")
+  //     await volantis.js("...theme.plugins.aplayer.js.meting...")
+  // })();
+
+  // 已经加入了setTimeout
+  volantis.js = (src, cb) => {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+  volantis.css = (src) => {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  }
+  /********************按需加载的插件********************************/
+  // volantis.import.jQuery().then(()=>{})
+  volantis.import = {
+    jQuery: () => {
+      if (typeof jQuery == "undefined") {
+        return volantis.js("https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js")
+      } else {
+        return new Promise(resolve => {
+          resolve()
+        });
+      }
+    }
+  }
+  /********************** requestAnimationFrame ********************************/
+  // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+  // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
+  volantis.requestAnimationFrame = (fn) => {
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+    }
+    window.requestAnimationFrame(fn)
+  }
+  /************************ layoutHelper *****************************************/
+  volantis.layoutHelper = (helper, html, opt) => {
+    opt = Object.assign({ clean: false}, opt)
+    function myhelper(helper, html, clean) {
+      volantis.tempDiv = document.createElement("div");
+      volantis.tempDiv.innerHTML = html;
+      let layoutHelper = document.querySelector("#layoutHelper-" + helper)
+      if (layoutHelper) {
+        if (clean) {
+          layoutHelper.innerHTML = ""
+        }
+        layoutHelper.append(volantis.tempDiv);
+      }
+    }
+    myhelper(helper, html, opt.clean)
+  }
+  /****************************** 滚动事件处理 ****************************************/
+  volantis.scroll = {
+    engine: new RunItem(),
+    unengine: new RunItem(),
+  };
+  volantis.scroll = Object.assign(volantis.scroll, {
+    push: volantis.scroll.engine.push,
+  });
+  // 滚动条距离顶部的距离
+  volantis.scroll.getScrollTop = () => {
+    let scrollPos;
+    if (window.pageYOffset) {
+      scrollPos = window.pageYOffset;
+    } else if (document.compatMode && document.compatMode != 'BackCompat') {
+      scrollPos = document.documentElement.scrollTop;
+    } else if (document.body) {
+      scrollPos = document.body.scrollTop;
+    }
+    return scrollPos;
+  }
+  volantis.scroll.scrollHeight = function () {
+    return Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+    )
+  }
+  volantis.scroll.offsetHeight = function () {
+    return Math.max(
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    )
+  }
+  volantis.scroll.progress = function () {
+    return volantis.scroll.getScrollTop() / (volantis.scroll.scrollHeight() - volantis.scroll.offsetHeight())
+  }
+  // 使用 requestAnimationFrame 处理滚动事件
+  // `volantis.scroll.del` 中存储了一个数值, 该数值检测一定时间间隔内滚动条滚动的位移, 数值的检测频率是浏览器的刷新频率. 数值为正数时, 表示向下滚动. 数值为负数时, 表示向上滚动.
+  volantis.scroll.handleScrollEvents = () => {
+    volantis.scroll.lastScrollTop = volantis.scroll.getScrollTop()
+    function loop() {
+      const scrollTop = volantis.scroll.getScrollTop();
+      if (volantis.scroll.lastScrollTop !== scrollTop) {
+        volantis.scroll.del = scrollTop - volantis.scroll.lastScrollTop;
+        volantis.scroll.lastScrollTop = scrollTop;
+        // if (volantis.scroll.del > 0) {
+        //   console.log("向下滚动");
+        // } else {
+        //   console.log("向上滚动");
+        // }
+        // 注销过期的unengine未滚动事件
+        volantis.scroll.unengine.list = []
+        volantis.scroll.engine.start();
+      } else {
+        volantis.scroll.unengine.start();
+      }
+      volantis.requestAnimationFrame(loop)
+    }
+    volantis.requestAnimationFrame(loop)
+  }
+  volantis.scroll.handleScrollEvents()
+  volantis.scroll.ele = null;
+  // 触发页面滚动至目标元素位置
+  volantis.scroll.to = (ele, option = {}) => {
+    if (!ele) return;
+    volantis.scroll.ele = ele;
+    // 默认配置
+    opt = {
+      top: ele.getBoundingClientRect().top + document.documentElement.scrollTop,
+      behavior: "smooth"
+    }
+    // 定义配置
+    if ("top" in option) {
+      opt.top = option.top
+    }
+    if ("behavior" in option) {
+      opt.behavior = option.behavior
+    }
+    if ("addTop" in option) {
+      opt.top += option.addTop
+    }
+    if (!("observerDic" in option)) {
+      option.observerDic = 100
+    }
+    // 滚动
+    window.scrollTo(opt);
+    // 监视器
+    // 监视并矫正元素滚动到指定位置
+    // 用于处理 lazyload 引起的 cls 导致的定位失败问题
+    // option.observer = false
+    if (option.observer) {
+      setTimeout(() => {
+        if (volantis.scroll.ele != ele) {
+          return
+        }
+        volantis.scroll.unengine.push(() => {
+          let me = ele.getBoundingClientRect().top
+          if (!(me >= -option.observerDic && me <= option.observerDic)) {
+            volantis.scroll.to(ele, option)
+          }
+          volantis.scroll.unengine.remove("unengineObserver")
+        }, "unengineObserver")
+      }, 1000)
+    }
+  }
+  /********************** Content Visibility ********************************/
+  // 见 source/css/first.styl 如果遇到任何问题 删除 .post-story 即可
+  // 一个元素被声明 content-visibility 属性后 如果元素不在 viewport 中 浏览器不会计算其后代元素样式和属性 从而节省 Style & Layout 耗时
+  // content-visibility 的副作用: 锚点失效 等等(实验初期 暂不明确), 使用此方法清除样式
+  volantis.cleanContentVisibility = () => {
+    if (document.querySelector(".post-story")) {
+      console.log("cleanContentVisibility");
+      document.querySelectorAll(".post-story").forEach(e => {
+        e.classList.remove("post-story")
+      })
+    }
+  }
+  /******************************************************************************/
+  /******************************************************************************/
+  /******************************************************************************/
+  //图像加载出错时的处理
+  function errorImgAvatar(img) {
+    img.src = "https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg";
+    img.onerror = null;
+  }
+  function errorImgCover(img) {
+    img.src = "https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg";
+    img.onerror = null;
+  }
+  /******************************************************************************/
+</script>
+
+<script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  pdata.commentConfig={};
+  volantis.GLOBAL_CONFIG ={
+    root: '/',
+    debug: "env",
+    default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
+    lastupdate: new Date(1689265286491),
+    cdn: {
+      izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
+      izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
+      fancybox_css: 'https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.min.css',
+      fancybox_js: 'https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/4.0.31/fancybox.umd.min.js'
+    },
+    sidebar: {
+      for_page: ["blogger","category","tagcloud","donate"],
+      for_post: ["toc"],
+      webinfo: {
+        lastupd: {
+          enable: true,
+          friendlyShow: true
+        },
+        runtime: {
+          data: "2020/05/14",
+          unit: "天"
+        }
+      }
+    },
+    plugins: {
+      message: {"enable":true,"icon":{"default":"fa-solid fa-info-circle light-blue","quection":"fa-solid fa-question-circle light-blue"},"time":{"default":5000,"quection":20000},"position":"topRight","transitionIn":"bounceInLeft","transitionOut":"fadeOutRight","titleColor":"var(--color-text)","messageColor":"var(--color-text)","backgroundColor":"var(--color-card)","zindex":2147483647,"copyright":{"enable":true,"title":"知识共享许可协议","message":"请遵守 CC BY-NC-SA 4.0 协议。","icon":"far fa-copyright light-blue"},"aplayer":{"enable":true,"play":"fa-solid fa-play","pause":"fa-solid fa-pause"},"rightmenu":{"enable":true,"notice":true}},
+      
+      
+    },
+    search: {
+      
+
+      
+        dataPath: (("/" || "/").endsWith("/") ? "/" || "/" : "//" || "/") + "content.json",
+      
+
+      
+    },
+    languages: {
+      
+        search: {
+          hits_empty: "找不到您查询的内容：${query}",
+          hits_stats: "找到 ${hits} 条结果，用时 ${time} 毫秒",
+        }
+      
+    }
+  }
+</script>
+  <!-- import head_end begin -->
+  <!-- import head_end end -->
+  <!-- Custom Files headEnd begin-->
+  
+  <!-- Custom Files headEnd end-->
+</head>
+  <body itemscope itemtype="http://schema.org/WebPage">
+    <!-- import body_begin begin-->
+    <!-- import body_begin end-->
+    <!-- Custom Files bodyBegin begin-->
+    
+    <!-- Custom Files bodyBegin end-->
+    <header itemscope itemtype="http://schema.org/WPHeader" id="l_header" class="l_header auto shadow floatable blur " style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone'>
+        <li><a id="s-comment" class="fa-solid fa-comments fa-fw" target="_self" title="comment"></a></li>
+        
+          <li><a id="s-toc" class="s-toc fa-solid fa-list fa-fw" target="_self" title="toc"></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/ 6785a82b3c89305f2c75877686f6fd6f1e91170f.jpg@942w_942h_progressive.webp'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/" title="博客"
+                  
+                  
+                  
+                    active-action="action-home"
+                  >
+                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/categories/" title="分类"
+                  
+                  
+                  
+                    active-action="action-categories"
+                  >
+                  <i class='fa-solid fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/tags/" title="标签"
+                  
+                  
+                  
+                    active-action="action-tags"
+                  >
+                  <i class='fa-solid fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/archives/" title="归档"
+                  
+                  
+                  
+                    active-action="action-archives"
+                  >
+                  <i class='fa-solid fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/about/" title="关于"
+                  
+                  
+                  
+                    active-action="action-about"
+                  >
+                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+          
+				</ul>
+			</div>
+      
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fa-solid fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+      
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fa-solid fa-search fa-fw" target="_self" title="search"></a></li>
+				
+				<li>
+          <a class="s-menu fa-solid fa-bars fa-fw" target="_self" title="menu"></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/" title="博客"
+                  
+                  
+                  
+                    active-action="action-home"
+                  >
+                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/categories/" title="分类"
+                  
+                  
+                  
+                    active-action="action-categories"
+                  >
+                  <i class='fa-solid fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/tags/" title="标签"
+                  
+                  
+                  
+                    active-action="action-tags"
+                  >
+                  <i class='fa-solid fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/archives/" title="归档"
+                  
+                  
+                  
+                    active-action="action-archives"
+                  >
+                  <i class='fa-solid fa-archive fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                href="/about/" title="关于"
+                  
+                  
+                  
+                    active-action="action-about"
+                  >
+                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box header toggle-mode-btn">
+                  <i class='fas fa-moon fa-fw'></i>暗黑模式
+                </a>
+              <li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+
+      <!-- Custom Files header begin -->
+      
+      <!-- Custom Files header end -->
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+      <div class="cover-wrapper post dock" id='half'>
+        
+  <div id="parallax-window"></div>
+
+<div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Thomas</p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              active-action="action-home">
+              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f4f0.svg'><p>博客</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              active-action="action-archives">
+              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f5c3.svg'><p>归档</p>
+            </a>
+          
+            <a target="_blank" rel="noopener" href="https://github.com/thomaszb/"
+              
+              
+              active-action="action-https:githubcomthomaszb">
+              <img src='https://unpkg.com/volantis-static@0.0.1660614606622/media/twemoji/assets/svg/1f9ec.svg'><p>源码</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    
+  
+</div>
+
+      <div id="safearea">
+        <div class="body-wrapper">
+          
+<div id="l_main" class=''>
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://thomaszb.cn/2022/12/20/一些c++好用的三方库/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Thomas's Blog">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="Thomas's Blog">
+    <meta itemprop="description" content="hhh">
+  </span>
+  
+
+
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title" itemprop="name headline">
+        一些c++好用的三方库
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' href="/" rel="nofollow">
+    <img itemprop="image" src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/ QQ图片20200707155645.jpg" class="lazyload" data-srcset="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/ QQ图片20200707155645.jpg" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">hang chen</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  
+  
+  <div class='new-meta-item category'>
+    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
+    <a class="category-link" href="/categories/C-C/">C/C++</a>
+    
+      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+        <a href="/categories/C-C/" itemprop="url"><span itemprop="name">C/C++</span></a>
+      </span>
+    
+  </div>
+  
+
+
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2022-12-20T21:23:19+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2022年12月20日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
+      </div>
+    
+  </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <p><img
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220213631859.png"
+alt="hhh" /><br />
+</p>
+<p align="center">
+c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
+</p>
+<span id="more"></span>
+<h1 id="protobuf">ProtoBuf</h1>
+<h2 id="简介">简介</h2>
+<p>Protobuf提供了一个可扩展的机制，用于序列化结构化的数据，可以方便的在代码中保存数据、读取数据、发送数据。Protobuf类似于JSON，但比JSON更小，更快。Protobuf中可以选择数据的保存方式，通常选择保存成二进制格式，二进制格式相比文本格式更省空间，且读取更快。</p>
+<p>protobuf使用上类似于ROS的msg，通过.proto文件定义类型，在c++中直接通过结构体使用。这样的方式方便于跨语言跨平台的消息传递以及文件使用。</p>
+<h2 id="创建.proto文件">创建.proto文件</h2>
+<h3 id="定义消息类型">定义消息类型</h3>
+<p>首先，直接给出一个简单的<code>.proto</code>文件的示例</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一行为指定使用<code>proto3</code>语法，如果不指定，默认使用<code>proto2</code>。注意：<strong>该文件第一行必须为非空</strong></li>
+<li>该消息一共有3个字段，每个字段都有一个名字和类型，这里还可以注意到后面等于了一个数字，这个数字为字段编号。</li>
+</ul>
+<ol type="1">
+<li><p>字段类型</p>
+<p>字段类型和c语言等差不多，类型名+变量名的方式定义一个变量。</p></li>
+<li><p>字段编号</p>
+<p>消息定义中，每个字段都有一个<strong>唯一编号</strong>。字段编号用于标识消息在二进制格式中的字段（如前面所示，通常选择将消息保存成二进制），且消息类型使用后不应该改变（改后读取以前的pbstream会出问题）。1-15字段编号占用1个字节，16-2047占用两个字节：<strong>频率出现较高的消息元素编号最好不要大于15</strong>。具体规则查看参考文档。</p></li>
+<li><p>字段规则</p>
+<p>可以给消息里的每个字段指定一个规则：</p>
+<ul>
+<li><code>singular</code>：默认规则，可以有0个或1个该字段</li>
+<li><code>optional</code>：和<code>singular</code>一样，不过可以检查该值是否明确设置（编程时发现这才是默认的？）</li>
+<li><code>repeated</code>：该字段可以重复0次或多次</li>
+<li><code>map</code>：如其名</li>
+</ul></li>
+<li><p>多个消息类型</p>
+<p>可以在单个<code>.proto</code>文件中定义多个消息类型：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">SearchResponse</span> &#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>注释：这点和c、c++一样，就不过多介绍</p></li>
+<li><p>保留字段</p>
+<p>主要用于版本更新，通过保留删除的字段保证程序不会出现太大错误：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">message Foo &#123;</span><br><span class="line">  reserved <span class="number">2</span>, <span class="number">15</span>, <span class="number">9</span> to <span class="number">11</span>;</span><br><span class="line">  reserved <span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="默认值">默认值</h3>
+<p>解析消息后，如果读取的编码消息不含特定元素，则会返回默认值，不同类型默认值有所区别：</p>
+<ul>
+<li>string：空字符串</li>
+<li>bytes：空字节</li>
+<li>bool：false</li>
+<li>数值：0</li>
+<li>枚举：默认第一个</li>
+<li>message：取决于语言，c/c++中</li>
+</ul>
+<h3 id="枚举">枚举</h3>
+<p>首先，来看一个枚举类型使用的举例：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum </span><span class="title class_">Corpus</span> &#123;</span><br><span class="line">  CORPUS_UNSPECIFIED = <span class="number">0</span>;</span><br><span class="line">  CORPUS_UNIVERSAL = <span class="number">1</span>;</span><br><span class="line">  CORPUS_WEB = <span class="number">2</span>;</span><br><span class="line">  CORPUS_IMAGES = <span class="number">3</span>;</span><br><span class="line">  CORPUS_LOCAL = <span class="number">4</span>;</span><br><span class="line">  CORPUS_NEWS = <span class="number">5</span>;</span><br><span class="line">  CORPUS_PRODUCTS = <span class="number">6</span>;</span><br><span class="line">  CORPUS_VIDEO = <span class="number">7</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">message </span><span class="title class_">SearchRequest</span> &#123;</span><br><span class="line">  <span class="type">string</span> query = <span class="number">1</span>;</span><br><span class="line">  <span class="type">int32</span> page_number = <span class="number">2</span>;</span><br><span class="line">  <span class="type">int32</span> result_per_page = <span class="number">3</span>;</span><br><span class="line">  Corpus corpus = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>枚举类型使用和c语言中枚举类型差不多，这里要注意的是，<strong>第一个元素必须映射到0</strong>，即必须有0，0必须是第一个。</p>
+<p>同时，还可以对枚举类型赋别名，需要加上选项<code>option allow_alias = true;</code>，如下所示</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum </span><span class="title class_">EnumAllowingAlias</span> &#123;</span><br><span class="line">  <span class="keyword">option</span> allow_alias = <span class="literal">true</span>;</span><br><span class="line">  EAA_UNSPECIFIED = <span class="number">0</span>;</span><br><span class="line">  EAA_STARTED = <span class="number">1</span>;</span><br><span class="line">  EAA_RUNNING = <span class="number">1</span>;</span><br><span class="line">  EAA_FINISHED = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="导入">导入</h3>
+<p>有时候，想要将消息分成多个问题，且相互之间可能要使用，就需要用到导入。首先，给出示例：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;myproject/other_protos.proto&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">SearchResponse</span> &#123;</span><br><span class="line">  <span class="keyword">repeated</span> Result results = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上所示，使用<code>import</code>可以导入其他文件定义的message，然后直接使用。</p>
+<p>如果要嵌套导入（A导入B，C导入A，想在C中直接使用B），需要在import是加上public：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// old.proto</span></span><br><span class="line"><span class="keyword">import</span> public <span class="string">&quot;new.proto&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;other.proto&quot;</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// client.proto</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;old.proto&quot;</span>;</span><br><span class="line"><span class="comment">// 这样可以使用old.proto和new.proto，但不能使用other.proto</span></span><br></pre></td></tr></table></figure>
+<h3 id="嵌套">嵌套</h3>
+<p>有时候，想要在消息里面定义和使用消息类型（和c++类一样），这时候就需要用到嵌套，首先看一下举例：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SearchResponse</span> &#123;</span><br><span class="line">  <span class="keyword">message </span><span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="type">string</span> url = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> title = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">repeated</span> <span class="type">string</span> snippets = <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">repeated</span> Result results = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要在父消息以外的地方使用此消息，引用方法为<code>Parent.Type</code>：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">SomeOtherMessage</span> &#123;</span><br><span class="line">  SearchResponse.Result result = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更新消息类型">更新消息类型</h3>
+<p>想要在不更改旧代码的条件下创建添加或移除字段，需要符合一下规则：</p>
+<ul>
+<li>不能修改现有字段编号</li>
+<li>新消息可以用旧代码解析，旧消息也可以用新代码解析，但解析时需要做好默认值判断</li>
+<li>移除时最好保留该字段（用reserve），防止未来不小心使用</li>
+<li><code>int32</code>、<code>uint32</code>、<code>int64</code>、<code>uint64</code>
+和 <code>bool</code>
+都兼容，可以将字段从一种类型更改为另一种类型，而不会破坏向前或向后兼容性（读取和存储时自动转）。</li>
+<li>还有很多，具体查看官方文档...</li>
+</ul>
+<h3 id="单个类型">单个类型</h3>
+<p>可以查看<a
+target="_blank" rel="noopener" href="https://developers.google.com/protocol-buffers/docs/proto3">官方文档</a></p>
+<ol type="1">
+<li>可以使用<code>package</code>指定命名空间（c++中）</li>
+</ol>
+<h2 id="使用.proto文件生成对应文件">使用.proto文件生成对应文件</h2>
+<p>首先需要安装proto文件编译器：https://developers.google.com/protocol-buffers/docs/downloads</p>
+<p>然后使用命令行编译，编译命令如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protoc -I=<span class="variable">$SRC_DIR</span> --cpp_out=<span class="variable">$DST_DIR</span> <span class="variable">$SRC_DIR</span>/addressbook.proto</span><br></pre></td></tr></table></figure>
+<p>其中<code>SRC_DIR</code>为源文件的目录（可有可无），<code>DST_DIR</code>为生成的目标文件目录，后面跟要编译的.proto文件。最后编译出来一个<code>.h</code>和一个<code>.cc</code>文件。</p>
+<p><img
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220164715737.png"
+alt="image-20221220164715737" /><br />
+</p>
+<h2 id="使用">使用</h2>
+<p>使用前注意编译，由于使用的<code>proto3</code>，这里可以使用以下方法在cmake中查找和添加对应的include和link选项：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(Protobuf <span class="number">3.0</span>.<span class="number">0</span> REQUIRED)</span><br><span class="line"><span class="keyword">include_directories</span>(<span class="variable">$&#123;Protobuf_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_link_libraries</span>(write <span class="variable">$&#123;Protobuf_LIBRARY&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>然后是api的使用，大部分api在生成的.h文件里面可以找到，以及官方文档中可以找到，这里我给出官方的写入和读取示例。</p>
+<p>首先是写入：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;addressbook.pb.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据输入填充person消息</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PromptForAddress</span><span class="params">(tutorial::Person* person)</span> </span>&#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Enter person ID number: &quot;</span>;</span><br><span class="line">  <span class="type">int</span> id;</span><br><span class="line">  cin &gt;&gt; id;</span><br><span class="line">  person-&gt;<span class="built_in">set_id</span>(id);</span><br><span class="line">  cin.<span class="built_in">ignore</span>(<span class="number">256</span>, <span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Enter name: &quot;</span>;</span><br><span class="line">  <span class="built_in">getline</span>(cin, *person-&gt;<span class="built_in">mutable_name</span>());</span><br><span class="line"></span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Enter email address (blank for none): &quot;</span>;</span><br><span class="line">  string email;</span><br><span class="line">  <span class="built_in">getline</span>(cin, email);</span><br><span class="line">  <span class="keyword">if</span> (!email.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    person-&gt;<span class="built_in">set_email</span>(email);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Enter a phone number (or leave blank to finish): &quot;</span>;</span><br><span class="line">    string number;</span><br><span class="line">    <span class="built_in">getline</span>(cin, number);</span><br><span class="line">    <span class="keyword">if</span> (number.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tutorial::Person::PhoneNumber* phone_number = person-&gt;<span class="built_in">add_phones</span>();</span><br><span class="line">    phone_number-&gt;<span class="built_in">set_number</span>(number);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Is this a mobile, home, or work phone? &quot;</span>;</span><br><span class="line">    string type;</span><br><span class="line">    <span class="built_in">getline</span>(cin, type);</span><br><span class="line">    <span class="keyword">if</span> (type == <span class="string">&quot;mobile&quot;</span>) &#123;</span><br><span class="line">      phone_number-&gt;<span class="built_in">set_type</span>(tutorial::Person::MOBILE);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == <span class="string">&quot;home&quot;</span>) &#123;</span><br><span class="line">      phone_number-&gt;<span class="built_in">set_type</span>(tutorial::Person::HOME);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == <span class="string">&quot;work&quot;</span>) &#123;</span><br><span class="line">      phone_number-&gt;<span class="built_in">set_type</span>(tutorial::Person::WORK);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;Unknown phone type.  Using default.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主函数：根据用户输入的文件，打开或新建，然后写入一个新的person</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 验证版本</span></span><br><span class="line">  GOOGLE_PROTOBUF_VERIFY_VERSION;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Usage:  &quot;</span> &lt;&lt; argv[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; ADDRESS_BOOK_FILE&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 使用生成的.h文件，创建对应的类 */</span></span><br><span class="line">  tutorial::AddressBook address_book;</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 读取文件</span></span><br><span class="line">    <span class="function">fstream <span class="title">input</span><span class="params">(argv[<span class="number">1</span>], ios::in | ios::binary)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (!input) &#123;</span><br><span class="line">      cout &lt;&lt; argv[<span class="number">1</span>] &lt;&lt; <span class="string">&quot;: File not found.  Creating a new file.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!address_book.<span class="built_in">ParseFromIstream</span>(&amp;input)) &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;Failed to parse address book.&quot;</span> &lt;&lt; endl;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 添加一个person</span></span><br><span class="line">  <span class="built_in">PromptForAddress</span>(address_book.<span class="built_in">add_people</span>());</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 写入文件</span></span><br><span class="line">    <span class="function">fstream <span class="title">output</span><span class="params">(argv[<span class="number">1</span>], ios::out | ios::trunc | ios::binary)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (!address_book.<span class="built_in">SerializeToOstream</span>(&amp;output)) &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;Failed to write address book.&quot;</span> &lt;&lt; endl;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可选：删除所有的由libprotobuf分配的全局对象</span></span><br><span class="line">  google::protobuf::<span class="built_in">ShutdownProtobufLibrary</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是读取：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;addressbook.pb.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Iterates though all people in the AddressBook and prints info about them.</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ListPeople</span><span class="params">(<span class="type">const</span> tutorial::AddressBook&amp; address_book)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; address_book.<span class="built_in">people_size</span>(); i++) &#123;</span><br><span class="line">    <span class="type">const</span> tutorial::Person&amp; person = address_book.<span class="built_in">people</span>(i);</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Person ID: &quot;</span> &lt;&lt; person.<span class="built_in">id</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;  Name: &quot;</span> &lt;&lt; person.<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="comment">/* 判断是否为空字符串（默认值），从而判断是否有email */</span></span><br><span class="line">    <span class="keyword">if</span> (person.<span class="built_in">email</span>() != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;  E-mail address: &quot;</span> &lt;&lt; person.<span class="built_in">email</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; person.<span class="built_in">phones_size</span>(); j++) &#123;</span><br><span class="line">      <span class="type">const</span> tutorial::Person::PhoneNumber&amp; phone_number = person.<span class="built_in">phones</span>(j);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">switch</span> (phone_number.<span class="built_in">type</span>()) &#123;</span><br><span class="line">        <span class="keyword">case</span> tutorial::Person::MOBILE:</span><br><span class="line">          cout &lt;&lt; <span class="string">&quot;  Mobile phone #: &quot;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> tutorial::Person::HOME:</span><br><span class="line">          cout &lt;&lt; <span class="string">&quot;  Home phone #: &quot;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> tutorial::Person::WORK:</span><br><span class="line">          cout &lt;&lt; <span class="string">&quot;  Work phone #: &quot;</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      cout &lt;&lt; phone_number.<span class="built_in">number</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主函数：读取文件，列出所有people</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 验证版本</span></span><br><span class="line">  GOOGLE_PROTOBUF_VERIFY_VERSION;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (argc != <span class="number">2</span>) &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Usage:  &quot;</span> &lt;&lt; argv[<span class="number">0</span>] &lt;&lt; <span class="string">&quot; ADDRESS_BOOK_FILE&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  tutorial::AddressBook address_book;</span><br><span class="line"></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 读取文件</span></span><br><span class="line">    <span class="function">fstream <span class="title">input</span><span class="params">(argv[<span class="number">1</span>], ios::in | ios::binary)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (!address_book.<span class="built_in">ParseFromIstream</span>(&amp;input)) &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;Failed to parse address book.&quot;</span> &lt;&lt; endl;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">ListPeople</span>(address_book);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可选：删除所有的由libprotobuf分配的全局对象</span></span><br><span class="line">  google::protobuf::<span class="built_in">ShutdownProtobufLibrary</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我这里再记录几个使用过程中总结的api</p>
+<h3 id="set_xxx">set_xxx</h3>
+<p>直接设置xxx的值，一般用于int等常见类型的值写入</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tutorial::Person person; </span><br><span class="line">person.<span class="built_in">set_id</span>(id);</span><br></pre></td></tr></table></figure>
+<h3 id="add_xxx">add_xxx</h3>
+<p>一般用于reapeat的变量，返回该变量的指针，然后再设置值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span>* <span class="type">const</span> trajectory_proto = proto.<span class="built_in">add_trajectory</span>();</span><br><span class="line">trajectory_proto-&gt;<span class="built_in">set_trajectory_id</span>(trajectory_id);</span><br></pre></td></tr></table></figure>
+<h3 id="mutable_xxx">mutable_xxx</h3>
+<p>返回变量的指针，可以直接对其赋值实现修改，一般用于嵌套的结构的修改</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*submap_proto-&gt;<span class="built_in">mutable_pose</span>() =</span><br><span class="line">    transform::<span class="built_in">ToProto</span>(submap_id_data.data.pose);</span><br></pre></td></tr></table></figure>
+<h1 id="pcl库">PCL库</h1>
+<p>PCL里实现了大量的处理点云相关的功能，实现了大量点云相关的通用算法和高效数据结构，涉及到点云获取、滤波、分割、配准、检索、特征提取、识别、追踪、曲面重建、可视化等。</p>
+<h2 id="cmakelists">CMakeLists</h2>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(PCL REQUIRED QUIET)</span><br></pre></td></tr></table></figure>
+<h2 id="基本使用">基本使用</h2>
+<h3 id="将激光消息转换为pcl格式">将激光消息转换为PCL格式</h3>
+<p>一般SLAM中，激光的格式为<code>sensor_msgs::LaserScan</code>，使用PCL库进行处理前，需要将格式转换为PCL库中表示激光的格式，这里先直接给出转换代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pcl::PointCloud&lt;pcl::PointXYZ&gt; <span class="title">ConvertScantoPointCloud</span><span class="params">(<span class="type">const</span> sensor_msgs::LaserScan::ConstPtr &amp;scan_msg)</span> </span>&#123;</span><br><span class="line">  pcl::PointCloud&lt;pcl::PointXYZ&gt; cloud_points;</span><br><span class="line">  pcl::PointXYZ point;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; scan_msg-&gt;ranges.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">    <span class="type">float</span> range = scan_msg-&gt;ranges[i];</span><br><span class="line">    <span class="keyword">if</span> (!std::<span class="built_in">isfinite</span>(range)) &#123;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (range &gt; scan_msg-&gt;range_min &amp;&amp; range &lt; scan_msg-&gt;range_max) &#123;</span><br><span class="line">      <span class="type">float</span> angle = scan_msg-&gt;angle_min + i * scan_msg-&gt;angle_increment;</span><br><span class="line">      point.x = range * <span class="built_in">cos</span>(angle);</span><br><span class="line">      point.y = range * <span class="built_in">sin</span>(angle);</span><br><span class="line">      point.z = <span class="number">0.0</span>;</span><br><span class="line">      cloud_points.<span class="built_in">push_back</span>(point);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cloud_points;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述代码就可以得到点云，上述的点云是没有位姿的，相当于中心在原点的激光。其中，定义点云的方式为<code>pcl::PointCloud&lt;pcl::PointXYZ&gt;</code>，其中<code>pcl::PointXYZ</code>表示点的格式。</p>
+<h3 id="对点云进行坐标变换">对点云进行坐标变换</h3>
+<p>将激光转换为点云时，丢失了点云的坐标信息，要将点云调整到其他地方可以用以下方式实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对点云进行初始化旋转，back_link to front_link</span></span><br><span class="line">pcl::<span class="built_in">transformPointCloud</span>(*main_scan_pointcloud_,</span><br><span class="line">                          *main_scan_pointcloud_init_transformed_,</span><br><span class="line">                          transform_martix_);</span><br></pre></td></tr></table></figure>
+<p>这里要注意，不管是坐标变换还是进行icp配准，得到的结果都是相对于圆心的，而不是相对于变换前的中心。这里在使用时需要注意。</p>
+<h3 id="发布点云">发布点云</h3>
+<p>发布点云时，一般会将其转换为ros中的消息格式，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sensor_msgs::PointCloud2 cloud_msg;</span><br><span class="line">pcl::<span class="built_in">toROSMsg</span>(*in_cloud_to_publish_ptr, cloud_msg);</span><br><span class="line">cloud_msg.header.frame_id = pointcloud_frame_str_;</span><br><span class="line">final_point_cloud_pub_.<span class="built_in">publish</span>(cloud_msg);</span><br></pre></td></tr></table></figure>
+<h2 id="注意">注意</h2>
+<ol type="1">
+<li><p>icp使用时需要注意，source和target的定义和ROS中tf有点不一样</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">icp.<span class="built_in">setInputSource</span> (B);</span><br><span class="line">icp.<span class="built_in">setInputTarget</span> (A);</span><br><span class="line">icp.<span class="built_in">align</span> (*C);</span><br></pre></td></tr></table></figure>
+<p>上述代码求出来的变换矩阵是<span
+class="math inline">\(_B^AT\)</span></p></li>
+</ol>
+<h1 id="csm库">CSM库</h1>
+<p>这个主要用来做PL-ICP配准的。</p>
+<h2 id="基本使用-1">基本使用</h2>
+<h3 id="点云转换">点云转换</h3>
+<p>CSM库中，使用的点云格式为LDP，将ROS中的LaserScan转换为LDP代码如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MultiLidarCalibration::LaserScanToLDP</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> sensor_msgs::LaserScan::ConstPtr &amp;scan_msg, LDP &amp;ldp)</span> </span>&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> n = scan_msg-&gt;ranges.<span class="built_in">size</span>();</span><br><span class="line">  <span class="comment">// 调用csm里的函数进行申请空间</span></span><br><span class="line">  <span class="keyword">if</span> (ldp != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;maybe memory bug&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ldp = <span class="built_in">ld_alloc_new</span>(n);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="comment">// calculate position in laser frame</span></span><br><span class="line">    <span class="type">double</span> r = scan_msg-&gt;ranges[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (r &gt; scan_msg-&gt;range_min &amp;&amp; r &lt; scan_msg-&gt;range_max) &#123;</span><br><span class="line">      <span class="comment">// 填充雷达数据</span></span><br><span class="line">      ldp-&gt;valid[i] = <span class="number">1</span>;</span><br><span class="line">      ldp-&gt;readings[i] = r;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      ldp-&gt;valid[i] = <span class="number">0</span>;</span><br><span class="line">      ldp-&gt;readings[i] = <span class="number">-1</span>;  <span class="comment">// for invalid range</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ldp-&gt;theta[i] = scan_msg-&gt;angle_min + i * scan_msg-&gt;angle_increment;</span><br><span class="line">    ldp-&gt;cluster[i] = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;min_theta = ldp-&gt;theta[<span class="number">0</span>];</span><br><span class="line">  ldp-&gt;max_theta = ldp-&gt;theta[n - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">  ldp-&gt;odometry[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;odometry[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;odometry[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;estimate[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;estimate[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;estimate[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;true_pose[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;true_pose[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;true_pose[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我在项目中，还需要先对点云做坐标变换，再用LDP配准，我这里将点云转换为PCL格式，然后进行坐标变换，再转换为LDP进行配准，PCL转LDP代码如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">MultiLidarCalibration::PclToLDP</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">const</span> pcl::PointCloud&lt;pcl::PointXYZ&gt; &amp;pcl_src, LDP &amp;ldp)</span> </span>&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">int</span> n = pcl_src.<span class="built_in">size</span>();</span><br><span class="line">  std::map&lt;<span class="type">float</span>, <span class="type">float</span>&gt; laser_scan;</span><br><span class="line">  <span class="comment">// 调用csm里的函数进行申请空间</span></span><br><span class="line">  ldp = <span class="built_in">ld_alloc_new</span>(n);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 对激光按theta排序 */</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    laser_scan.<span class="built_in">emplace</span>(<span class="built_in">GetTheta</span>(pcl_src[i]), <span class="built_in">GetRange</span>(pcl_src[i]));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span> &amp;each_ray : laser_scan) &#123;</span><br><span class="line">    <span class="comment">// 填充雷达数据</span></span><br><span class="line">    ldp-&gt;valid[i] = <span class="number">1</span>;</span><br><span class="line">    ldp-&gt;readings[i] = each_ray.second;</span><br><span class="line"></span><br><span class="line">    ldp-&gt;theta[i] = each_ray.first;</span><br><span class="line">    ldp-&gt;cluster[i] = <span class="number">-1</span>;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;min_theta = ldp-&gt;theta[<span class="number">0</span>];</span><br><span class="line">  ldp-&gt;max_theta = ldp-&gt;theta[n - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">  ldp-&gt;odometry[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;odometry[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;odometry[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;estimate[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;estimate[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;estimate[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">  ldp-&gt;true_pose[<span class="number">0</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;true_pose[<span class="number">1</span>] = <span class="number">0.0</span>;</span><br><span class="line">  ldp-&gt;true_pose[<span class="number">2</span>] = <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里还使用了两个小函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">float</span> <span class="title">GetRange</span><span class="params">(<span class="type">const</span> pcl::PointXYZ &amp;point)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">sqrt</span>(point.x * point.x + point.y * point.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">float</span> <span class="title">GetTheta</span><span class="params">(<span class="type">const</span> pcl::PointXYZ &amp;point)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">atan2</span>(point.y, point.x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意事项">注意事项</h2>
+<h3 id="遇到的bug">遇到的bug</h3>
+<p>做PL-ICP时遇到这个bug</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">failed: after trimming, only 0 correspondences.</span><br></pre></td></tr></table></figure>
+<p>这是由于忘了设置激光范围导致的，如果不设置激光范围，可能导致所有激光被过滤掉。可以在第一次接收到激光数据时设置：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!is_reading_range_init_) &#123;</span><br><span class="line">  is_reading_range_init_ = <span class="literal">true</span>;</span><br><span class="line">  <span class="comment">/* 这个非常关键 */</span></span><br><span class="line">  input_.min_reading = in_main_scan_msg-&gt;range_min;</span><br><span class="line">  input_.max_reading = in_main_scan_msg-&gt;range_max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="gtsam">gtsam</h1>
+<h2 id="简介-1">简介</h2>
+<p>gtsam是一个因子图优化库，里面实现了不少功能，本来打算另开一篇博客，但目前只使用他的基本功能和边缘化功能，先记录再这里，以后有机会再独立出去。</p>
+<p>gtsam优化的原理很简单，基本原理就是求因子图的最大后验分布，在概率图模型中，经常假设节点服从高斯分布，所以最大后验分布很容易证明就是最小二乘解，下面我通过举例的方式简单证明一下。</p>
+<h3 id="gtsam优化原理">gtsam优化原理</h3>
+<p>首先，在SLAM中常用的因子图是基于贝叶斯网络生成的，如下贝叶斯网络：</p>
+<p><img
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182645405.png"
+alt="image-20230417182645405" /><br />
+</p>
+<p>很显然这里<span class="math inline">\(z\)</span>和<span
+class="math inline">\(x\)</span>的关系就是观测变量和状态变量的关系，<span
+class="math inline">\(x_1\)</span>和<span
+class="math inline">\(x_2\)</span>之间的关系就是里程计的关系： <span
+class="math display">\[
+z_i=f(x_i) \\
+x_{i+1}=f(x_i)
+\]</span> 则对于单个节点，比如<span
+class="math inline">\(z_1\)</span>、<span
+class="math inline">\(x_2\)</span>有分布： <span class="math display">\[
+z_1=f_1(x_1)+v_1\\
+x_2=f_2(x_1)+v_2
+\]</span> 其中，<span class="math inline">\(v_1\sim
+N(0,\sigma^2)\)</span>，根据上述表达式可以很容易求出<span
+class="math inline">\(p(z_1|x_1)\)</span>或<span
+class="math inline">\(p(x_2|x_1)\)</span>的分布，比如<span
+class="math inline">\(p(z_1|x_1)\)</span>的分布 <span
+class="math display">\[
+p(z_1|x_1)\propto
+exp\left\{-\frac{1}{2}||f(x_1)-z_1||^2_{\Sigma_k}\right\}
+\]</span></p>
+<p>将其转换为因子图，这两者如何转换成因子图我就不介绍了，其实就是另一个表达，下图中每一个节点就是一个因子。</p>
+<p><img
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182912063.png"
+alt="image-20230417182912063" /><br />
+</p>
+<p>则是因子图的概率分布可以写成： <span class="math display">\[
+p(x)=\prod_{i}L(x_i)
+\]</span> 其中<span
+class="math inline">\(L(x_i)\)</span>为因子节点，很显然有关系<span
+class="math inline">\(L(x_1,x_2)\propto p(x_2|x_1)\)</span>。对其求MAP：
+<span class="math display">\[
+\arg\max_x{\prod_i{L(x_i)}}\propto{\prod_i{exp\left\{-\frac{1}{2}||f(x_1)-z_1||^2_{\Sigma_k}\right\}}}
+\]</span> 然后其对数似然函数为（这里每一项其实需要根据实际情况更改）：
+<span class="math display">\[
+\arg\min_x{\frac{1}{2}\sum_i{||f_i(x_i)-z_i||^2_{\Sigma_i}}}
+\]</span> 很显然，可以看出其MAP和优化的最小二乘是等价的。</p>
+<h3 id="gtsam如何得到后验概率分布">gtsam如何得到后验概率分布</h3>
+<p>优化的原理貌似很简单，但是对于优化后的协方差等是如何求解的还不清楚，后面再详细看。这里用举例的方式介绍一种由因子图计算信息矩阵的方法。</p>
+<p>首先，因子图模型如下：</p>
+<p>其概率分布可以写做：</p>
+<p>将其化简，写成多元高斯分布矩阵形式：</p>
+<p>可以得到其中xx就是信息矩阵</p>
+<blockquote>
+<p><strong>说明</strong>：这里提到的方法应该不是gtsam内部的实现，gtsam内部的实现目前还没看，这里介绍的只是前段时间看到的一个方法</p>
+</blockquote>
+<p>了解了gtsam的基本原理后，接下来了解一下gtsam的使用</p>
+<h2 id="基本使用-2">基本使用</h2>
+<h2 id="使用gtsam边缘化">使用gtsam边缘化</h2>
+<h1 id="参考文献">参考文献</h1>
+<p>Protobuf：</p>
+<p>https://developers.google.com/protocol-buffers/docs/proto3</p>
+<p>Pcl：</p>
+<p>https://zhuanlan.zhihu.com/p/334374878</p>
+<p>https://pointclouds.org/</p>
+
+  </div>
+  
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
+      
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
+      
+        <div class='donate'>
+          <div class='imgs'>
+            
+              <img src='https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/ wechatpay.png'>
+            
+              <img src='https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/ alipay.png'>
+            
+          </div>
+        </div>
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-07-14T00:15:16+08:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2023年7月14日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/&title=一些c++好用的三方库 - Thomas's Blog&summary=
+
+
+c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/&title=一些c++好用的三方库 - Thomas's Blog&summary=
+
+
+c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/&title=一些c++好用的三方库 - Thomas's Blog&summary=
+
+
+c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
+"
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2023/05/09/FOC%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/'>
+          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>FOC从入门到入土</p>
+          <p class='content'>
+
+
+菜鸡的FOC踩坑记录/(ㄒoㄒ)/~~
+
+
+前言
+FOC简介
+FOC即为矢量控制器，具体的介绍可以参考稚晖君的知乎博客【自制FOC驱动器】深入浅出讲解FOC算法与SVPWM技术
+- 知乎
+...</p>
+        </a>
+      
+      
+        <a class='next' href='/2022/09/21/verilog%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%92%8Cvivado%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/'>
+          <p class='title'>verilog基本语法和vivado基本使用<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>
+记录一下上课和平时积累的
+
+
+语法
+verilog的语法相比其他语言比较少，用于描述硬件，要实现功能主要还是模块之间的组合
+基本结构和语句要求
+每个.v文件就是一个module，代码写再mod...</p>
+        </a>
+      
+    </div>
+  
+  <!-- 文章推荐 -->
+  
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
+  
+
+
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
+    
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
+  
+
+  
+    
+    
+      
+    
+  
+
+
+<div class="widget-sticky">
+
+  
+  
+
+
+<section class="widget toc-wrapper desktop mobile" id="toc-div" >
+  
+  <header>
+    
+      <i class="fa-solid fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+  <div class='content'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#protobuf"><span class="toc-text">ProtoBuf</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA.proto%E6%96%87%E4%BB%B6"><span class="toc-text">创建.proto文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="toc-text">定义消息类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-text">导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97"><span class="toc-text">嵌套</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="toc-text">更新消息类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%AA%E7%B1%BB%E5%9E%8B"><span class="toc-text">单个类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8.proto%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90%E5%AF%B9%E5%BA%94%E6%96%87%E4%BB%B6"><span class="toc-text">使用.proto文件生成对应文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set_xxx"><span class="toc-text">set_xxx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add_xxx"><span class="toc-text">add_xxx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mutable_xxx"><span class="toc-text">mutable_xxx</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pcl%E5%BA%93"><span class="toc-text">PCL库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmakelists"><span class="toc-text">CMakeLists</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-text">基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%BF%80%E5%85%89%E6%B6%88%E6%81%AF%E8%BD%AC%E6%8D%A2%E4%B8%BApcl%E6%A0%BC%E5%BC%8F"><span class="toc-text">将激光消息转换为PCL格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%82%B9%E4%BA%91%E8%BF%9B%E8%A1%8C%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="toc-text">对点云进行坐标变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E7%82%B9%E4%BA%91"><span class="toc-text">发布点云</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#csm%E5%BA%93"><span class="toc-text">CSM库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-1"><span class="toc-text">基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E4%BA%91%E8%BD%AC%E6%8D%A2"><span class="toc-text">点云转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84bug"><span class="toc-text">遇到的bug</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gtsam"><span class="toc-text">gtsam</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gtsam%E4%BC%98%E5%8C%96%E5%8E%9F%E7%90%86"><span class="toc-text">gtsam优化原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gtsam%E5%A6%82%E4%BD%95%E5%BE%97%E5%88%B0%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83"><span class="toc-text">gtsam如何得到后验概率分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-2"><span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8gtsam%E8%BE%B9%E7%BC%98%E5%8C%96"><span class="toc-text">使用gtsam边缘化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-text">参考文献</span></a></li></ol>
+  </div>
+</section>
+
+  
+
+</div>
+
+  <!-- Custom Files side begin -->
+  
+  <!-- Custom Files side end -->
+</aside>
+
+
+
+        </div>
+        
+  
+  <footer class="footer clearfix"  itemscope itemtype="http://schema.org/WPFooter">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © since 2017-2023</a></p>
+
+        </div>
+      
+    
+    <!-- Custom Files footer begin-->
+    
+    <!-- Custom Files footer end-->
+  </footer>
+
+
+        <a id="s-top" class="fa-solid fa-arrow-up fa-fw" title="top"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+  /******************** volantis.dom ********************************/
+  // 页面选择器 将dom对象缓存起来 see: /source/js/app.js etc.
+  volantis.dom.bodyAnchor = volantis.dom.$(document.getElementById("safearea")); // 页面主体
+  volantis.dom.topBtn = volantis.dom.$(document.getElementById('s-top')); // 向上
+  volantis.dom.wrapper = volantis.dom.$(document.getElementById('wrapper')); // 整个导航栏
+  volantis.dom.coverAnchor = volantis.dom.$(document.querySelector('#l_cover .cover-wrapper')); // 1个
+  volantis.dom.switcher = volantis.dom.$(document.querySelector('#l_header .switcher .s-search')); // 搜索按钮   移动端 1个
+  volantis.dom.header = volantis.dom.$(document.getElementById('l_header')); // 移动端导航栏
+  volantis.dom.search = volantis.dom.$(document.querySelector('#l_header .m_search')); // 搜索框 桌面端 移动端 1个
+  volantis.dom.mPhoneList = volantis.dom.$(document.querySelectorAll('#l_header .m-phone .list-v')); //  手机端 子菜单 多个
+</script>
+
+<script>
+  
+  volantis.css("https://cdn.bootcdn.net/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+  
+  
+  
+</script>
+
+<!-- required -->
+
+
+<!-- internal -->
+
+<script src="/js/app.js"></script>
+
+
+
+
+<!-- rightmenu要在darkmode之前（ToggleButton） darkmode要在comments之前（volantis.dark.push）-->
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "color-scheme";
+const rootElementDarkModeAttributeName = "color-scheme";
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+  getCustomDarkMode();
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+/**
+ * get target mode
+ */
+ const getCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  if(currentSetting=="dark"){
+    volantis.dark.mode="light";
+  }else{
+    volantis.dark.mode="dark";
+  }
+  // console.log(volantis.dark.mode)
+};
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+/**
+ * 暗黑模式触发器
+ */
+volantis.dark.toggle=()=>{
+  const mode = toggleCustomDarkMode();
+  applyCustomDarkModeSettings(mode);
+  // 使用 volantis.dark.push 方法传入volantis.dark.toggle回调函数 参见layout/_partial/scripts/global.ejs
+  volantis.dark.method.toggle.start();
+}
+/**
+ * bind event for toggle button
+ */
+
+function bindToggleButton() {
+  var btn= document.querySelectorAll("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn")
+  btn.forEach(function (e) {
+    volantis.dom.$(e).on('click',volantis.dark.toggle);
+  })
+}
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", ()=>{
+  volantis.requestAnimationFrame(bindToggleButton)
+});
+
+const darkModelListeners={
+  dark:(mediaQueryList )=>{
+    if(mediaQueryList.matches){
+      volantis.dark.mode = "dark";
+    }
+    volantis.dark.method.toggle.start();
+  },
+  light:(mediaQueryList)=>{
+    if(mediaQueryList.matches){
+      volantis.dark.mode = "light";
+    }
+    volantis.dark.method.toggle.start();
+  }
+}
+window.matchMedia('(prefers-color-scheme: dark)').addListener(darkModelListeners.dark)
+window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListeners.light)
+</script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    
+      const sites_api = document.getElementById('sites-api');
+      if (sites_api != undefined && typeof SitesJS === 'undefined') {
+        volantis.js("/js/plugins/tags/sites.js")
+      }
+    
+    
+      const friends_api = document.getElementById('friends-api');
+      if (friends_api != undefined && typeof FriendsJS === 'undefined') {
+        volantis.js("/js/plugins/tags/friends.js")
+      }
+    
+    
+      const contributors_api = document.getElementById('contributors-api');
+      if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
+        volantis.js("/js/plugins/tags/contributors.js")
+      }
+    
+  };
+  loadIssuesJS()
+</script>
+
+
+
+
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.1.0/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: ["#"],
+	maxRPS: 6,
+	hoverDelay: 0
+  };
+</script>
+<script defer src="https://unpkg.com/volantis-static@0.0.1660614606622/libs/flying-pages/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+      <script>
+  volantis.layoutHelper("comments",`<div id="giscus_container"></div>`)
+
+  volantis.giscus = {};
+
+  function check_giscus() {
+    if (volantis.dark.mode === "dark") {
+      volantis.giscus.Theme = 'dark';
+    } else {
+      volantis.giscus.Theme = 'light';
+    }
+
+    return document.getElementById("giscus_container");
+  }
+
+  function p_giscus() {
+    const HEAD = check_giscus();
+    if (!HEAD) return;
+    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"},"repo":"thomaszb/myrepo","repo-id":"R_kgDOIYXyQQ","category":"General","category-id":"DIC_kwDOIYXyQc4CSZjZ","mapping":"pathname","reactions-enabled":"1","emit-metadata":"0","lang":"zh-CN"},pdata.commentConfig)
+    const script = document.createElement('script');
+    script.setAttribute('src', 'https://giscus.app/client.js');
+    Object.keys(cfg).forEach(k=>{
+      if (k != "theme") {
+        script.setAttribute('data-'+k, cfg[k]);
+      }
+    })
+    script.setAttribute('data-theme', volantis.giscus.Theme);
+    script.setAttribute('crossorigin', "anonymous");
+    HEAD.appendChild(script);
+  }
+
+  function dark_giscus() {
+    const HEAD = check_giscus();
+    if (!HEAD) return;
+
+    const message = {
+      setConfig: {
+        theme: volantis.giscus.Theme
+      }
+    };
+    const giscusIframe = document.querySelector('iframe.giscus-frame');
+    giscusIframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+  }
+  p_giscus();
+  volantis.dark.push(dark_giscus);
+</script>
+
+    
+
+
+
+
+
+<!-- optional -->
+
+  <script>
+  async function loadSearchScript() {
+    
+        
+    
+    return volantis.js("/js/search/hexo.js");
+  }
+
+  function loadSearchService() {
+    loadSearchScript();
+    document.querySelectorAll(".input.u-search-input").forEach((e) => {
+      e.removeEventListener("focus", loadSearchService, false);
+    });
+
+    document.querySelectorAll(".u-search-form").forEach((e) => {
+      e.addEventListener("submit", (event) => {
+        event.preventDefault();
+      }, false);
+    });
+  }
+
+  // 打开并搜索 字符串 s
+  function OpenSearch(s) {
+    if (typeof SearchService === 'undefined')
+      loadSearchScript().then(() => {
+        SearchService.setQueryText(s);
+        SearchService.search();
+      });
+    else {
+      SearchService.setQueryText(s);
+      SearchService.search();
+    }
+  }
+
+  // 访问含有 ?s=xxx  的链接时打开搜索 // 与搜索引擎 structured data 相关: /scripts/helpers/structured-data/lib/config.js
+  if (window.location.search && /^\?s=/g.test(window.location.search)) {
+    let queryText = decodeURI(window.location.search)
+      .replace(/\ /g, "-")
+      .replace(/^\?s=/g, "");
+    OpenSearch(queryText);
+  }
+
+  // 搜索输入框获取焦点时加载搜索
+  document.querySelectorAll(".input.u-search-input").forEach((e) => {
+    e.addEventListener("focus", loadSearchService, false);
+  });
+</script>
+
+
+
+
+
+
+
+  <script>
+
+
+
+  function p_highlightjs_copyCode(){
+    if (!(document.querySelector(".highlight .code pre") ||
+      document.querySelector(".article pre code"))) {
+      return;
+    }
+    VolantisApp.utilCopyCode(".highlight .code pre, .article pre code")
+  }
+  volantis.requestAnimationFrame(p_highlightjs_copyCode)
+
+</script>
+
+
+
+
+
+
+
+
+  <script>
+  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG"];
+  let index = Math.floor(Math.random()*imgs.length);
+  let IntervalParallax = null;
+
+  function parallax(){
+    let ParallaxWindow = document.querySelector("#parallax-window");
+    
+      ParallaxWindow = document.querySelector("html");
+    
+    Parallax.window = ParallaxWindow;
+    Parallax.options.fade = 1000;
+    Parallax.cache = 1;
+    next_parallax();
+    Parallax.init();
+    if (imgs.length>1) {
+      IntervalParallax = setInterval(function () {
+        if(!document.hidden){
+            next_parallax();
+        }
+      }, '20000');
+    }
+  }
+
+  function next_parallax() {
+    if (typeof Parallax == "undefined") {
+      return
+    }
+    
+    if (imgs.length>=1) {
+      Parallax.options.src = imgs[index % imgs.length];
+      Parallax.start();
+      index++;
+      if (Parallax.cache) {
+        fetch(imgs[index % imgs.length] +"?t=" + new Date().getTime());
+        if (index == imgs.length) {
+          Parallax.cache = 0;
+        }
+      }
+    }
+  }
+  var runningOnBrowser = typeof window !== "undefined";
+  var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+  if (!isBot) {
+    volantis.js('/js/plugins/parallax.js').then(()=>{
+      parallax()
+    })
+  }
+</script>
+
+
+
+
+  <script>
+  function load_swiper() {
+    if (!document.querySelectorAll(".swiper-container")[0]) return;
+    volantis.css("https://cdn.bootcdn.net/ajax/libs/Swiper/8.3.2/swiper-bundle.min.css");
+    volantis.js("https://cdn.bootcdn.net/ajax/libs/Swiper/8.3.2/swiper-bundle.min.js").then(() => {
+      p_swiper();
+    });
+  }
+
+  load_swiper();
+
+  function p_swiper() {
+    volantis.swiper = new Swiper('.swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 8,
+      centeredSlides: true,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  }
+
+</script>
+
+
+
+  <script>
+  volantis.css("https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css");
+  volantis.js("https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js").then(() => {
+    Pace.options.restartOnPushState = false;
+    // 阅读进度
+    volantis.scroll.push(() => {
+      Pace.stop();
+      Pace.trigger('start');
+      Pace.bar.update(volantis.scroll.progress() * 100);
+      document.body.className = document.body.className.replaceAll("pace-running ","");
+    },"阅读进度")
+    // todo：配置项开关, 哪些页面添加阅读进度
+  })
+</script>
+
+
+
+        <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = "https://cdn.bootcdn.net/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js";
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typesetPromise();
+  }
+</script>
+
+
+
+
+<script>
+  function listenSidebarTOC() {
+    const navItems = document.querySelectorAll(".toc li");
+    if (!navItems.length) return;
+    const targets = []
+    const sections = Array.from(navItems).forEach((element) => {
+      const link = element.querySelector(".toc-link");
+      const target = document.getElementById(
+        link.getAttribute("href") ? decodeURI(link.getAttribute("href")).replace("#", "") : link.getAttribute("toc-action").split("toc-")[1] // 兼容 hexo-blog-encrypt
+      );
+      targets.push(target)
+      // 解除 a 标签 href 的 锚点定位, a 标签 href 的 锚点定位 会随机启用?? 产生错位???
+      if (link.getAttribute("href")) {
+        link.setAttribute("toc-action", "toc-" + decodeURI(link.getAttribute("href")).replace("#", ""))
+        link.removeAttribute("href")
+      }
+      // 配置 点击 触发新的锚点定位
+      if (target && target.id) {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          // 这里的 addTop 是通过错位使得 toc 自动展开.
+          volantis.scroll.to(target, { addTop: 5, observer: true })
+          // Anchor id
+          history.pushState(null, document.title, "#" + target.id);
+        });
+      }
+      return target;
+    });
+
+    function activateNavByIndex(target) {
+      if (target.classList.contains("active-current")) return;
+
+      document.querySelectorAll(".toc .active").forEach((element) => {
+        element.classList.remove("active", "active-current");
+      });
+      target.classList.add("active", "active-current");
+      let parent = target.parentNode;
+      while (!parent.matches(".toc")) {
+        if (parent.matches("li")) parent.classList.add("active");
+        parent = parent.parentNode;
+      }
+    }
+
+    // 方案一：
+    volantis.activateNavIndex = 0
+    activateNavByIndex(navItems[volantis.activateNavIndex])
+    if (targets[0]) {
+      volantis.scroll.push(() => {
+        if (targets[0].getBoundingClientRect().top >= 0) {
+          volantis.activateNavIndex = 0
+        } else if (targets[targets.length - 1].getBoundingClientRect().top < 0) {
+          volantis.activateNavIndex = targets.length - 1
+        } else {
+          for (let index = 0; index < targets.length; index++) {
+            const target0 = targets[index];
+            const target1 = targets[(index + 1) % targets.length];
+            if (target0.getBoundingClientRect().top < 0 && target1.getBoundingClientRect().top >= 0) {
+              volantis.activateNavIndex = index
+              break;
+            }
+          }
+        }
+        activateNavByIndex(navItems[volantis.activateNavIndex])
+      })
+    }
+
+    // 方案二：
+    // IntersectionObserver 不是完美精确到像素级别 也不是低延时性的
+    // function findIndex(entries) {
+    //   let index = 0;
+    //   let entry = entries[index];
+    //   if (entry.boundingClientRect.top > 0) {
+    //     index = sections.indexOf(entry.target);
+    //     return index === 0 ? 0 : index - 1;
+    //   }
+    //   for (; index < entries.length; index++) {
+    //     if (entries[index].boundingClientRect.top <= 0) {
+    //       entry = entries[index];
+    //     } else {
+    //       return sections.indexOf(entry.target);
+    //     }
+    //   }
+    //   return sections.indexOf(entry.target);
+    // }
+    // function createIntersectionObserver(marginTop) {
+    //   marginTop = Math.floor(marginTop + 10000);
+    //   let intersectionObserver = new IntersectionObserver(
+    //     (entries, observe) => {
+    //       let scrollHeight = document.documentElement.scrollHeight;
+    //       if (scrollHeight > marginTop) {
+    //         observe.disconnect();
+    //         createIntersectionObserver(scrollHeight);
+    //         return;
+    //       }
+    //       let index = findIndex(entries);
+    //       activateNavByIndex(navItems[index]);
+    //     }, {
+    //       rootMargin: marginTop + "px 0px -100% 0px",
+    //       threshold: 0,
+    //     }
+    //   );
+    //   sections.forEach((element) => {
+    //     element && intersectionObserver.observe(element);
+    //   });
+    // }
+    // createIntersectionObserver(document.documentElement.scrollHeight);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    volantis.requestAnimationFrame(listenSidebarTOC)
+  });
+</script>
+
+
+
+
+
+<script>
+  document.onreadystatechange = function () {
+    if (document.readyState == 'complete') {
+      // 页面加载完毕 样式加载失败，或是当前网速慢，或是开启了省流模式
+      const { saveData, effectiveType } = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {}
+      if (getComputedStyle(document.querySelector("#safearea"), null)["display"] == "none" || saveData || /2g/.test(effectiveType)) {
+        document.querySelectorAll(".reveal").forEach(function (e) {
+          e.style["opacity"] = "1";
+        });
+        document.querySelector("#safearea").style["display"] = "block";
+      }
+    }
+  }
+</script>
+
+
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/C-C/","name":"C/C++"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/12/20/一些c++好用的三方库/","name":"一些c++好用的三方库"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"一些c++好用的三方库","description":"\n\n\nc++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/12/20/%E4%B8%80%E4%BA%9Bc++%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%89%E6%96%B9%E5%BA%93/","wordCount":58,"datePublished":"2022-12-20T13:23:19.000Z","dateModified":"2023-07-13T16:15:16.119Z","articleSection":"C/C++","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+
+
+
+
+    </div>
+    <!-- import body_end begin-->
+    <!-- import body_end end-->
+    <!-- Custom Files bodyEnd begin-->
+    
+    <!-- Custom Files bodyEnd end-->
+  </body>
+</html>
