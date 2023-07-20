@@ -36,18 +36,20 @@
   <title>机器人中常用的坐标变换 - Thomas's Blog</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="
-简单的记录一下
+
+
+这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
  - hang chen - Thomas's Blog">
   
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器人中常用的坐标变换">
 <meta property="og:url" content="https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Thomas&#39;s Blog">
-<meta property="og:description" content="简单的记录一下">
+<meta property="og:description" content="这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-09-21T06:25:17.000Z">
-<meta property="article:modified_time" content="2023-07-13T16:08:51.909Z">
+<meta property="article:modified_time" content="2023-07-20T16:10:16.490Z">
 <meta property="article:author" content="hang chen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2244,7 +2246,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1689266070986),
+    lastupdate: new Date(1689869425749),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2692,16 +2694,29 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p align="center">
-简单的记录一下
+    <p><img
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110025601_p0.png"
+alt="110025601_p0" /><br />
+</p>
+<p align="center">
+这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 </p>
 <span id="more"></span>
 <h1 id="机器人的位姿">机器人的位姿</h1>
+<blockquote>
+<p>其实这篇博客要讲清楚最好结合图片讲解，但作者目前没有合适的画3D坐标系的工具，所以这里很多关系都是用文字的描述。这里还缺少部分的数学推导，如有需要的朋友可以看机器人学导论的第二章（个人感觉讲的比视觉SLAM14讲清楚）。</p>
+</blockquote>
 <p>我们想要了解机器人在空间中的位置，通常给定参考坐标系，以及机器人位置<span
 class="math inline">\(x,y,z\)</span>即可。当然，这是不考虑机器人姿态的情况下，通常情况下，如果只知道机器人的位置而不知道姿态，基本无法控制机器人。在2D下，通常用<span
-class="math inline">\(x,y,\theta\)</span>来表示机器人的位置加姿态。<strong>机器人在空间中具体的位置加姿态通常用位姿来表示。</strong></p>
-<p>位置表示通常很简单，下面我先讲解一下姿态的表示。</p>
+class="math inline">\(x,y,\theta\)</span>来表示机器人的位置加姿态。<strong>机器人在空间中具体的位置加姿态通常用位姿来表示。</strong>也就是
+<span class="math display">\[
+Pose=Translation+Rotation
+\]</span>
+位置（Translation）表示通常很简单，下面我直接讲解一下姿态的表示。</p>
 <h2 id="旋转矩阵">旋转矩阵</h2>
+<blockquote>
+<p>三维下姿态又很多种表示方式，这里先介绍旋转矩阵（最常用），其他的方式在后面介绍。</p>
+</blockquote>
 <p>在三维空间下，为了更直观的理解物体的姿态，我们在机器人身上放一个右手坐标系（三轴正交），便于观察机器人的姿态变换。现在的问题变成了<code>如何表示这个坐标系的姿态</code>。</p>
 <p>由于我这里不考虑位置，那么，我直接将坐标系放到原点便于观察。很容易想到，如果分别将<strong>三个轴对应的向量</strong>写下来，便能唯一表示一个姿态。把这三个轴的坐标写成矩阵，那么它就是旋转矩阵：
 <span class="math display">\[
@@ -2737,6 +2752,17 @@ R=
     \end{bmatrix}
 \end{aligned}
 \]</span></p>
+<p>对应的，绕z轴旋转<span
+class="math inline">\(\theta\)</span>对应的矩阵为： <span
+class="math display">\[
+R=\begin{aligned}
+    \begin{bmatrix}
+       cos\theta &amp; -sin\theta &amp; 0\\
+       sin\theta &amp; cos\theta &amp; 0\\
+       0&amp;0&amp;1
+    \end{bmatrix}
+\end{aligned}
+\]</span></p>
 <h2 id="位姿">位姿</h2>
 <p>知道了旋转的表示，我们就可以表示机器人的位姿了。通常情况下，我们把坐标系写在左边，<strong>参考坐标系写在左上</strong>，而原点写在右下角。比如，我们要表示A坐标系下，B的位姿，就可以：
 <span class="math display">\[
@@ -2749,13 +2775,17 @@ class="math inline">\(^AP_{BORG}\)</span>表示B原点的坐标。</p>
 </blockquote>
 <h2 id="映射">映射</h2>
 <blockquote>
-<p>这里有些地方也叫坐标变换，以前我刚学的时候，总是把算子和映射混着用，虽然很多时候表达式通用，但最好还是区分一下。</p>
+<p>这里有些地方也叫坐标变换，以前我刚学的时候，总是把算子和映射混着用，虽然很多时候表达式通用，但最好还是区分一下。后面的介绍中，注意区分点和坐标系，点是不带姿态的，坐标系是带姿态的，两者搞混淆后阅读起来就不知所云了。</p>
 </blockquote>
 <p>很多时候，我们想要在不同坐标系下表达同一个东西，比如知道小车在里程计坐标系下的位姿，想要得到小车在全局地图坐标系下的位姿，就涉及到坐标的转换，可以说是经常需要用到的。</p>
 <p>对于只有平移的映射，我们可以直接用矢量相加的方法求某个点的坐标，比如，一直P点在B坐标系下的坐标，以及A坐标系在B坐标系下的坐标，求P点在A坐标系下的坐标就可以：
 <span class="math display">\[
 ^AP=^BP+^AP_{BORG}
-\]</span> 而对于只有旋转，</p>
+\]</span>
+而对于只有旋转，即已知某个点在B坐标系下的坐标，以及B坐标系在A坐标系下的旋转，那么我们可以得到点在A坐标系下的旋转：
+<span class="math display">\[
+^AP=^A_BR^BP
+\]</span></p>
 <h2 id="算子">算子</h2>
 <h1 id="欧拉角和四元数">欧拉角和四元数</h1>
 <blockquote>
@@ -2906,10 +2936,10 @@ class="math inline">\(R_{ry}\)</span>。总之公式前半部分一定是对的�
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-07-14T00:08:51+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-07-21T00:10:16+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年7月14日</p>
+    <p>更新于：2023年7月21日</p>
   </a>
 </div>
 
@@ -2929,7 +2959,9 @@ class="math inline">\(R_{ry}\)</span>。总之公式前半部分一定是对的�
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
           target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
-简单的记录一下
+
+
+这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 "
           
           >
@@ -2943,7 +2975,9 @@ class="math inline">\(R_{ry}\)</span>。总之公式前半部分一定是对的�
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
           target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
-简单的记录一下
+
+
+这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 "
           
           >
@@ -2957,7 +2991,9 @@ class="math inline">\(R_{ry}\)</span>。总之公式前半部分一定是对的�
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
           target="_blank" href="http://service.weibo.com/share/share.php?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
-简单的记录一下
+
+
+这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 "
           
           >
@@ -3475,7 +3511,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG"];
+  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg"];
   let index = Math.floor(Math.random()*imgs.length);
   let IntervalParallax = null;
 
@@ -3764,7 +3800,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/机器人/","name":"机器人"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/21/机器人中常用的坐标变换/","name":"机器人中常用的坐标变换"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"机器人中常用的坐标变换","description":"\n简单的记录一下\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/","wordCount":9,"datePublished":"2022-09-21T06:25:17.000Z","dateModified":"2023-07-13T16:08:51.909Z","articleSection":"机器人","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/机器人/","name":"机器人"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/21/机器人中常用的坐标变换/","name":"机器人中常用的坐标变换"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"机器人中常用的坐标变换","description":"\n\n\n这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/","wordCount":33,"datePublished":"2022-09-21T06:25:17.000Z","dateModified":"2023-07-20T16:10:16.490Z","articleSection":"机器人","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 

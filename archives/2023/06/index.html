@@ -2240,7 +2240,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1689266070986),
+    lastupdate: new Date(1689869425749),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2645,8 +2645,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='md article-desc' itemprop="articleBody">
     
       <p><img
-src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picmiao.png"
-alt="miao" /><br />
+src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picmiaocut.png"
+alt="miaocut" /><br />
 </p>
 <p align="center">
 在SLAM中，重力可以算是一个非常有用的量，他能为小车提供一个绝对的姿态参考。虽然加速对该向量影响很大，但通过时间平均能够得到一个稳定的重力向量。最近我在思考，将该向量耦合进scan-match的优化函数中，能否解决scan-match在某些环境下性能退化的问题，在耦合进优化函数前，我先参考cartographer推导一下如何使用重力对齐比较合适。
@@ -3227,7 +3227,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG"];
+  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg"];
   let index = Math.floor(Math.random()*imgs.length);
   let IntervalParallax = null;
 
