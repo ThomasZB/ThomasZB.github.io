@@ -49,7 +49,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-09-02T02:36:48.000Z">
-<meta property="article:modified_time" content="2023-07-19T14:41:26.487Z">
+<meta property="article:modified_time" content="2023-07-29T05:09:19.000Z">
 <meta property="article:author" content="hang chen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2246,7 +2246,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1690301600124),
+    lastupdate: new Date(1690992803778),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2758,24 +2758,32 @@ style="text-align: center;">在正常模式下，输入<code>v</code>进入，�
 <td style="text-align: center;">h/j/k/l（或者方向键）</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">移动到下/上一个单词的末尾</td>
+<td style="text-align: center;">移动到下/上一个单词的末尾/开头</td>
 <td style="text-align: center;">e/b</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">跳到下/上一个单词开头/结尾</td>
+<td style="text-align: center;">w/ge</td>
+</tr>
+<tr class="even">
 <td style="text-align: center;">向上移动半页（up）</td>
 <td style="text-align: center;">ctrl+u</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;">向下移动半页（down）</td>
 <td style="text-align: center;">ctrl+d</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">移动到行尾</td>
-<td style="text-align: center;">0或者end</td>
-</tr>
 <tr class="even">
 <td style="text-align: center;">移动到行首</td>
-<td style="text-align: center;">$或者home</td>
+<td style="text-align: center;">0或者home</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">跳转到第一个非空字符</td>
+<td style="text-align: center;">^</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">移动到行尾</td>
+<td style="text-align: center;">$或者end</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">移动到开头</td>
@@ -2796,6 +2804,22 @@ style="text-align: center;">在正常模式下，输入<code>v</code>进入，�
 <tr class="odd">
 <td style="text-align: center;">移动到上次光标</td>
 <td style="text-align: center;">ctrl+o</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">跳到下/上一个字符处（forward）</td>
+<td style="text-align: center;">f/F</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">跳到下/上一个字符前（to）</td>
+<td style="text-align: center;">t/T</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">重复上次字符操作（查找之类的）</td>
+<td style="text-align: center;">;</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">反向查找上次的查找命令</td>
+<td style="text-align: center;">,</td>
 </tr>
 </tbody>
 </table>
@@ -3062,10 +3086,10 @@ Vim的4种模式_还能坚持的博客-CSDN博客_vim模式</a></p>
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-07-19T22:41:26+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-07-29T13:09:19+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年7月19日</p>
+    <p>更新于：2023年7月29日</p>
   </a>
 </div>
 
@@ -3637,7 +3661,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic106179748_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p1.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic108311473_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110022754_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p0.jpg"];
+  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p1.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic106179748_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic108311473_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110022754_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG"];
   let index = Math.floor(Math.random()*imgs.length);
   let IntervalParallax = null;
 
@@ -3872,7 +3896,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/程序猿基础技能/","name":"程序猿基础技能"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/02/neovim配置和使用/","name":"neovim配置和使用"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"neovim配置和使用","description":"\n\n\n使用ipad进行远程开发的时候只能使用vim，我主要使用neovim加插件的方式方便开发，不过neovim也是vim，下面很多快捷键两者是通用的\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/02/neovim%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/02/neovim%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/","wordCount":76,"datePublished":"2022-09-02T02:36:48.000Z","dateModified":"2023-07-19T14:41:26.487Z","articleSection":"程序猿基础技能","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/程序猿基础技能/","name":"程序猿基础技能"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/02/neovim配置和使用/","name":"neovim配置和使用"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"neovim配置和使用","description":"\n\n\n使用ipad进行远程开发的时候只能使用vim，我主要使用neovim加插件的方式方便开发，不过neovim也是vim，下面很多快捷键两者是通用的\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/02/neovim%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/02/neovim%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BD%BF%E7%94%A8/","wordCount":76,"datePublished":"2022-09-02T02:36:48.000Z","dateModified":"2023-07-29T05:09:19.000Z","articleSection":"程序猿基础技能","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
