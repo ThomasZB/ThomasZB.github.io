@@ -37,6 +37,16 @@
   <meta name="keywords" content="null">
   <meta desc name="description" content="
 
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 
 这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
  - hang chen - Thomas's Blog">
@@ -45,11 +55,11 @@
 <meta property="og:title" content="机器人中常用的坐标变换">
 <meta property="og:url" content="https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Thomas&#39;s Blog">
-<meta property="og:description" content="这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊">
+<meta property="og:description" content=".center  {   width: auto;   display: table;   margin-left: auto;   margin-right: auto; }     这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
 <meta property="article:published_time" content="2022-09-21T06:25:17.000Z">
-<meta property="article:modified_time" content="2023-08-02T16:14:56.199Z">
+<meta property="article:modified_time" content="2023-11-02T15:11:10.825Z">
 <meta property="article:author" content="hang chen">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2246,7 +2256,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1695658885612),
+    lastupdate: new Date(1698938091364),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2694,7 +2704,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
   <div id="layoutHelper-page-plugins"></div>
   <div id="post-body" itemprop="articleBody">
-    <p><img
+    <!-- 让表格居中显示的风格 -->
+<style>
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<p><img
 src="https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110025601_p0.png"
 alt="110025601_p0" /><br />
 </p>
@@ -2708,7 +2728,7 @@ alt="110025601_p0" /><br />
 </blockquote>
 <p>我们想要了解机器人在空间中的位置，通常给定参考坐标系，以及机器人位置<span
 class="math inline">\(x,y,z\)</span>即可。当然，这是不考虑机器人姿态的情况下，通常情况下，如果只知道机器人的位置而不知道姿态，基本无法控制机器人。在2D下，通常用<span
-class="math inline">\(x,y,\theta\)</span>来表示机器人的位置加姿态。<strong>机器人在空间中具体的位置加姿态通常用位姿来表示。</strong>也就是
+class="math inline">\(x,y,\theta\)</span>来表示机器人的位置加姿态。<strong>机器人在空间中具体的位置加姿态通常用位姿来表示</strong>。也就是
 <span class="math display">\[
 Pose=Translation+Rotation
 \]</span>
@@ -2778,7 +2798,7 @@ class="math inline">\(^AP_{BORG}\)</span>表示B原点的坐标。</p>
 <p>这里有些地方也叫坐标变换，以前我刚学的时候，总是把算子和映射混着用，虽然很多时候表达式通用，但最好还是区分一下。后面的介绍中，注意区分点和坐标系，点是不带姿态的，坐标系是带姿态的，两者搞混淆后阅读起来就不知所云了。</p>
 </blockquote>
 <p>很多时候，我们想要在不同坐标系下表达同一个东西，比如知道小车在里程计坐标系下的位姿，想要得到小车在全局地图坐标系下的位姿，就涉及到坐标的转换，可以说是经常需要用到的。</p>
-<p>对于<strong>只有平移</strong>的映射，我们可以直接用矢量相加的方法求某个点的坐标，比如，一直P点在B坐标系下的坐标，以及A坐标系在B坐标系下的坐标，求P点在A坐标系下的坐标就可以：
+<p>对于<strong>只有平移</strong>的映射，我们可以直接用矢量相加的方法求某个点的坐标，比如，已知P点在B坐标系下的坐标，以及A坐标系在B坐标系下的坐标，求P点在A坐标系下的坐标就可以：
 <span class="math display">\[
 ^AP=^BP+^AP_{BORG}
 \]</span>
@@ -2807,7 +2827,8 @@ class="math display">\[
 &amp;^A_BR&amp;&amp;^AP_{BORG}\\ \hdashline0&amp;0&amp;0&amp;1
 \end{array}\right]\left[\begin{matrix}^BP\\1\end{matrix}\right]
 \]</span>
-这时候对于多个变换，我们就会惊奇的发现，其<strong>上下标消除</strong>的特点，比如将C坐标系下的点P变换到B坐标系下，再变换到A坐标系下，就有：
+&gt;这里面最右边再坐标底下再加一个1的坐标叫做齐次坐标，有时候他和普通坐标会混用，需要根据矩阵自行考虑是否加1</p>
+<p>这时候对于多个变换，我们就会惊奇的发现，其<strong>上下标消除</strong>的特点，比如将C坐标系下的点P变换到B坐标系下，再变换到A坐标系下，就有：
 <span class="math display">\[
 ^AP=^A_BT^B_CT^CP
 \]</span> 由于<span class="math inline">\(^A_BT\)</span>和<span
@@ -2876,7 +2897,7 @@ R_{ry}=\begin{aligned}\begin{bmatrix}cry&amp;0&amp;sry\\0&amp;1&amp;0\\-sry&amp;
 \]</span> 绕z轴旋转得到的旋转矩阵： <span class="math display">\[
 R_{rz}=\begin{aligned}\begin{bmatrix}crz&amp;-srz&amp;0\\srz&amp;crz&amp;0\\0&amp;0&amp;1\end{bmatrix}\end{aligned}
 \]</span></p>
-<h1 id="欧拉角和四元数">欧拉角和四元数</h1>
+<h1 id="欧拉角和旋转向量">欧拉角和旋转向量</h1>
 <blockquote>
 <p>上面讲了这么多，相信大家都觉得挺简单的，自己映像中好像没这么简单吧(・∀・(・∀・(・∀・*)，印象中好像还有什么左手坐标系，右手坐标系、雷达坐标系、相机坐标系、内旋、外旋、X-Y-Z、rpy...什么的。这部分可以说是新手的噩梦😰，让人闻风丧胆。不过不要担心，某奥里给曾经说过，战胜恐惧的最好办法就是面对恐惧，干就完了，奥里给！！！！</p>
 </blockquote>
@@ -2927,19 +2948,22 @@ class="math inline">\((y,z,x)\)</span>。</p>
 <p>同时，绕不同轴转的角度也需要对应的转换，比如绕x轴转rx，对应到相机坐标系为绕z轴转rx。这里需要结合后面欧拉角看。</p>
 </blockquote>
 <h2 id="欧拉角">欧拉角</h2>
+<blockquote>
+<p>这部分非常绕，我下面讲解的东西虽然在某些情况下好像能用，但是换一个环境好像又对不上了，感觉不同的教材，不同的软件定义不同，使用时还是要注意以下，不过大体上是对的</p>
+</blockquote>
 <p>欧拉角的思想很简单，将空间中任意一个姿态分解成3个顺序旋转（也就是说按照规则转3次后得到姿态）。这样就可以用3个变量表示空间中任意姿态了。根据旋转的规则不同，欧拉角的值也有所不同。由于欧拉角按顺序旋转，旋转的方式有很多种，可以按下分类：</p>
 <ul>
 <li><p>绕固定轴旋转（外旋）：X-Y-Z，Z-X-Y...</p></li>
 <li><p>绕旋转后的轴旋转（内旋）：X-Y-Z，Z-X-Y...</p></li>
 </ul>
-<p>举个例子，Z-Y-X外旋，就是先绕Z轴转，再绕Y轴转，最后X轴转，这里面的xyz轴是固定的。而Z-Y-X外旋就是绕Z轴转后，绕旋转后坐标系的Y轴转下一次。朋友们可以拿身边的物体试一下，这两种转法是不一样的。通常情况下，<strong>绕固定轴旋转，每次旋转都是左乘旋转矩阵</strong>，这点和我们之前讲的一样，比如绕Z轴转<span
+<p>举个例子，Z-Y-X外旋，就是先绕Z轴转，再绕Y轴转，最后X轴转，这里面的xyz轴是固定的。而Z-Y-X内旋就是绕Z轴转后，绕旋转后坐标系的Y轴转下一次。朋友们可以拿身边的物体试一下，这两种转法是不一样的。通常情况下，<strong>绕固定轴旋转，每次旋转都是左乘旋转矩阵</strong>，这点和我们之前讲的算子一样，比如绕Z轴转<span
 class="math inline">\(R_z\)</span>，再绕Y轴旋转<span
 class="math inline">\(R_y\)</span>，最后绕X轴旋转<span
 class="math inline">\(R_x\)</span>，其旋转矩阵为： <span
 class="math display">\[
 R=R_x\times R_y\times R_z
 \]</span>
-而外旋都是右乘旋转矩阵，所以内旋Z-Y-X和外旋X-Y-Z得到的旋转矩阵相同（也可以自己用物体试验一下，真是难以理解呢，太神奇了）。上述的旋转顺序如果是外旋，得到的旋转矩阵为：
+而内旋都是右乘旋转矩阵，所以内旋Z-Y-X和外旋X-Y-Z得到的旋转矩阵相同（也可以自己用物体试验一下，真是难以理解呢，太神奇了）。上述的旋转顺序如果是内旋，得到的旋转矩阵为：
 <span class="math display">\[
 R=R_z\times R_y\times R_x
 \]</span>
@@ -2947,7 +2971,7 @@ R=R_z\times R_y\times R_x
 <blockquote>
 <p>需要注意的是，机器人领域中的rpy角一般是指在Lidar坐标系下的旋转，如果是相机坐标系下，旋转顺序需要做一定的转化。</p>
 </blockquote>
-<p>rpy角和旋转矩阵的转换方式如下（我这里的zyx是对应于lidar的，相当于z在上的右手坐标系，对于不同的坐标系得到的结果也不同）
+<p>rpy角和旋转矩阵的转换方式如下（我这里的zyx是对应于lidar的，相当于z在上x向前的右手坐标系，对于不同的坐标系得到的结果也不同）
 <span class="math display">\[
 \begin{eqnarray}
 R&amp;=&amp;R_{yaw}\times R_{pitch}\times R_{roll}=R_{rz}\times
@@ -2962,55 +2986,286 @@ crx\end{bmatrix}\end{eqnarray}
 <p>对于不同坐标系，比如相机坐标系（z朝前的右手坐标系），yaw角对应的就是<span
 class="math inline">\(R_{ry}\)</span>。总之公式前半部分一定是对的，后半部分根据坐标系不同需要注意一下。同时，这里是内旋，所以旋转对应右乘。</p>
 </blockquote>
-<p>到这里，我们就把欧拉角介绍清楚了，虽然表面上把变量从9个减少到了3个，但却更容易混淆了，旋转矩阵只需要给定<code>坐标系、旋转矩阵</code>两个量就能唯一确定一个旋转，而欧拉角需要<code>坐标系、旋转顺序、内旋/外旋、旋转角度</code>才能唯一确定一个旋转，可以说是真让人头大。那么有没有什么方法既可以减少变量，由不容易混淆（没有奇异）呢。下面介绍四元数。</p>
-<h2 id="四元数">四元数</h2>
+<p>到这里，我们就把欧拉角介绍清楚了，虽然表面上把变量从9个减少到了3个，但却更容易混淆了，旋转矩阵只需要给定<code>坐标系、旋转矩阵</code>两个量就能唯一确定一个旋转，而欧拉角需要<code>坐标系、旋转顺序、内旋/外旋、旋转角度</code>才能唯一确定一个旋转，可以说是真让人头大。那么有没有什么方法既可以减少变量，由不容易混淆（没有奇异）呢。下面介绍四元数。
+&gt;其实这里还有一个问题，就是如何从旋转矩阵得到欧拉角，做法其实不复杂，根据上述转换关系，通过矩阵内部元素之间的乘除法可以得到对应欧拉角的正弦、余弦、正切值等，然后通过反三角计算即可</p>
+<h2 id="旋转向量">旋转向量</h2>
+<blockquote>
+<p>旋转向量在求导时经常用到相关概念，以我目前的认知来看，我认为是旋转向量和梯度很像，他既有方向，又有大小，即像内旋一样取决于当前姿态，又没有各种歧义。这部分在后面的李群和李代数中非常有用</p>
+</blockquote>
+<p>简单来讲，<strong>旋转向量就是一个向量，向量的方向表示旋转轴，向量的大小表示旋转角度，通常用符号<span
+class="math inline">\(\phi\)</span>表示</strong>。为了后面便于理解，需要先引入一些概念，首先是外积：
+<span class="math display">\[
+\pmb{a}\times
+\pmb{b}=\begin{aligned}\begin{bmatrix}a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{bmatrix}\end{aligned}=\begin{aligned}\begin{bmatrix}0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;-a_1\\-a_2&amp;a_1&amp;0\end{bmatrix}\end{aligned}\pmb{b}=\pmb{a}^{\wedge}b
+\]</span> 这里和普通外积一样，主要是引入一个符号<span
+class="math inline">\(\wedge\)</span>，将该符号称为<strong>反对称符号</strong>，他的功能是将向量转成对应的一个反对称矩阵，还有一个符号<span
+class="math inline">\(\vee\)</span>表示将对应的反对称矩阵转化为向量，这是一个一一对应的关系：
+<span class="math display">\[
+\pmb{a}^{\wedge}=\begin{aligned}\begin{bmatrix}0&amp;-a_3&amp;a_2\\a_3&amp;0&amp;-a_1\\-a_2&amp;a_1&amp;0\end{bmatrix}\end{aligned}
+\]</span>
+一个旋转向量可以唯一表示一个姿态，那么他对应了一个旋转矩阵，将旋转向量分解为模乘以方向的形式<span
+class="math inline">\(\phi=\theta\pmb{n}\)</span>，那么旋转向量和旋转矩阵的关系由<strong>罗德里格斯公式</strong>给出：
+<span class="math display">\[
+R=\cos\theta
+I+\left(1-\cos\theta\right)\pmb{n}\pmb{n}^T+\sin\theta\pmb{n}^{\wedge}
+\]</span>
+同样，旋转矩阵也可以转化成旋转向量，对上述罗德里格斯公式两边同时取迹可以得到：
+<span class="math display">\[
+\theta = \arccos\frac{tr{(R)}-1}{2}
+\]</span> 而根据旋转轴旋转后不变可得<span
+class="math inline">\(R\pmb{n}=\pmb{n}\)</span>可得：<strong>旋转轴为<span
+class="math inline">\(R\)</span>中特征值1对应得特征向量</strong>，根据本科求特征值特征向量得方法的知识即可求出
+&gt; 这里还是简单说一下，根据<span class="math inline">\(\left(A-\lambda
+E\right)x=0\)</span>，先求<span
+class="math inline">\(\lambda\)</span>再带入求解<span
+class="math inline">\(x\)</span>，不过这里<span
+class="math inline">\(\lambda=1\)</span>是已知结果，可以带入后直接求解对应的<span
+class="math inline">\(x\)</span></p>
+<h1 id="四元数">四元数</h1>
 <blockquote>
 <p>如果说欧拉角是最容易混淆的，那么四元数就是最难理解的😭。</p>
 </blockquote>
 <p>有一些复数基础的朋友都知道复数乘以<span
 class="math inline">\(e^{i\theta}\)</span>就是将复数在复平面旋转<span
 class="math inline">\(\theta\)</span>（我本科做图片旋转的作业时，就是将每个点转化成复数，再乘以<span
-class="math inline">\(e^{i\theta}\)</span>得到旋转后的像素坐标）。而四元数就相当于三维空间上的复数，这东西一时半会也讲不清，使用时只需要知道它可以唯一的表示一个旋转（或则说是姿态），然后几何意义上，他和旋转矩阵有一个很简单转化关系：
+class="math inline">\(e^{i\theta}\)</span>得到旋转后的像素坐标）。而四元数就相当于三维空间上的复数，我们先介绍以下四元数的基本概念和性质，再使用他来表示姿态。</p>
+<h2 id="四元数基本概念和性质">四元数基本概念和性质</h2>
+<p>四元数一般用符号<span
+class="math inline">\(q\)</span>（quaternion）表示，拥有一个实部和三个虚部，如下所示（实部不一定在前面）：
 <span class="math display">\[
+\pmb{q}=q_0+q_1i+q_2j+q3k
+\]</span> 其中，<span
+class="math inline">\(i,j,k\)</span>为虚部，他们之间满足： <span
+class="math display">\[
+\left\{\begin{align*}\begin{array}{l}i^2=j^2=k^2=-1\\ij=k,ji=-k\\jk=i,kj=-i\\ki=j,ik=-j\end{array}\end{align*}\right.
+\]</span> 通常情况下，我们喜欢用一个标量和一个向量来表示四元数： <span
+class="math display">\[
+\pmb{q}=\left[s,\pmb{v}\right]^T,\ s=q_0\in R,\
+\pmb{v}=\left[q_1,q_2,q_3\right]^T\in R^3
+\]</span>
+如果一个四元数实部为0，称为<strong>虚四元数</strong>，若虚部为0，则称为<strong>实四元数</strong>，接下来讲解一下四元数的运算，设有两个四元数：
+<span class="math display">\[
+\pmb{q}_a=\left[s_a,\pmb{v}_a\right]=s_a+x_ai+y_aj+z_ak
+\\
+\pmb{q}_b=\left[s_a,\pmb{v}_a\right]=s_a+x_ai+y_aj+z_ak
+\]</span></p>
+<ul>
+<li><p>四元数加减法</p>
+<p><span class="math display">\[
+  \pmb{q}_a\pm\pmb{q}_b=\left[s_a\pm s_b,\pmb{v}_a\pm\pmb{v}_b\right]
+  \]</span></p></li>
+<li><p>乘法</p>
+<p><span class="math display">\[
+  \begin{align*}
+  \pmb{q}_a\pmb{q}_b=&amp; s_as_b-x_ax_b-y_ay_b-z_az_b\\
+  &amp;+\left(s_ax_b+x_as_b+y_az_b-z_ay_b\right)i\\
+  &amp;+\left(s_ay_b-x_az_b+y_as_b+z_ax_b\right)j\\
+  &amp;+\left(s_az_b+x_ay_b-y_ax_b+z_as_b\right)k
+  \end{align*}
+  \]</span>
+这里其实就是两数相乘的结果，写法上，上式是保证左边字母顺序是<span
+class="math inline">\(s_a,x_a,y_a,z_a\)</span>，右边就是乘积为对应维度的值，写成向量的形式有
+<span class="math display">\[
+  \pmb{q}_a\pmb{q}_b=\left[s_as_b-v_a^Tv_b,s_av_b+s_bv_a+v_a\times
+v_b\right]^T
+  \]</span>
+根据上面所示，显然实四元数相乘仍未实四元数、虚四元数相乘认为虚四元数，且<strong>四元数的乘法不满足交换律</strong></p></li>
+<li><p>模长</p>
+<p><span class="math display">\[
+  \left\|\pmb{q}_a\right\|=\sqrt{s_a^2+x_a^2+y_a^2+z_a^2}
+  \]</span> 两个四元数乘积的模等于模的乘积： <span
+class="math display">\[
+  \left\|\pmb{q}_a\pmb{q}_b\right\|=\left\|\pmb{q}_a\right\|\left\|\pmb{q}_b\right\|
+  \]</span></p></li>
+<li><p>共轭</p>
+<p>和复数一样，共轭就是虚部取相反数： <span class="math display">\[
+  \pmb{q}_a^*=s_a-x_ai-y_aj-z_ak=\left[s_a,-\pmb{v}_a\right]^T
+  \]</span> 和复数一样，四元数和自身共轭的乘积为模长的平方： <span
+class="math display">\[
+  \pmb{q}_a^*\pmb{q}_a=\pmb{q}_a\pmb{q}_a^*=\left[s_a^2+\pmb{v}_a\pmb{v}_a^T,
+0\right]
+  \]</span></p></li>
+<li><p>逆</p>
+<p>其实就是<span
+class="math inline">\(1/\pmb{q}\)</span>，和复数类似，可以上下同时乘以共轭得到：
+<span class="math display">\[
+  \pmb{q}^{-1}=\frac{\pmb{q}^*}{\left\|q\right\|^2}
+  \]</span> 显然，其逆和自身乘积为1： <span class="math display">\[
+  \pmb{q}^{-1}\pmb{q}=\pmb{q}\pmb{q}^{-1}=1
+  \]</span> 如果<span
+class="math inline">\(q\)</span>为<strong>单位四元数，其逆等于共轭</strong>，四元数乘积的逆具有和矩阵类似的性质：
+<span class="math display">\[
+  \left(\pmb{q}_a\pmb{q}_b\right)^{-1}=\pmb{q}_b^{-1}\pmb{q}_a^{-1}
+  \]</span></p></li>
+<li><p>数乘</p>
+<p><span class="math display">\[
+  k\pmb{q}=\left[ks,k\pmb{v}\right]
+  \]</span></p></li>
+</ul>
+<h2 id="四元数表示旋转">四元数表示旋转</h2>
+<blockquote>
+<p>这里我主要讲解一些公式，没有几何上的解释</p>
+</blockquote>
+<p><strong>使用四元数表示的旋转</strong></p>
+<p>首先，我们需要记住一点，一个单位四元数对应了一个唯一的旋转，如果将该旋转作用在<span
+class="math inline">\(\pmb{p}\)</span>点上，让其变成<span
+class="math inline">\(\pmb{p}&#39;\)</span>需要两步：</p>
+<ul>
+<li><p>首先用虚四元数表示空间中的<span
+class="math inline">\(\pmb{p}=[x,y,z]\)</span>点</p>
+<p><span class="math display">\[
+  \pmb{p}=[0,x,y,z]^T=[0,\pmb{v}]^T
+  \]</span></p></li>
+<li><p>旋转后的点为</p>
+<p><span class="math display">\[
+  \pmb{p}&#39;=\pmb{q}\pmb{p}\pmb{q}^{-1}
+  \]</span> 这里旋转后的为纯虚四元数，其虚部为旋转后的点的坐标</p></li>
+</ul>
+<p><strong>和其他旋转的关系</strong></p>
+<p>为了和旋转矩阵扯上关系，我们先定义两个符号，用于将四元数转化成矩阵，设<span
+class="math inline">\(\pmb{q}=[s,\pmb{v}]^T\)</span>，定义符号<span
+class="math inline">\(^+\)</span>和<span
+class="math inline">\(^{\bigoplus}\)</span>为： <span
+class="math display">\[
+\pmb{q}^+=\begin{aligned}\begin{bmatrix}s&amp;-\pmb{v}^T\\\pmb{v}&amp;s\pmb{I}+\pmb{v}^{\wedge}\end{bmatrix}\end{aligned},\
+\pmb{q}^{\bigoplus}=\begin{aligned}\begin{bmatrix}s&amp;-\pmb{v}^T\\\pmb{v}&amp;s\pmb{I}-\pmb{v}^{\wedge}\end{bmatrix}\end{aligned}
+\]</span> 有了上述符号，我们可以把四元数乘法写成矩阵的形式： <span
+class="math display">\[
+\pmb{q}_1^+\pmb{q}_2=\begin{aligned}\begin{bmatrix}s_1&amp;-\pmb{v}_1^T\\\pmb{v}_1&amp;s_1\pmb{I}+\pmb{v}_1^{\wedge}\end{bmatrix}\end{aligned}\begin{aligned}\begin{bmatrix}s_2\\v_2\end{bmatrix}\end{aligned}=\begin{aligned}\begin{bmatrix}-\pmb{v}_1^T\pmb{v}_2+s_1s_2\\s_1\pmb{v}_2+s_2\pmb{v}_1+\pmb{v}_1^{\wedge}\pmb{v}_2\end{bmatrix}\end{aligned}=\pmb{q}_1\pmb{q}_2=\pmb{q}_2^{\bigoplus}\pmb{q}_1
+\]</span> 我们就可以写出四元数和旋转矩阵的关系（证明见最后）： <span
+class="math display">\[
+\pmb{R}=\pmb{v}\pmb{v}^T+s^2\pmb{I}+2s\pmb{v}^{\wedge}+\left(\pmb{v}^{\wedge}\right)^2
+\tag{1}
+\]</span> 有了R，就可以很容易得到和旋转向量之间的关系（证明见最后）：
+<span class="math display">\[
+\left\{\begin{align*}\begin{array}{l}
 \theta = 2\arccos q_0\\
 \left[n_x,n_y,n_z\right]^T=\left[q_1,q_2,q_3\right]^T/\sin\frac{\theta}{2}
-\]</span>
-旋转矩阵就是通过一个旋转轴+旋转角度表示旋转的方式。其他的以后再补充，现在对其理解还不够充分。</p>
-<h1 id="工具">工具</h1>
-<h2 id="ros中的tftransform">ros中的tf::transform</h2>
-<h2 id="相关头文件">相关头文件</h2>
-<ol type="1">
-<li>各种类型</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;tf/transform_datatypes.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="构造">构造</h3>
-<ol type="1">
-<li><p>已知<span class="math inline">\((x,y,\theta)\)</span></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tf::Transform tf1;</span><br><span class="line">tf1.<span class="built_in">setOrigin</span>(tf::<span class="built_in">Vector3</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">tf::Quaternion q;</span><br><span class="line">q.<span class="built_in">setRPY</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">tf1.<span class="built_in">setRotation</span>(q);</span><br></pre></td></tr></table></figure></li>
-<li><p>已知四元数，转化为<code>tf::Quaternion</code>再设置tf的四元数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">tf::Quaternion <span class="title">q</span><span class="params">(x,y,z,w)</span></span>;</span><br><span class="line">tf1.<span class="built_in">setRotation</span>(q);</span><br></pre></td></tr></table></figure></li>
-<li><p>将里程计的数据，即<code>todo</code>格式的四元数转化为<code>tf::Quaternion</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf::Quaternion q;</span><br><span class="line">tf::<span class="built_in">quaternionMsgToTF</span>(msg-&gt;pose.pose.orientation, q);</span><br><span class="line">tf1.<span class="built_in">setRotation</span>(q);</span><br></pre></td></tr></table></figure></li>
-<li><p>得到的tf，即<code>geometry_msgs::TransformStamped</code>转<code>tf::transform</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">geometry_msgs::TransformStamped tfGeom;</span><br><span class="line">tf::Transform tf1;</span><br><span class="line">tf1.<span class="built_in">setOrigin</span>(tf::<span class="built_in">Vector3</span>(tfGeom.transform.translation.x, tfGeom.transform.translation.y, tfGeom.transform.translation.z));</span><br><span class="line"><span class="function">tf::Quaternion <span class="title">q</span><span class="params">(tfGeom.transform.rotation.x, tfGeom.transform.rotation.y,</span></span></span><br><span class="line"><span class="params"><span class="function">               tfGeom.transform.rotation.z,</span></span></span><br><span class="line"><span class="params"><span class="function">               tfGeom.transform.rotation.w)</span></span>;</span><br><span class="line">tf1.<span class="built_in">setRotation</span>(q);</span><br></pre></td></tr></table></figure></li>
-<li><p>快速创建</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf::Transform transform = tf::<span class="built_in">Transform</span>(</span><br><span class="line">        tf::<span class="built_in">createQuaternionFromRPY</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), tf::<span class="built_in">Vector3</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="转化">转化</h3>
-<ol type="1">
-<li><p>还原回<span class="math inline">\(x,y,\theta\)</span></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tf::Transform t;</span><br><span class="line"><span class="comment">// 得到变换的平移部分</span></span><br><span class="line">tf::Vector3 origin = t.<span class="built_in">getOrigin</span>();</span><br><span class="line"><span class="type">double</span> x = origin.<span class="built_in">x</span>();</span><br><span class="line"><span class="type">double</span> y = origin.<span class="built_in">y</span>();</span><br><span class="line"><span class="type">double</span> z = origin.<span class="built_in">z</span>();</span><br><span class="line"><span class="comment">// 得到变换的旋转部分</span></span><br><span class="line">tf::Quaternion rotation = t.<span class="built_in">getRotation</span>();</span><br><span class="line"><span class="type">double</span> yaw = tf::<span class="built_in">getYaw</span>(rotation);</span><br></pre></td></tr></table></figure></li>
-<li><p>还原rpy</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> roll, pitch, yaw;<span class="comment">//定义存储r\p\y的容器</span></span><br><span class="line">tf::<span class="built_in">Matrix3x3</span>(baselink2lidar.<span class="built_in">getRotation</span>()).<span class="built_in">getRPY</span>(roll, pitch, yaw);<span class="comment">//进行转换</span></span><br></pre></td></tr></table></figure></li>
-<li><p>转化为带时间戳的</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf::StampedTransform odom_2_baselink = tf::<span class="built_in">StampedTransform</span>(</span><br><span class="line">        tCur, odomMsg-&gt;header.stamp, odometryFrame, baselinkFrame);</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="使用">使用</h3>
-<h2 id="eigen">Eigen</h2>
-<h3 id="构造-1">构造</h3>
-<ol type="1">
-<li></li>
-</ol>
+\end{array}\end{align*}\right.\tag{2}
+\]</span></p>
+<h1 id="其他变换">其他变换</h1>
+<p>除了上述欧式变换之外，常见的还有如下3种变换</p>
+<h2 id="相似变换">相似变换</h2>
+<p>相比欧式变换多了一个自由度，可以对物体进行均匀缩放 <span
+class="math display">\[
+\begin{aligned}\begin{bmatrix}s\pmb{R}&amp;\pmb{t}\\\pmb{0}^T&amp;1\end{bmatrix}\end{aligned}
+\]</span></p>
+<h2 id="仿射变换正交投影">仿射变换（正交投影）</h2>
+<p>形式如下所示： <span class="math display">\[
+\begin{aligned}\begin{bmatrix}\pmb{A}&amp;\pmb{t}\\\pmb{0}^T&amp;1\end{bmatrix}\end{aligned}
+\]</span> 仿射变换只要求矩阵<span
+class="math inline">\(\pmb{A}\)</span>为可逆矩阵，而不必须是正交矩阵，放射变换后立方体不一定是方的，单各个面仍然平行</p>
+<h2 id="射影变换">射影变换</h2>
+<p>形式如下所示： <span class="math display">\[
+\begin{aligned}\begin{bmatrix}\pmb{A}&amp;\pmb{t}\\\pmb{a}^T&amp;v\end{bmatrix}\end{aligned}
+\]</span> 左上角为可逆矩阵<span
+class="math inline">\(\pmb{A}\)</span>，右上角为平移<span
+class="math inline">\(\pmb{t}\)</span>，左下角为缩放<span
+class="math inline">\(\pmb{a}\)</span>，右下角的<span
+class="math inline">\(v\)</span>其实只有1和0两种取值（其他值时可以对矩阵除以<span
+class="math inline">\(v\)</span>转化成1），这里左下角的意义涉及到齐次坐标的来源，可以自行百度，这里给一个介绍的还不错的博客：<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258437902">什么是齐次坐标? - 知乎
+(zhihu.com)</a>。</p>
+<p>从真实世界到相机照片可以看作一个射影变换，变换后平行关系由于近大远小可能变成相交关系。</p>
+<p><img
+src="https://pic1.zhimg.com/80/v2-5b0f415b939455654788514532af7ecc_720w.webp"
+alt="img" /><br />
+</p>
+<h2 id="总结">总结</h2>
+<p>各种变换之间的性质比较如下所示</p>
+<div class="center">
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">变换名称</th>
+<th style="text-align: center;">矩阵形式</th>
+<th style="text-align: center;">自由度</th>
+<th style="text-align: center;">不变性质</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">欧式变换</td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{aligned}\begin{bmatrix}\pmb{R}&amp;\pmb{t}\\\pmb{0}^T&amp;1\end{bmatrix}\end{aligned}\)</span></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">长度、夹角、体积</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">相似变换</td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{aligned}\begin{bmatrix}s\pmb{R}&amp;\pmb{t}\\\pmb{0}^T&amp;1\end{bmatrix}\end{aligned}\)</span></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">体积比</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">仿射变换</td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{aligned}\begin{bmatrix}\pmb{A}&amp;\pmb{t}\\\pmb{0}^T&amp;1\end{bmatrix}\end{aligned}\)</span></td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">平行性、体积比</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">射影变换</td>
+<td style="text-align: center;"><span
+class="math inline">\(\begin{aligned}\begin{bmatrix}\pmb{A}&amp;\pmb{t}\\\pmb{a}^T&amp;v\end{bmatrix}\end{aligned}\)</span></td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">接触平面的相交和相切</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="相关证明">相关证明</h1>
+<p><strong>公式(1)证明</strong></p>
+<p>考虑对<span class="math inline">\(\pmb{p}\)</span>点进行旋转，可得:
+<span class="math display">\[
+\begin{align*}
+\pmb{p}&#39;&amp;=\pmb{q}\pmb{p}\pmb{q}^{-1}=\pmb{q}^+\pmb{p}^+\pmb{q}^{-1}\\
+&amp;=\pmb{q}^+\left(\pmb{q}^{-1}\right)^{\bigoplus}\pmb{p}
+\end{align*}
+\]</span> 将矩阵形式带入后得到（这里用到了单位四元数逆等于共轭的性质）：
+<span class="math display">\[
+\pmb{q}^+\left(\pmb{q}^{-1}\right)^{\bigoplus}=\begin{aligned}\begin{bmatrix}s&amp;-\pmb{v}^T\\\pmb{v}&amp;s\pmb{I}+\pmb{v}^{\wedge}\end{bmatrix}\end{aligned}\begin{aligned}\begin{bmatrix}s&amp;\pmb{v}^T\\-\pmb{v}&amp;s\pmb{I}+\pmb{v}^{\wedge}\end{bmatrix}\end{aligned}=\begin{aligned}\begin{bmatrix}1&amp;\pmb{0}\\\pmb{0}^T&amp;\pmb{v}\pmb{v}^T+s^2\pmb{I}+2s\pmb{v}^{\wedge}+\left(\pmb{v}^{\wedge}\right)^2\end{bmatrix}\end{aligned}
+\]</span> 再根据矩阵的分块乘法，很容得到右下角矩阵乘以<span
+class="math inline">\(\pmb{p}\)</span>等于旋转后的结果，即右下角矩阵为旋转矩阵</p>
+<p><strong>公式(2)证明</strong></p>
+<p>根据旋转矩阵到旋转向量的转换方式，我们先计算旋转矩阵的迹： <span
+class="math display">\[
+\begin{align*}
+tr(\pmb{R})&amp;=tr(\pmb{v}\pmb{v}^T)+3s^2+2s\cdot0+tr(\left(\pmb{v}^{\wedge}\right)^2)\\
+&amp;=v_1^2+v_2^2+v_3^2+3s^2-2\left(v_1^2+v_2^2+v_3^2\right)\\
+&amp;=\left(1-s^2\right)+3s^2-2\left(1-s^2\right)\\
+&amp;=4s^2-1
+\end{align*}
+\]</span> 然后，我们就可以得到<span
+class="math inline">\(\theta\)</span>的计算公式 <span
+class="math display">\[
+\begin{align*}
+\theta&amp;=\arccos(\frac{tr(\pmb{R})-1}{2})\\
+&amp;=\arccos(2s^2-1)
+\end{align*}
+\]</span> 即： <span class="math display">\[
+\cos\theta=2s^2-1
+\]</span> 又因为： <span class="math display">\[
+\cos\theta=2\cos^2\frac{\theta}{2}-1
+\]</span> 对比可得： <span class="math display">\[
+\theta=2\arccos(s)
+\]</span> 最后就是计算旋转轴，将<span
+class="math inline">\(\pmb{q}\)</span>的虚部带入<span
+class="math inline">\(\pmb{p}\)</span>的虚部，可以发现： <span
+class="math display">\[
+\pmb{p}=\pmb{q}\pmb{p}\pmb{q}
+\]</span> 即<span class="math inline">\(\pmb{q}\)</span>的虚部<span
+class="math inline">\([q_1,q_2,q_3]^T\)</span>旋转后不变，即为旋转轴，将归一化即可得到旋转轴，其模长为
+<span class="math display">\[
+\sqrt{q_1^2+q_2^2+q_3^2}=\sqrt{1-s^2}=\sqrt{1-\cos^2\frac{\theta}{2}}=\sin\frac{\theta}{2}
+\]</span></p>
 <h1 id="参考文档">参考文档</h1>
 <p><a
 target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618692912">左手坐标系和右手坐标系 -
@@ -3018,6 +3273,8 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618692912">左
 <p><a
 target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281967460">世界坐标系，相机坐标系，图像坐标系，像素坐标系
 - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258437902">什么是齐次坐标? -
+知乎 (zhihu.com)</a></p>
 
   </div>
   
@@ -3052,10 +3309,10 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281967460">世
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-08-03T00:14:56+08:00">
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-11-02T23:11:10+08:00">
   <a class='notlink'>
     <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2023年8月3日</p>
+    <p>更新于：2023年11月2日</p>
   </a>
 </div>
 
@@ -3076,6 +3333,16 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281967460">世
           
           target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
 
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 
 这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 "
@@ -3092,6 +3359,16 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281967460">世
           
           target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
 
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 
 这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
 "
@@ -3107,6 +3384,16 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/281967460">世
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
           target="_blank" href="http://service.weibo.com/share/share.php?url=https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/&title=机器人中常用的坐标变换 - Thomas's Blog&summary=
+
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 
 
 这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊
@@ -3226,7 +3513,7 @@ neovim安装和基本使用
 
 
   <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E4%BD%8D%E5%A7%BF"><span class="toc-text">机器人的位姿</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5"><span class="toc-text">旋转矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E5%A7%BF"><span class="toc-text">位姿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-text">映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%AD%90"><span class="toc-text">算子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%95%E5%9B%BA%E5%AE%9A%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="toc-text">绕固定轴旋转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E5%92%8C%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-text">欧拉角和四元数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">坐标系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-text">欧拉角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-text">四元数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-text">工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ros%E4%B8%AD%E7%9A%84tftransform"><span class="toc-text">ros中的tf::transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-text">相关头文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-text">构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%8C%96"><span class="toc-text">转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eigen"><span class="toc-text">Eigen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-1"><span class="toc-text">构造</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E4%BD%8D%E5%A7%BF"><span class="toc-text">机器人的位姿</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5"><span class="toc-text">旋转矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E5%A7%BF"><span class="toc-text">位姿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-text">映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%AD%90"><span class="toc-text">算子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%95%E5%9B%BA%E5%AE%9A%E8%BD%B4%E6%97%8B%E8%BD%AC"><span class="toc-text">绕固定轴旋转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E5%92%8C%E6%97%8B%E8%BD%AC%E5%90%91%E9%87%8F"><span class="toc-text">欧拉角和旋转向量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="toc-text">坐标系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92"><span class="toc-text">欧拉角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E5%90%91%E9%87%8F"><span class="toc-text">旋转向量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-text">四元数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E6%80%A7%E8%B4%A8"><span class="toc-text">四元数基本概念和性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%97%8B%E8%BD%AC"><span class="toc-text">四元数表示旋转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%8F%98%E6%8D%A2"><span class="toc-text">其他变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E4%BC%BC%E5%8F%98%E6%8D%A2"><span class="toc-text">相似变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1"><span class="toc-text">仿射变换（正交投影）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%84%E5%BD%B1%E5%8F%98%E6%8D%A2"><span class="toc-text">射影变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%AF%81%E6%98%8E"><span class="toc-text">相关证明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li></ol>
   </div>
 </section>
 
@@ -3627,7 +3914,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p1.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic106179748_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110022754_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic108311473_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG"];
+  let imgs = ["https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2261(20221106-172037).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/80074611_p01.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p1.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic110022754_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/60141148_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic106179748_p0.png","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic108311473_p0.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2263(20221106-172142).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/58825498_p0_master1200.jpg","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/back_pic/ IMG_2264(20221106-172153).JPG","https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic105108405_p0.jpg"];
   let index = Math.floor(Math.random()*imgs.length);
   let IntervalParallax = null;
 
@@ -3916,7 +4203,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/机器人/","name":"机器人"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/21/机器人中常用的坐标变换/","name":"机器人中常用的坐标变换"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"机器人中常用的坐标变换","description":"\n\n\n这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/","wordCount":33,"datePublished":"2022-09-21T06:25:17.000Z","dateModified":"2023-08-02T16:14:56.199Z","articleSection":"机器人","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","sameAs":["https://github.com/volantis-x"],"description":"hhh"},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://thomaszb.cn/","name":"Thomas's Blog"}},{"@type":"ListItem","position":2,"item":{"@id":"https://thomaszb.cn/categories/机器人/","name":"机器人"}},{"@type":"ListItem","position":3,"item":{"@id":"https://thomaszb.cn/2022/09/21/机器人中常用的坐标变换/","name":"机器人中常用的坐标变换"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"Thomas's Blog","url":"https://thomaszb.cn/","keywords":null,"description":"hhh","author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/","description":"hhh"},"publisher":{"@type":"Organization","name":"Thomas's Blog","url":"https://thomaszb.cn/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://thomaszb.cn?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"机器人中常用的坐标变换","description":"\n\n.center \n{\n  width: auto;\n  display: table;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n\n\n\n这篇博客太枯燥了，不想写，放一张yui的照片缓解枯燥吧😊\n","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/"},"author":{"@type":"Person","name":"hang chen","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://thomaszb.cn/"},"publisher":{"@type":"Organization","name":"Thomas's Blog","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://thomaszb.cn/2022/09/21/%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/","wordCount":125,"datePublished":"2022-09-21T06:25:17.000Z","dateModified":"2023-11-02T15:11:10.825Z","articleSection":"机器人","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1660614606622/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
