@@ -7,7 +7,7 @@ plugins:
   - mathjax
 ---
 
-![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picFtxZiMOagAAhb21.jpg)
+![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picFtxZiMOagAAhb21.jpg)\
 
 
 
@@ -29,17 +29,17 @@ FOC即为矢量控制器，具体的介绍可以参考稚晖君的知乎博客[�
 
 ## 复刻mini-FOC
 
-由于只给了Gerber文件，为了方便后面对电路进行调整，看原理图也不复杂，我根据原理图自己走线复刻了一版，同时加入了下载口方便后面的调试，硬件电路可以参考我的[github链接]([ThomasZB/moo-moo-FOC: 哞哞哞 (github.com)](https://github.com/ThomasZB/moo-moo-FOC))。
+由于只给了Gerber文件，为了方便后面对电路进行调整，看原理图也不复杂，我根据原理图自己走线复刻了一版，同时加入了下载口方便后面的调试，硬件电路可以参考我的[github链接](https://github.com/ThomasZB/moo-moo-FOC)。
 
 在打样好电路后，就是无刷电机的选型，显然我完全不会选，淘宝无刷电机直接选择了一款，买到手后发现没有磁铁（mini-FOC使用磁编码器），于是网上随便买了一个磁铁，很显然，到这一步电机还是没转起来。
 
 首先便是磁铁的分类，磁编码器的原理如下，是通过磁场来确定当前电机朝向的：
 
-![image-20230418231932485](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230418231932485.png)
+![image-20230418231932485](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230418231932485.png)\
 
 但圆形磁铁根据充磁的不同分为径向充磁和厚度充磁（轴向充磁），厚度充磁NS级在上下，**径向充磁**才能作为磁编码器的磁铁，如下图所示。
 
-![image-20230418232051002](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230418232051002.png)
+![image-20230418232051002](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230418232051002.png)\
 
 解决磁铁的问题后，在调PID时总是异常抖动，为了解决问题，开始了FOC原理的学习和代码的分析。
 
@@ -49,11 +49,13 @@ FOC即为矢量控制器，具体的介绍可以参考稚晖君的知乎博客[�
 
 ## 无电流环意味着什么
 
-在稚晖君的博客里，一开始便分析了电流环，电流环的结构图如下所示，给定Iq和Id的参考，就可以通过电流环实现对电机的精准控制。![img](https://pic4.zhimg.com/v2-92e0d6eaa15bff745a4cd024362f53eb_r.jpg)
+在稚晖君的博客里，一开始便分析了电流环，电流环的结构图如下所示，给定Iq和Id的参考，就可以通过电流环实现对电机的精准控制。
+
+![img](https://pic4.zhimg.com/v2-92e0d6eaa15bff745a4cd024362f53eb_r.jpg)\
 
 电流环是FOC中最内层的环（FOC一般会有位置环、速度环、电流环），他的作用是给电机一个恒定的力矩（[力矩是什么的链接](https://www.shuxuele.com/physics/moment-torque.html?_360safeparam=10641562)），让他转动，而产生的力矩的大小是跟电流相关，而不是电压（高中物理学过的安培力）。根据原理来讲，电流环中的**Iq就是控制平行于运动方向的力，而Id是没有用的力**，如下图所示，我们的目标就是要让Id为0。
 
-![img](https://pic1.zhimg.com/v2-1926583e289cf44fe24f4a72944e2a08_r.jpg)
+![img](https://pic1.zhimg.com/v2-1926583e289cf44fe24f4a72944e2a08_r.jpg)\
 
 正常情况下，电流和我们设置的电压似乎是等价的（I=U/R），可是电机运动会有反电动势，没有电流环，我们只能保证**Ud设置成0，而由于反电动势的存在，真正的Ud=Ud_set+反电动势，显然并不是0**，这就是没有电流环的后果，他会让一部分力浪费掉，产生的力不是平行于运动方向的，有部分被白白浪费了，可能会让电机异常抖动，发热等问题。而随着转速提高，反电动势增大，可能导致FOC完全失效。
 
@@ -65,7 +67,7 @@ FOC即为矢量控制器，具体的介绍可以参考稚晖君的知乎博客[�
 
 将上图的反馈环去掉，SVPWM换成RevCalrk变换，即可得到无电流环的SPWM结构图，如下图所示：
 
-![SPWM](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picSPWM.png)
+![SPWM](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picSPWM.png)\
 
 这时候，你可能会问：`啊？就这？这也太简单了吧，搞一半天你连这都不懂啊😅？家人们谁懂啊，大无语事件，下头博主这么菜还来写博客！`我只能回答：`是的，无电流环的SPWM就这么简单QAQ`，虽然很简单，但我这里还是简单的讲解一下这几个变换的作用，以及他是如何让电机动起来的。
 
@@ -95,7 +97,7 @@ $$
         -sin(\theta)&cos(\theta)
     \end{bmatrix}
 \end{aligned}
-*
+\times
 \begin{aligned}
     \begin{bmatrix}
         V_q\\
@@ -105,7 +107,7 @@ $$
 $$
 这个变换即Park反变换，表达式中，$\theta$为电机转子当前角度，我们要产生垂直与电机转子的力。几何关系如下图所示。
 
-![CLARK反变换](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picCLARK%E5%8F%8D%E5%8F%98%E6%8D%A2.png)
+![CLARK反变换](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picCLARK%E5%8F%8D%E5%8F%98%E6%8D%A2.png)\
 
 > 图中绿色箭头为当前电机方向，黄色箭头为希望产生的力矩方向，通过简单的几何计算就可以得到上述的表达式。
 
@@ -152,7 +154,7 @@ TODO
 
 简单来讲，**极数就是电机中永磁体N极和S极的总数**。将一个N极加一个S极作为一对磁极，那么极对数=级数÷2，如下图所示，该电机一共有6个级数，3个极对数。
 
-![img](https://pic3.zhimg.com/80/v2-2ebf4847bac20503840b2bc993a2d1fe_720w.webp)
+![img](https://pic3.zhimg.com/80/v2-2ebf4847bac20503840b2bc993a2d1fe_720w.webp)\
 
 当然，测量极对数时总不能把电机扒开看有几对磁铁吧，通常购买时电机参数会给出，如果是没有给出参数电机可以通过对其中两根线通电，手拨动电机，看一圈一共有几个稳定的点，那就是有几个极对数。
 
@@ -166,7 +168,7 @@ TODO
 
 > 这里举个例子，假设当前机械角度为15度，其实磁场已经转过15*4=60度，需要产生垂直于60度的力矩，如果使用机械角度会使产生的力矩不垂直于电机半径。
 
-![image-20230305214822098](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230305214822098.png)
+![image-20230305214822098](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20230305214822098.png)\
 
 
 

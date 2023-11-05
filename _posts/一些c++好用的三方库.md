@@ -7,7 +7,7 @@ plugins:
   - mathjax
 ---
 
-![](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220213631859.png)
+![hhh](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220213631859.png)\
 
 <p align="center">
     c++的库虽然不像python的库一样方便，但谷歌等公司还是出了一些非常好用的三方库，可以大大增加开发效率。
@@ -215,7 +215,7 @@ protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto
 
 其中`SRC_DIR`为源文件的目录（可有可无），`DST_DIR`为生成的目标文件目录，后面跟要编译的.proto文件。最后编译出来一个`.h`和一个`.cc`文件。
 
-![image-20221220164715737](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220164715737.png)
+![image-20221220164715737](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221220164715737.png)\
 
 ## 使用
 
@@ -642,7 +642,7 @@ gtsam优化的原理很简单，基本原理就是求因子图的最大后验分
 
 首先，在SLAM中常用的因子图是基于贝叶斯网络生成的，如下贝叶斯网络：
 
-![image-20230417182645405](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182645405.png)
+![image-20230417182645405](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182645405.png)\
 
 很显然这里$z$和$x$的关系就是观测变量和状态变量的关系，$x_1$和$x_2$之间的关系就是里程计的关系：
 $$
@@ -662,7 +662,7 @@ $$
 
 将其转换为因子图，这两者如何转换成因子图我就不介绍了，其实就是另一个表达，下图中每一个节点就是一个因子。
 
-![image-20230417182912063](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182912063.png)
+![image-20230417182912063](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20230417182912063.png)\
 
 则是因子图的概率分布可以写成：
 $$

@@ -66,7 +66,7 @@ scan-match分为以下几类：
 
 # 基于图优化的SLAM
 
-![SLAM框架](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20SLAM%E6%A1%86%E6%9E%B6.png)
+![SLAM框架](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20SLAM%E6%A1%86%E6%9E%B6.png)\
 
 基于图优化的SLAM整体框架如图所示，输入传感器采集的数据，通常包括雷达、IMU、里程计等，IMU和里程计数据输入到PoseExtrapolator中可以得到位姿的预测值。激光经过体素滤波器后送到Local SLAM中，经过匹配后得到机器人的位姿输出，同时把激光数据加入到子图中。
 
@@ -82,7 +82,7 @@ Local SLAM会把激光以及完成的子图发送到Global SLAM中，Global SLAM
 
 找到最满足约束条件的机器人位姿配置，本文讲解的方法为非线性最小二乘法，使用高斯-牛顿法迭代求解。
 
-![image-20220630155617022](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220630155617022.png)
+![image-20220630155617022](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220630155617022.png)\
 
 ​		图中的误差为两点之间的差，则误差为，至于怎么推导出来的，待会儿讲解：
 $$

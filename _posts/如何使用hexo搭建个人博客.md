@@ -38,9 +38,11 @@ categories: 程序猿基础技能
 # 正式搭建hexo博客
 
 ## 创建博客的空间
+
 创建一个存放博客文件的空间，以后博客的管理等等都在该空间
 
 ## hexo博客常用命令
+
 * 初始化一个博客：`hexo init`
 * 创建一篇博客：`hexo n "xxx"`，创建的博客默认保存在`source/_posts/`
 * 清理：`hexo clean`
@@ -49,6 +51,7 @@ categories: 程序猿基础技能
 * 删除博客：删除博客，然后清理、生成、启动
 
 ## 将hexo博客同步到github云端
+
 1. 在github上创建博客的仓库，名称为`username.github.io`
 2. 安装git部署插件：`cnpm install --save hexo-deployer-git`
 3. 配置`_config.yml`文件，在最后的Deployment配置如下  

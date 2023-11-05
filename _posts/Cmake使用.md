@@ -31,19 +31,19 @@ CMake是一个开源的工具，通过编写几行简单的CMakeLists.txt，就�
 
 如果用的cgwin安装的mingw的话，直接从新点开cgwin的安装程序勾选上cmake，安装即可：
 
-![image-20220409130435479](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20220409130435479.png)
+![image-20220409130435479](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20220409130435479.png)\
 
 也可以官网下载：
 
 1. 
 官网下载最新的cmake：[CMake](https://cmake.org/)
 
-![image-20220409130816662](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20220409130816662.png)
+![image-20220409130816662](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_picimage-20220409130816662.png)\
 
 2. 
 安装时最好选择添加到环境变量（也可以后面自己添加），如果电脑是自己的，选择添加到所用用户即可
 
-![未命名图片](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png)
+![未命名图片](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic%E6%9C%AA%E5%91%BD%E5%90%8D%E5%9B%BE%E7%89%87.png)\
 
 3. 在命令行检测是否安装成功：`cmake --version`
 
@@ -187,6 +187,19 @@ file(GLOB_RECURSE SOURCE_LVGL ${PROJECT_SOURCE_DIR}/src/lv_sim_vscode_sdl/GUI/lv
 1. 功能：打印消息
 2. 参数：
 
+### ADD_DEFINITIONS
+
+1. 功能：添加宏定义
+2. 参数：
+   * 宏定义
+
+```cmake
+add_definitions(-DXXX) # 这个是定义XXX
+add_compile_definitions(NONE_VALUE_MACRO) # 这个cmake3.12后才支持
+add_definitions(-DNONE_VALUE_MACRO=0x10000000) # 有参宏
+add_compile_definitions(VALUE_MACRO=0x10000000) # 这个cmake3.12后才支持
+```
+
 ### 其他指令
 
 https://www.cnblogs.com/lidabo/p/7359217.html
@@ -206,6 +219,15 @@ cmake有个可以设置独立的环境变量`CMAKE_INCLUDE_PATH`，在Linux下�
    * `CMAKE_INCLUDE_PATH`：可以将自己的头文件写在里面
    * `CMAKE_LIBRARY_PATH`：可以将自己的库写在里面
 
+## 使用
+
+cmake时指定宏定义参数
+
+```bash
+cmake -DNONE_VALUE_MACRO ..
+cmake -DVALUE_MACRO=0x10000000 ..
+```
+
 # 构建和结构
 
 一般使用`cmake [CMakeLists.txt目录]`就可以完成构建，构建的文件在执行这个命令的目录下
@@ -214,7 +236,7 @@ cmake有个可以设置独立的环境变量`CMAKE_INCLUDE_PATH`，在Linux下�
 
 内部构建就是在本目录下直接构建，比如`cmake .`，这样构出来很多临时文件和自己的文件混在一起，如下图所示，不方便项目的构建和管理。
 
-![image-20221202164106227](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202164106227.png)
+![image-20221202164106227](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202164106227.png)\
 
 而外部构建一般是指将生成的文件放在另一个目录（即不和CMakeLists.txt一个目录），一般创建一个文件夹，再在里面进行编译：
 
@@ -227,7 +249,7 @@ make
 
 这样生成的文件就会在`build`下面，使整个工程看起来更整洁。
 
-![image-20221202170032146](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202170032146.png)
+![image-20221202170032146](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202170032146.png)\
 
 ## 基本结构
 
@@ -240,7 +262,7 @@ cmake管理的工程目录按照不同习惯有很多种，根据实际开发或
 
 构建好的基本结构如下所示：
 
-![image-20221202172604136](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202172604136.png)
+![image-20221202172604136](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202172604136.png)\
 
 这里使用了多级目录下的`CMakeLists.txt`，最外层的`CMakeLists.txt`如下所示：
 
@@ -283,7 +305,7 @@ add_executable(hello ${SRC_LIST})
 
 在安装前，通常的目录结构如下所示：
 
-![image-20221202174759355](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202174759355.png)
+![image-20221202174759355](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202174759355.png)\
 
 然后一般在最外层的`CMakeLists.txt`添加安装命令
 
@@ -335,7 +357,7 @@ sudo make install
 
 首先，正常创建好平时使用的`.h`和`.cc`文件，并完成代码的编写，整体目录结构如下：
 
-![image-20221202195708458](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202195708458.png)
+![image-20221202195708458](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202195708458.png)\
 
 完成外层`CMakeLists.txt`的编写，外层编写和前面的基本结构的外层一致，无需其他额外的操作，然后是完成内部的`CMakeLists.txt`的编写，具体如下所示：
 
@@ -366,7 +388,7 @@ set_target_properties(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 生成的文件如下所示：
 
-![image-20221202202215147](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202202215147.png)
+![image-20221202202215147](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/image-20221202202215147.png)\
 
 接下来是**安装共享库**，第一步要安装头文件，第二部要安装库，具体要在内层（不然找不到目标文件）`CMakeLists.txt`里面加上如下两句：
 

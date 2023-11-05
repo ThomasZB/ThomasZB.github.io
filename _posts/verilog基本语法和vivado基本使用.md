@@ -175,7 +175,7 @@ reg [3:0] a
 
 6. D触发器的产生，敏感列表有`edge`，非阻塞赋值时，左边就是`Q`，右边就是`D`
 
-   ![image-20220923160417850](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220923160417850.png)
+   ![image-20220923160417850](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220923160417850.png)\
 
 # 常见模块
 
@@ -189,7 +189,7 @@ reg [3:0] a
 
 1. 画出原理图
 
-   ![image-20220921151541434](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921151541434.png)
+   ![image-20220921151541434](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921151541434.png)\
 
 2. 写输入输出
 
@@ -222,7 +222,7 @@ reg [3:0] a
 
 4. 其他结构（带优先级的）
 
-   ![image-20220921152341565](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921152341565.png)
+   ![image-20220921152341565](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921152341565.png)\
 
    * 代码实现
 
@@ -308,7 +308,7 @@ reg [3:0] a
 
    * 知道结构（结构化描述）
 
-   ![image-20220921160512260](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921160512260.png)
+   ![image-20220921160512260](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220921160512260.png)\
 
    ```verilog
    module Add_half(sum, c_out, a, b);
@@ -412,7 +412,7 @@ endmodule
 
    * D触发器实现
 
-     ![image-20220923160620707](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220923160620707.png)
+     ![image-20220923160620707](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220923160620707.png)\
 
    ```verilog
    module ShiftReg(A, E, clk, rst);
@@ -453,7 +453,7 @@ endmodule
 
 1. 确定功能
 
-   ![image-20220928144538311](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928144538311.png)
+   ![image-20220928144538311](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928144538311.png)\
 
 2. 代码实现
 
@@ -485,7 +485,7 @@ endmodule
 
      * moore（输出是同步的）
 
-       ![image-20220928150643255](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928150643255.png)
+       ![image-20220928150643255](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928150643255.png)\
 
      ```verilog
      module Seq_Rec_3_1s_Moore_Shft_Reg(output D_out, input clk, reset, Din, En);
@@ -501,7 +501,7 @@ endmodule
 
      * mealy（输出跟输入有关）
 
-       ![image-20220928150735235](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928150735235.png)
+       ![image-20220928150735235](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928150735235.png)\
 
      ```verilog
      module Seq_Rec_3_1s_Mealy_Shft_Reg(output D_out, input clk, reset, Din);
@@ -518,7 +518,7 @@ endmodule
 
 1. 功能：将不同时钟域的时钟同步
 
-   ![image-20220928153509576](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928153509576.png)
+   ![image-20220928153509576](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928153509576.png)\
 
    * 中间毛刺可能是竞争冒险导致的，一般不需要考虑（glitch）
 
@@ -526,11 +526,11 @@ endmodule
 
      * 低时钟域到高时钟域
 
-     ![image-20220928154519566](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928154519566.png)
+     ![image-20220928154519566](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928154519566.png)\
 
      * 高时钟域到低时钟域（把输入当`clk`，保证了信号都能采到
 
-     ![image-20220928154650892](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928154650892.png)
+     ![image-20220928154650892](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220928154650892.png)\
 
 2. 实现
 
@@ -554,11 +554,11 @@ endmodule
 
 2. 进入后选择路径，进入下一步，选择`RTL Project`，选择`Do not ...`（一般建好工程再添加文件）
 
-   ![image-20220930142227230](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142227230.png)
+   ![image-20220930142227230](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142227230.png)\
 
 3. 选择芯片型号后，选择`Finish`，可以看到如下界面：
 
-   ![image-20220930142714080](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142714080.png)
+   ![image-20220930142714080](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142714080.png)\
 
 ## 综合和分析
 
@@ -566,7 +566,7 @@ endmodule
 
 2. 在右边框的综合中选择`Run Synthesis`
 
-   ![image-20220930142936563](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142936563.png)
+   ![image-20220930142936563](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930142936563.png)\
 
 3. `Launch Runs`弹窗选择`ok`即可
 
@@ -574,7 +574,7 @@ endmodule
 
 5. 完成后点击综合中的`Schematic`可以查看原理图
 
-   ![image-20220930143349129](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930143349129.png)
+   ![image-20220930143349129](https://pic-1302177449.cos.ap-chongqing.myqcloud.com/blog_pic/%20image-20220930143349129.png)\
 
 ## 仿真
 
